@@ -2,7 +2,7 @@
 
 面向中国市场的消费电子营销策划知识库。覆盖手机、笔记本、耳机、穿戴设备、智能家居等3C品类。
 
-> 本知识库可作为 AI Agent 的上下文资料使用，也可独立阅读作为行业参考。
+> 本仓库已包含 `SKILL.md`，可作为 AI Agent Skill 使用，也可独立阅读作为行业参考。
 > 数据来自公开评测和行业报告，使用时请确认时效性。
 
 ## 能力一览
@@ -33,11 +33,14 @@
 ```
 .
 ├── README.md                          # 本文件
+├── SKILL.md                           # Skill 主入口
+├── agents/openai.yaml                 # Agent UI 元数据
 ├── LICENSE                            # MIT License
 ├── CONTRIBUTING.md                      # 贡献指南
 ├── quickstart-example.md              # 中英文完整使用示例
 │
 ├── docs/                               # 文档层（方法论+模板+参考）
+│   ├── data-index.md                   # 数据覆盖和时效索引
 │   ├── templates/                      # 输出模板
 │   │   ├── creative-output.md          # 创意策划输出规范
 │   │   ├── insight-output.md           # 洞察/分析输出规范
@@ -104,7 +107,7 @@
 
 ## 风险评估
 
-评估维度和判定标准由用户定义，本知识库提供通用模板。
+默认按技术事实、竞品反击、行业黑话、平台合规、评论区翻车、KOL合作风险评分；用户也可以自定义维度。
 详见 [docs/templates/risk-assessment.md](docs/templates/risk-assessment.md)
 
 评论区模拟：必须模拟负面反应和解构找茬人群。
@@ -136,9 +139,10 @@
 完整示例见 [quickstart-example.md](quickstart-example.md)。
 
 简版：
-1. 设置工作目录 — 告诉我路径，自动创建知识库结构
-2. 配置用户信息（可选）— 服务品牌/品类/偏好/竞品/平台
-3. 导入数据（可选但推荐）— 评测字幕/评论区/规格参数，自动预处理
+1. 安装或引用本仓库作为 Skill — 入口文件为 [SKILL.md](SKILL.md)
+2. 设置工作目录 — 告诉 Agent 服务品牌/品类/偏好/竞品/平台
+3. 导入数据（可选但推荐）— 评测字幕/评论区/规格参数，使用 `scripts/preprocess.py` 预处理
+4. 正式输出前 — 按 [docs/templates/quality-check-tools.md](docs/templates/quality-check-tools.md) 做事实和话术自检
 
 ## 免责声明
 

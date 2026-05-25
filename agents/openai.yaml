@@ -1,0 +1,7 @@
+interface:
+  display_name: "China Marketing Copilot"
+  short_description: "中国3C营销策划、洞察和风控助手"
+  default_prompt: "Use $china-marketing-copilot to create a China-market 3C campaign idea with data-backed risks and comment-section simulation."
+
+policy:
+  allow_implicit_invocation: true

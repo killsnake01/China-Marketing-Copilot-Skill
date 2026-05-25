@@ -50,9 +50,10 @@ def load_file(filepath):
 def apply_corrections(text, category):
     """应用纠错字典"""
     corrections = CORRECTION_DICTS.get(category, {})
+    correction_count = sum(text.count(wrong) for wrong in corrections)
     for wrong, right in corrections.items():
         text = text.replace(wrong, right)
-    return text
+    return text, correction_count
 
 def detect_type(text):
     """自动检测数据类型"""
@@ -69,37 +70,77 @@ def detect_type(text):
         return "评测"  # 默认
     return max(scores, key=scores.get)
 
+def clean_text(text):
+    """清理字幕时间戳、连续空行和首尾空白，保留原始表达。"""
+    text = re.sub(r"\d{1,2}:\d{2}:\d{2}[,.]\d{1,3}\s*-->\s*\d{1,2}:\d{2}:\d{2}[,.]\d{1,3}", "", text)
+    text = re.sub(r"^\s*\d+\s*$", "", text, flags=re.MULTILINE)
+    text = re.sub(r"\n{3,}", "\n\n", text)
+    return text.strip()
+
+def extract_numbers(text):
+    """提取常见数值线索，供人工复核。"""
+    pattern = r"\d+(?:\.\d+)?\s*(?:元|万|亿|%|Hz|W|mAh|dB|小时|分钟|GB|TB|英寸|克|kg|fps|分)"
+    return sorted(set(re.findall(pattern, text)))
+
+def render_markdown(args, dtype, text, correction_count):
+    numbers = extract_numbers(text)
+    title = args.title or Path(args.input).stem
+    source = args.source or "未标注"
+
+    lines = [
+        f"# {title}",
+        "",
+        f"> 品类: {args.category}",
+        f"> 数据类型: {dtype}",
+        f"> 来源: {source}",
+        "> 状态: [待复核]",
+        "",
+        "## 处理摘要",
+        "",
+        f"- 原文长度: {len(text)} 字符",
+        f"- 纠错命中: {correction_count} 处",
+        f"- 数值线索: {len(numbers)} 个",
+        "",
+        "## 数值线索",
+        "",
+    ]
+    if numbers:
+        lines.extend(f"- {item} — 来源: [{source}] — 状态: [待验证]" for item in numbers[:80])
+    else:
+        lines.append("- 未发现明显数值线索")
+
+    lines.extend([
+        "",
+        "## 清洗后原文",
+        "",
+        text,
+        "",
+    ])
+    return "\n".join(lines)
+
 def main():
     parser = argparse.ArgumentParser(description="3C数据预处理")
     parser.add_argument("--input", required=True, help="输入文件路径")
     parser.add_argument("--type", choices=["评测", "评论", "规格", "风险"], help="数据类型（可省略，自动检测）")
     parser.add_argument("--category", required=True, choices=list(CORRECTION_DICTS.keys()), help="品类")
     parser.add_argument("--output", help="输出文件路径（默认打印到stdout）")
+    parser.add_argument("--source", help="来源标注，例如 KOL|平台|标题")
+    parser.add_argument("--title", help="输出文档标题")
     args = parser.parse_args()
 
     text = load_file(args.input)
-    text = apply_corrections(text, args.category)
+    text = clean_text(text)
+    text, correction_count = apply_corrections(text, args.category)
 
     dtype = args.type or detect_type(text)
 
-    print(f"品类: {args.category}")
-    print(f"类型: {dtype}")
-    print(f"原文长度: {len(text)} 字符")
-
-    # 统计纠错次数（简单版本）
-    corrections = CORRECTION_DICTS.get(args.category, {})
-    correction_count = 0
-    for wrong in corrections:
-        # 这里无法精确统计（已经替换了），只是示意
-        pass
-    print(f"纠错字典: {len(corrections)} 条")
-
-    print("\n--- 清洗后内容预览 ---")
-    print(text[:500])
+    output = render_markdown(args, dtype, text, correction_count)
 
     if args.output:
-        Path(args.output).write_text(text, encoding="utf-8")
-        print(f"\n已保存到: {args.output}")
+        Path(args.output).write_text(output, encoding="utf-8")
+        print(f"已保存到: {args.output}")
+    else:
+        print(output)
 
 if __name__ == "__main__":
     main()
