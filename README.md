@@ -39,18 +39,18 @@
 
 ## 版本和发布平台
 
-- 当前版本：`v1.3.6`
+- 当前版本：`v1.3.7`
 - 更新日期：`2026-06-17`
 - 版本源文件：[`VERSION`](VERSION)
 - 技能标识：`china-marketing-copilot`
 
 | 平台 | 当前版本 | 使用入口 | 发布口径 |
 |------|----------|----------|----------|
-| GitHub | `v1.3.6` | 仓库源码 | 源码、README、验证脚本以本仓库为准 |
-| ClawHub | `v1.3.6` | `SKILL.md` | 上传或同步时版本号填 `1.3.6` |
-| SkillHub | `v1.3.6` | zip 包上传 | 后台版本号填 `1.3.6`；如平台占用 slug，只调整平台 slug，不改内容版本 |
-| Codex / OpenAI 技能 | `v1.3.6` | `$china-marketing-copilot` | 使用 `SKILL.md` 和 `agents/openai.yaml` |
-| OpenClaw / Hermes | `v1.3.6` | `SKILL.md` + `docs/` | 默认离线可用，不依赖 browser-use、微博、新闻或实时网页能力 |
+| GitHub | `v1.3.7` | 仓库源码 | 源码、README、验证脚本以本仓库为准 |
+| ClawHub | `v1.3.7` | `SKILL.md` | 上传或同步时版本号填 `1.3.7` |
+| SkillHub | `v1.3.7` | zip 包上传 | 后台版本号填 `1.3.7`；如平台占用 slug，只调整平台 slug，不改内容版本 |
+| Codex / OpenAI 技能 | `v1.3.7` | `$china-marketing-copilot` | 使用 `SKILL.md` 和 `agents/openai.yaml` |
+| OpenClaw / Hermes | `v1.3.7` | `SKILL.md` + `docs/` | 默认离线可用，不依赖 browser-use、微博、新闻或实时网页能力 |
 
 发布前运行：
 
@@ -202,7 +202,7 @@ python3 -B scripts/validate_skill_pack.py
 - 优先读取包内 `docs/` 和 `knowledge-base/`
 - 外部搜索、浏览器、微博、新闻能力均为可选增强
 - OpenClaw / Hermes 环境缺少 browser-use 时，仍可用静态市场信号库和负面规则完成判断
-- 更新平台版本时，外部后台统一填写 `1.3.6`
+- 更新平台版本时，外部后台统一填写 `1.3.7`
 
 ## 子智能体指令
 
