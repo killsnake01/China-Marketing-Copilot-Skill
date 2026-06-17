@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "updated": "2026-06-06",
+  "description": "Machine-readable early negative signal rules for China 3C marketing risk detection.",
+  "global": [
+    {
+      "name": "数据打脸",
+      "keywords": ["数据哪来的", "实测呢", "虚标", "PPT参数", "跑分第一", "测试条件", "同源", "造假"],
+      "base_level": "中",
+      "boost_count_gte": 3,
+      "action": "补充来源、测试条件和同源对比。"
+    },
+    {
+      "name": "产品缺陷",
+      "keywords": ["发热", "断连", "漏音", "续航崩", "品控", "翻车", "卡顿", "故障"],
+      "base_level": "中",
+      "boost_count_gte": 3,
+      "action": "区分个例和批量问题，准备售后与测试边界说明。"
+    },
+    {
+      "name": "价格背刺",
+      "keywords": ["首发冤种", "背刺", "等降价", "涨价", "国补", "补贴", "跳水", "晚买享折扣"],
+      "base_level": "中",
+      "boost_count_gte": 3,
+      "action": "标注日期、渠道、配置和补贴条件。"
+    },
+    {
+      "name": "信任崩塌",
+      "keywords": ["恰饭", "软广", "水军", "控评", "删评", "硬广", "收钱", "充值"],
+      "base_level": "高",
+      "boost_count_gte": 2,
+      "action": "公开利益关系，减少水军感话术，避免硬辩。"
+    },
+    {
+      "name": "价值观冒犯",
+      "keywords": ["不尊重", "恶心", "冒犯", "价值观", "低俗", "侮辱", "歧视", "不舒服"],
+      "base_level": "高",
+      "boost_count_gte": 1,
+      "action": "优先下架或改稿，再解释创作意图。"
+    },
+    {
+      "name": "KOL背叛",
+      "keywords": ["给黑粉送钱", "骂用户", "背叛用户", "黑粉", "攻击粉丝", "骂粉丝"],
+      "base_level": "高",
+      "boost_count_gte": 1,
+      "action": "复核KOL历史言论，必要时切割合作。"
+    },
+    {
+      "name": "AI空话",
+      "keywords": ["套壳", "鸡肋", "智障", "PPT功能", "没用", "AI赋能", "全面重塑", "重塑体验", "假AI", "噱头"],
+      "base_level": "中",
+      "boost_count_gte": 3,
+      "action": "落到具体任务、结果和不可用边界。"
+    }
+  ],
+  "categories": {
+    "mobile": [
+      {
+        "name": "手机性能/影像风险",
+        "keywords": ["掉帧", "锁帧", "功耗", "涂抹", "偏色", "鬼影", "拍月亮", "断流", "杀后台"],
+        "base_level": "中",
+        "boost_count_gte": 3,
+        "action": "复核真实场景、测试条件和用户反馈量级。"
+      }
+    ],
+    "headphones": [
+      {
+        "name": "耳机体验风险",
+        "keywords": ["糊", "闷", "刺耳", "底噪", "压耳", "风噪", "夹耳", "漏音", "左右不同步"],
+        "base_level": "中",
+        "boost_count_gte": 3,
+        "action": "复核佩戴、连接、降噪和音质场景样本。"
+      }
+    ],
+    "laptops": [
+      {
+        "name": "笔记本配置/散热风险",
+        "keywords": ["残血", "功耗墙", "降频", "跑不满", "三低屏", "QLC", "马甲U", "风扇吵"],
+        "base_level": "中",
+        "boost_count_gte": 3,
+        "action": "复核功耗释放、屏幕规格、硬盘和散热测试条件。"
+      }
+    ],
+    "wearables": [
+      {
+        "name": "穿戴健康/续航风险",
+        "keywords": ["测不准", "医疗器械", "误导健康", "GPS飘", "心率飘", "一天一充"],
+        "base_level": "中",
+        "boost_count_gte": 3,
+        "action": "复核健康数据边界、传感器条件和续航测试场景。"
+      }
+    ],
+    "smart-home": [
+      {
+        "name": "智能家居体验/隐私风险",
+        "keywords": ["越拖越脏", "毛发缠绕", "撞家具", "自动上下水", "摄像头隐私", "地图数据"],
+        "base_level": "中",
+        "boost_count_gte": 3,
+        "action": "复核户型限制、安装条件、隐私说明和实际使用场景。"
+      }
+    ]
+  }
+}

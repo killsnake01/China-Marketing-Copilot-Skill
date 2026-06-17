@@ -32,11 +32,18 @@
 
 | 文件 | 何时读取 |
 |------|----------|
+| `docs/templates/strategy-decision-system.md` | brief 模糊、需要传播策略、定位选择、launch 路线、平台组合或预算取舍 |
+| `docs/templates/message-house.md` | 需要定位、slogan、主张体系、发布会话术、社媒文案、KOL口径或反驳口径 |
+| `docs/templates/channel-kol-activation.md` | 需要KOL brief、渠道排期、平台分工、内容交付、评论区动作或复盘指标 |
 | `docs/ecosystem/industry-memes.md` | 涉及营销话术、梗、黑话、评论区反噬 |
 | `docs/ecosystem/kols.md` | 涉及 KOL 合作、平台背书、评测可信度 |
+| `docs/ecosystem/market-signals-2026.md` | 涉及 2026 年节日情绪、KOL争议、AI硬件叙事、价格/补贴敏感期 |
+| `docs/ecosystem/negative-early-warning.md` | 需要尽早识别评论区、评测、KOL、价格和价值观负面苗头 |
+| `docs/ecosystem/negative-signal-rules.json` | 负面早期预警的机器可读关键词、等级和动作规则 |
 | `docs/references/comment-personas.md` | 需要模拟评论区或判断翻车风险 |
 | `docs/references/industry-ecosystem.md` | 需要做平台适配、传播路径、内容形式选择 |
 | `docs/references/eco-integration.md` | 需要实时搜索、浏览器爬取、长文本总结 |
+| `docs/evals/negative-signal-samples.md` | 维护负面规则时，用于校准误报和漏报 |
 
 ## 置信度规则
 
