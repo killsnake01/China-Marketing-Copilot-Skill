@@ -5,9 +5,9 @@
 ```
 {工作目录}/
 ├── VERSION                      # 当前发布版本
-├── SKILL.md                     # Skill 主入口
+├── SKILL.md                     # 技能主入口
 ├── agents/
-│   └── openai.yaml              # Agent UI 元数据
+│   └── openai.yaml              # 智能体界面元数据
 ├── quickstart-example.md        # 快速开始示例
 ├── knowledge-base/
 │   ├── mobile/                  # 手机品类
@@ -32,16 +32,16 @@
 │   │   ├── negative-early-warning.md # 负面早期预警库
 │   │   ├── negative-signal-rules.json # 负面预警机器可读规则
 │   │   └── industry-memes.md    # 行业黑话/梗字典+慎用清单
-│   ├── references/              # 参考文档（Agent指令+框架）
+│   ├── references/              # 参考文档（智能体指令+框架）
 │   │   ├── comment-personas.md  # 评论区人群原型+模拟规则
 │   │   ├── industry-ecosystem.md # 5平台传播规律+品类适配
 │   │   ├── eco-integration.md   # 外部工具集成协议
-│   │   ├── subagent-dataprocessor.md # DataProcessor 指令
-│   │   └── subagent-factchecker.md # FactChecker 指令
+│   │   ├── subagent-dataprocessor.md # 数据处理指令
+│   │   └── subagent-factchecker.md # 事实核查指令
 │   ├── templates/               # 输出模板
 │   │   ├── strategy-decision-system.md # 策略诊断和传播架构
 │   │   ├── message-house.md     # 信息屋和主张体系
-│   │   ├── channel-kol-activation.md # 渠道和KOL执行brief
+│   │   ├── channel-kol-activation.md # 渠道和KOL执行简报
 │   │   ├── creative-output.md   # 创意策划模板
 │   │   ├── insight-output.md    # 洞察/竞品/横评模板
 │   │   ├── risk-assessment.md   # 风险评估模板
@@ -54,7 +54,7 @@
 └── scripts/
     ├── preprocess.py            # 数据预处理脚本
     ├── evaluate_negative_signals.py # 负面规则校准脚本
-    └── validate_skill_pack.py   # Skill包验证脚本
+    └── validate_skill_pack.py   # 技能包验证脚本
 ```
 
 ## 品类 _index.md 标准结构

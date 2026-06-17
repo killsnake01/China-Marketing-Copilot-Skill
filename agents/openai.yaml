@@ -1,5 +1,5 @@
 interface:
-  display_name: "China Marketing Copilot"
+  display_name: "中国3C营销助手"
   short_description: "中国3C策略诊断、信息架构、KOL渠道和风控助手"
   default_prompt: "使用 $china-marketing-copilot 为中国3C新品制定上市策略，输出策略路线、信息屋、KOL/渠道计划、风险预警和评论区模拟。"
 

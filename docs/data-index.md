@@ -1,6 +1,6 @@
 # 数据索引与时效规则
 
-本文件用于帮助 Agent 快速选择知识库文件，并判断哪些结论需要外部复核。
+本文件用于帮助智能体快速选择知识库文件，并判断哪些结论需要外部复核。
 
 ## 总体原则
 
@@ -32,9 +32,9 @@
 
 | 文件 | 何时读取 |
 |------|----------|
-| `docs/templates/strategy-decision-system.md` | brief 模糊、需要传播策略、定位选择、launch 路线、平台组合或预算取舍 |
-| `docs/templates/message-house.md` | 需要定位、slogan、主张体系、发布会话术、社媒文案、KOL口径或反驳口径 |
-| `docs/templates/channel-kol-activation.md` | 需要KOL brief、渠道排期、平台分工、内容交付、评论区动作或复盘指标 |
+| `docs/templates/strategy-decision-system.md` | 需求模糊、需要传播策略、定位选择、上市路线、平台组合或预算取舍 |
+| `docs/templates/message-house.md` | 需要定位、标语、主张体系、发布会话术、社媒文案、KOL口径或反驳口径 |
+| `docs/templates/channel-kol-activation.md` | 需要KOL简报、渠道排期、平台分工、内容交付、评论区动作或复盘指标 |
 | `docs/ecosystem/industry-memes.md` | 涉及营销话术、梗、黑话、评论区反噬 |
 | `docs/ecosystem/kols.md` | 涉及 KOL 合作、平台背书、评测可信度 |
 | `docs/ecosystem/market-signals-2026.md` | 涉及 2026 年节日情绪、KOL争议、AI硬件叙事、价格/补贴敏感期 |

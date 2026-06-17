@@ -1,6 +1,6 @@
 # 策略诊断与传播架构
 
-> 用途：把模糊 brief 转成可执行传播判断。适用于新品上市、传播方案、定位重写、Campaign 方向、KOL 组合、平台打法和“怎么打”类问题。
+> 用途：把模糊需求转成可执行传播判断。适用于新品上市、传播方案、定位重写、整合传播方向、KOL组合、平台打法和“怎么打”类问题。
 
 ## 触发场景
 
@@ -59,7 +59,7 @@
 
 下游交付
 - 信息屋: 进入 [message-house.md](message-house.md)，输出核心主张、证据柱、平台文案和反对意见回应。
-- 渠道KOL: 进入 [channel-kol-activation.md](channel-kol-activation.md)，输出平台分工、KOL brief、交付物、评论区动作和复盘指标。
+- 渠道KOL: 进入 [channel-kol-activation.md](channel-kol-activation.md)，输出平台分工、KOL简报、交付物、评论区动作和复盘指标。
 ```
 
 ## 策略原型

@@ -1,24 +1,24 @@
-# 中国3C营销 Copilot
+# 中国3C营销助手
 
-面向中国市场的消费电子营销 Skill。覆盖手机、笔记本、耳机、穿戴设备、智能家居等3C品类，适合做上市策略、信息架构、KOL渠道、创意策划、竞品洞察、评论区风险和负面早期预警。
+面向中国市场的消费电子营销技能包。覆盖手机、笔记本、耳机、穿戴设备、智能家居等3C品类，适合做上市策略、信息架构、KOL渠道、创意策划、竞品洞察、评论区风险和负面早期预警。
 
-> 本仓库包含 `SKILL.md`，可作为 AI Agent Skill 使用，也可独立阅读作为行业参考。
+> 本仓库包含 `SKILL.md`，可作为 AI 智能体技能包使用，也可独立阅读作为行业参考。
 > 数据来自公开评测和行业报告，涉及价格、销量、份额、新品参数时，请按当前日期重新核验。
 
 ## 版本和发布平台
 
-- 当前版本：`v1.3.3`
+- 当前版本：`v1.3.4`
 - 更新日期：`2026-06-17`
 - 版本源文件：[`VERSION`](VERSION)
-- Skill 标识：`china-marketing-copilot`
+- 技能标识：`china-marketing-copilot`
 
 | 平台 | 当前版本 | 使用入口 | 发布口径 |
 |------|----------|----------|----------|
-| GitHub | `v1.3.3` | 仓库源码 | 源码、README、验证脚本以本仓库为准 |
-| ClawHub | `v1.3.3` | `SKILL.md` | 上传或同步时版本号填 `1.3.3` |
-| SkillHub | `v1.3.3` | zip 包上传 | 后台版本号填 `1.3.3`；如平台占用 slug，只调整平台 slug，不改内容版本 |
-| Codex / OpenAI Skills | `v1.3.3` | `$china-marketing-copilot` | 使用 `SKILL.md` 和 `agents/openai.yaml` |
-| OpenClaw / Hermes | `v1.3.3` | `SKILL.md` + `docs/` | 默认离线可用，不依赖 browser-use、微博、新闻或实时网页能力 |
+| GitHub | `v1.3.4` | 仓库源码 | 源码、README、验证脚本以本仓库为准 |
+| ClawHub | `v1.3.4` | `SKILL.md` | 上传或同步时版本号填 `1.3.4` |
+| SkillHub | `v1.3.4` | zip 包上传 | 后台版本号填 `1.3.4`；如平台占用 slug，只调整平台 slug，不改内容版本 |
+| Codex / OpenAI 技能 | `v1.3.4` | `$china-marketing-copilot` | 使用 `SKILL.md` 和 `agents/openai.yaml` |
+| OpenClaw / Hermes | `v1.3.4` | `SKILL.md` + `docs/` | 默认离线可用，不依赖 browser-use、微博、新闻或实时网页能力 |
 
 发布前运行：
 
@@ -32,7 +32,7 @@ python3 -B scripts/validate_skill_pack.py
 |------|---------|------|
 | 策略诊断 | 怎么打 / 传播架构 / 上市路线 | [docs/templates/strategy-decision-system.md](docs/templates/strategy-decision-system.md) |
 | 信息架构 | 定位 / 标语 / 主张体系 / 话术 | [docs/templates/message-house.md](docs/templates/message-house.md) |
-| 渠道KOL | KOL brief / 平台排期 / 种草计划 | [docs/templates/channel-kol-activation.md](docs/templates/channel-kol-activation.md) |
+| 渠道KOL | KOL简报 / 平台排期 / 种草计划 | [docs/templates/channel-kol-activation.md](docs/templates/channel-kol-activation.md) |
 | 创意策划 | 帮我想几个创意 / 做个传播方案 | [docs/templates/creative-output.md](docs/templates/creative-output.md) |
 | 竞品分析 | XX发布了，对我们有什么威胁 | [docs/templates/insight-output.md](docs/templates/insight-output.md) |
 | 数据洞察 | 目前XX品类哪款最均衡 | [docs/templates/insight-output.md](docs/templates/insight-output.md) |
@@ -58,19 +58,19 @@ python3 -B scripts/validate_skill_pack.py
 ```
 .
 ├── README.md                          # 本文件
-├── SKILL.md                           # Skill 主入口
-├── agents/openai.yaml                 # Agent UI 元数据
-├── LICENSE                            # MIT License
+├── SKILL.md                           # 技能主入口
+├── agents/openai.yaml                 # 智能体界面元数据
+├── LICENSE                            # MIT 许可证
 ├── VERSION                            # 当前发布版本
 ├── CONTRIBUTING.md                     # 贡献指南
-├── quickstart-example.md              # 中英文完整使用示例
+├── quickstart-example.md              # 中文完整使用示例
 │
 ├── docs/                               # 文档层（方法论+模板+参考）
 │   ├── data-index.md                   # 数据覆盖和时效索引
 │   ├── templates/                      # 输出模板
 │   │   ├── strategy-decision-system.md # 策略诊断和传播架构
 │   │   ├── message-house.md            # 信息屋和主张体系
-│   │   ├── channel-kol-activation.md   # 渠道和KOL执行brief
+│   │   ├── channel-kol-activation.md   # 渠道和KOL执行简报
 │   │   ├── creative-output.md          # 创意策划输出规范
 │   │   ├── insight-output.md           # 洞察/分析输出规范
 │   │   ├── risk-assessment.md          # 风险评估模板
@@ -82,8 +82,8 @@ python3 -B scripts/validate_skill_pack.py
 │   │   ├── comment-personas.md         # 评论区5大人群原型
 │   │   ├── industry-ecosystem.md       # 平台传播规律
 │   │   ├── eco-integration.md          # 外部工具集成协议
-│   │   ├── subagent-dataprocessor.md   # 数据预处理子Agent指令
-│   │   └── subagent-factchecker.md     # 事实核查子Agent指令
+│   │   ├── subagent-dataprocessor.md   # 数据预处理子智能体指令
+│   │   └── subagent-factchecker.md     # 事实核查子智能体指令
 │   ├── ecosystem/                      # 行业生态
 │   │   ├── kols.md                     # 3C核心KOL名录
 │   │   ├── market-signals-2026.md      # 2026市场舆情信号库
@@ -104,7 +104,7 @@ python3 -B scripts/validate_skill_pack.py
 └── scripts/
     ├── preprocess.py                   # 数据预处理脚本
     ├── evaluate_negative_signals.py    # 负面规则校准脚本
-    └── validate_skill_pack.py          # Skill 包验证脚本
+    └── validate_skill_pack.py          # 技能包验证脚本
 ```
 
 ## 核心规则
@@ -139,7 +139,7 @@ python3 -B scripts/validate_skill_pack.py
 - 使用场景中找共鸣点
 - 行业热点中找借势机会
 
-创意去重：对照 [docs/templates/used-ideas.md](docs/templates/used-ideas.md) + 同次生成的核心hook不能重复
+创意去重：对照 [docs/templates/used-ideas.md](docs/templates/used-ideas.md) + 同次生成的核心钩子不能重复
 
 ## 风险评估
 
@@ -163,19 +163,19 @@ python3 -B scripts/validate_skill_pack.py
 
 ## 平台兼容
 
-这个 Skill 的默认路径按离线知识库设计：
+本技能包的默认路径按离线知识库设计：
 
 - 优先读取包内 `docs/` 和 `knowledge-base/`
 - 外部搜索、浏览器、微博、新闻能力均为可选增强
 - OpenClaw / Hermes 环境缺少 browser-use 时，仍可用静态市场信号库和负面规则完成判断
-- 更新平台版本时，外部后台统一填写 `1.3.3`
+- 更新平台版本时，外部后台统一填写 `1.3.4`
 
-## 子Agent 指令
+## 子智能体指令
 
-| Agent | 触发 | 功能 |
+| 子智能体 | 触发 | 功能 |
 |-------|------|------|
-| DataProcessor | `处理新数据` | 纠错、判断类型、清洗、提取、更新索引 |
-| FactChecker | `帮我检查` / `审核` | 对抗性审计：数据核验、遗漏检测、幻觉扫描 |
+| 数据处理 | `处理新数据` | 纠错、判断类型、清洗、提取、更新索引 |
+| 事实核查 | `帮我检查` / `审核` | 对抗性审计：数据核验、遗漏检测、幻觉扫描 |
 
 详细指令：[docs/references/subagent-dataprocessor.md](docs/references/subagent-dataprocessor.md) / [docs/references/subagent-factchecker.md](docs/references/subagent-factchecker.md)
 
@@ -184,8 +184,8 @@ python3 -B scripts/validate_skill_pack.py
 完整示例见 [quickstart-example.md](quickstart-example.md)。
 
 简版：
-1. 安装或引用本仓库作为 Skill — 入口文件为 [SKILL.md](SKILL.md)
-2. 设置工作目录 — 告诉 Agent 服务品牌/品类/偏好/竞品/平台
+1. 安装或引用本仓库作为技能包 — 入口文件为 [SKILL.md](SKILL.md)
+2. 设置工作目录 — 告诉智能体服务品牌、品类、偏好、竞品和平台
 3. 导入数据（可选但推荐）— 评测字幕/评论区/规格参数，使用 `scripts/preprocess.py` 预处理；评论区用 `--mode comments`，知识库文档用 `--mode document`
 4. 做策略判断 — 对照 [docs/templates/strategy-decision-system.md](docs/templates/strategy-decision-system.md) 先确定主路线、备选路线和弃用路线
 5. 搭信息屋 — 对照 [docs/templates/message-house.md](docs/templates/message-house.md) 明确核心主张、证据柱、反对意见和平台文案
@@ -202,4 +202,4 @@ python3 -B scripts/validate_skill_pack.py
 
 ## 许可证
 
-MIT License，详见 [LICENSE](LICENSE)
+MIT 许可证，详见 [LICENSE](LICENSE)

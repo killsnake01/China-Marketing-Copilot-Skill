@@ -1,133 +1,133 @@
 ---
 name: china-marketing-copilot
-description: China 3C consumer-electronics marketing copilot for campaign ideation, competitor analysis, product comparison, risk assessment, review/comment data processing, and new-category go-to-market planning. Use when Codex needs China-market marketing strategy for phones, laptops, headphones, wearables, smart home, or adjacent 3C products, especially when the user asks for Chinese social-platform copy, KOL/评测 references, 评论区 risk simulation, anti-AI-tone rewriting, or fact-disciplined 3C insights.
+description: 中国3C消费电子营销助手，支持上市策略、传播路线、信息架构、KOL/渠道计划、创意策划、竞品分析、产品横评、评论区风险、负面早期预警、评测/评论/规格数据处理和新品类破局。适用于手机、笔记本、耳机、穿戴设备、智能家居及相邻3C品类，尤其适合中国社媒文案、KOL评测参考、评论区风险模拟、去AI腔改写和有事实边界的3C洞察。
 ---
 
-# China Marketing Copilot
+# 中国3C营销助手
 
-Use this skill to produce China-market 3C marketing work grounded in the bundled knowledge base. Treat the repository as a controlled context pack, not as general world knowledge.
+使用本技能包做中国3C消费电子营销工作。所有判断优先基于包内知识库、模板和脚本；当前数据不足时，明确标注缺口。
 
-## Operating Rules
+## 操作规则
 
-1. Do not invent numbers, rankings, product features, sources, KOL names, or prices.
-2. Mark unsupported claims as `知识库暂无此数据` or `[推测]`.
-3. For any product comparison, prefer same-source data. If sources differ, state the difference before judging.
-4. Check data freshness before making current claims. Prices, rankings, market share, and new-product specs require fresh verification when external search is available.
-5. Keep China 3C audience language sharp and concrete. Avoid corporate press-release wording and generic AI phrasing.
-6. Do not assume browser-use, web-search, or live platform access exists. Use bundled files first; treat external tools as optional.
-7. Before final delivery, run the quality checklist in `docs/templates/quality-check-tools.md`.
+1. 禁止编造数字、排名、产品特性、来源、KOL名称和价格。
+2. 缺少证据时写 `知识库暂无此数据`、`[推测]` 或 `[待验证]`。
+3. 产品对比优先使用同源数据；来源不同先说明口径差异，再给判断。
+4. 价格、排名、份额、新品参数和市场变化属于高时效信息；有外部搜索能力时先核验。
+5. 中国3C用户语言要具体、锋利、有证据，避免企业通稿腔和泛泛AI表达。
+6. 不预设 browser-use、网页搜索或平台实时访问能力；先用包内文件，外部工具只作为增强。
+7. 输出前按 `docs/templates/quality-check-tools.md` 做事实、话术和风险自检。
 
-## Resource Map
+## 资源地图
 
-- `docs/data-index.md`: first stop for data coverage, freshness, and file selection.
-- `knowledge-base/{category}/_index.md`: category-level brand matrix, price bands, conclusions, and risk notes.
-- `docs/templates/strategy-decision-system.md`: brief normalization, strategy diagnosis, route comparison, and campaign architecture.
-- `docs/templates/message-house.md`: positioning, claim hierarchy, proof pillars, copy variants, and objection handling.
-- `docs/templates/channel-kol-activation.md`: platform roles, KOL brief, content deliverables, comment operations, and measurement.
-- `docs/templates/creative-output.md`: campaign ideas, social posts, video scripts, topic plans.
-- `docs/templates/insight-output.md`: competitor analysis, data insight, product comparison.
-- `docs/templates/risk-assessment.md`: launch, copy, KOL, and comment-section risk checks.
-- `docs/templates/new-category-playbook.md`: new-category education and breakout strategy.
-- `docs/templates/quality-check-tools.md`: anti-AI-tone rules, fact checklist, confidence footer.
-- `docs/references/comment-personas.md`: comment-section persona simulation.
-- `docs/references/industry-ecosystem.md`: platform propagation patterns.
-- `docs/ecosystem/industry-memes.md`: jargon, memes, overused claims, and avoidance notes.
-- `docs/ecosystem/kols.md`: KOL ecosystem and cooperation risk notes.
-- `docs/ecosystem/market-signals-2026.md`: static 2026 market sentiment, crisis patterns, AI-hardware narrative, and price-sensitivity signals.
-- `docs/ecosystem/negative-early-warning.md`: early negative-signal taxonomy, severity rules, and response actions.
-- `docs/ecosystem/negative-signal-rules.json`: machine-readable early negative-signal rules used by preprocessing and evals.
-- `docs/evals/negative-signal-samples.md`: calibration samples for updating negative-signal rules.
-- `scripts/preprocess.py`: deterministic first-pass cleaning for imported review/comment/spec/risk files.
-- `scripts/evaluate_negative_signals.py`: calibration runner for negative-signal rules.
-- `scripts/validate_skill_pack.py`: package-level validation before commit or publish.
+- `docs/data-index.md`：数据覆盖、时效和文件选择入口。
+- `knowledge-base/{category}/_index.md`：品类品牌矩阵、价位段、结论和风险提示。
+- `docs/templates/strategy-decision-system.md`：需求归一、策略诊断、路线对比和传播架构。
+- `docs/templates/message-house.md`：定位、主张层级、证据柱、文案变体和反对意见处理。
+- `docs/templates/channel-kol-activation.md`：平台角色、KOL简报、内容交付、评论区运营和复盘指标。
+- `docs/templates/creative-output.md`：创意方案、社媒文案、视频脚本和话题计划。
+- `docs/templates/insight-output.md`：竞品分析、数据洞察和产品对比。
+- `docs/templates/risk-assessment.md`：上市、文案、KOL和评论区风险检查。
+- `docs/templates/new-category-playbook.md`：新品类教育和破局策略。
+- `docs/templates/quality-check-tools.md`：去AI腔、事实核查和置信度自检。
+- `docs/references/comment-personas.md`：评论区人群模拟。
+- `docs/references/industry-ecosystem.md`：平台传播规律。
+- `docs/ecosystem/industry-memes.md`：行业黑话、梗、过度表达和避雷提示。
+- `docs/ecosystem/kols.md`：KOL生态和合作风险。
+- `docs/ecosystem/market-signals-2026.md`：静态市场情绪、危机模式、AI硬件叙事和价格敏感信号。
+- `docs/ecosystem/negative-early-warning.md`：负面早期信号分类、严重度规则和应对动作。
+- `docs/ecosystem/negative-signal-rules.json`：预处理和评估脚本使用的机器可读负面规则。
+- `docs/evals/negative-signal-samples.md`：负面规则校准样本。
+- `scripts/preprocess.py`：评测、评论、规格和风险材料的确定性预处理。
+- `scripts/evaluate_negative_signals.py`：负面规则校准脚本。
+- `scripts/validate_skill_pack.py`：提交或发布前的包级验证脚本。
 
-## Task Routing
+## 任务路由
 
-### Strategy Diagnosis and Campaign Architecture
+### 策略诊断和传播架构
 
-Use when the user asks for launch strategy, positioning, campaign direction, "怎么打", "传播怎么做", or gives a vague marketing brief.
+适用于上市策略、定位、传播方向、怎么打、传播怎么做、预算路线和模糊营销需求。
 
-1. Read `docs/templates/strategy-decision-system.md`, `docs/data-index.md`, and the relevant category index.
-2. Normalize the brief into business goal, target audience, user barrier, evidence, competitor counterattack, platform mechanism, and risk boundary.
-3. Compare at least two routes and explicitly state the recommended route, backup route, and route to avoid.
-4. Include first 72-hour actions, 7-day follow-up, negative early-warning signals, and confidence.
+1. 读取 `docs/templates/strategy-decision-system.md`、`docs/data-index.md` 和相关品类索引。
+2. 将需求归一为商业目标、目标人群、用户障碍、证据、竞品反击、平台机制和风险边界。
+3. 至少比较两条路线，明确推荐路线、备选路线和弃用路线。
+4. 给出首个72小时动作、7天跟进、负面早期预警信号和置信度。
 
-### Messaging, Positioning, and Copy Architecture
+### 信息架构、定位和文案
 
-Use when the user asks for positioning, slogan, headline, social copy, launch talking points, product-page messaging, KOL talking points, or wants copy rewritten for China 3C audiences.
+适用于定位、标语、标题、社媒文案、上市话术、商品页信息、KOL话术和中国3C语境改写。
 
-1. Read `docs/templates/message-house.md`, `docs/templates/strategy-decision-system.md`, and relevant proof sources.
-2. Build one core claim, three proof pillars, user benefit, objection handling, platform copy variants, and forbidden expressions.
-3. Keep claim language specific, source-aware, and resistant to parameter-party teardown.
-4. Use `docs/templates/quality-check-tools.md` before final copy.
+1. 读取 `docs/templates/message-house.md`、`docs/templates/strategy-decision-system.md` 和相关证据来源。
+2. 输出一个核心主张、三组证据柱、用户利益、反对意见处理、平台文案变体和禁用表达。
+3. 主张要具体、有来源，能承受参数党拆解。
+4. 交付前使用 `docs/templates/quality-check-tools.md` 自检。
 
-### Channel and KOL Activation
+### 渠道和KOL执行
 
-Use when the user asks for KOL brief, seeding plan, platform rollout, launch calendar, content deliverables, review embargo plan, or social activation.
+适用于 KOL简报、种草计划、平台排期、上市日历、内容交付、评测解禁和社媒激活。
 
-1. Read `docs/templates/channel-kol-activation.md`, `docs/templates/message-house.md`, `docs/references/industry-ecosystem.md`, and `docs/ecosystem/kols.md`.
-2. Split platform roles, KOL types, deliverables, must-say points, forbidden expressions, comment operations, risk triggers, and review metrics.
-3. Treat browser-use and live platform lookup as optional; if unavailable, use bundled KOL and platform references with `[待验证]` for current candidates.
+1. 读取 `docs/templates/channel-kol-activation.md`、`docs/templates/message-house.md`、`docs/references/industry-ecosystem.md` 和 `docs/ecosystem/kols.md`。
+2. 拆分平台角色、KOL类型、交付件、必说点、禁用表达、评论区动作、风险触发器和复盘指标。
+3. 缺少实时平台访问时，使用包内 KOL 和平台参考，并对当前候选标注 `[待验证]`。
 
-### Creative Campaigns
+### 创意策划
 
-Use when the user asks for ideas, campaign concepts, social copy, seeding, topic planning, or launch communication.
+适用于创意、整合传播概念、社媒内容、种草、话题计划和上市传播。
 
-1. Identify category, product, target user, platform, budget level, and forbidden claims. Ask only when a missing input changes the risk materially.
-2. Read `docs/data-index.md`, the relevant `knowledge-base/{category}/_index.md`, `docs/templates/creative-output.md`, `docs/templates/message-house.md`, `docs/templates/quality-check-tools.md`, and platform/persona references as needed.
-3. Read `docs/templates/strategy-decision-system.md` first when the brief affects positioning, launch strategy, route choice, or budget allocation.
-4. Use `docs/ecosystem/market-signals-2026.md` when the idea touches holidays, KOLs, AI hardware, price/subsidy, or public-emotion risks.
-5. Generate ideas from data-backed advantages, user pain points, comment reactions, competitor gaps, and platform mechanics.
-6. Check `docs/templates/used-ideas.md` and avoid repeated hooks.
-7. Include quick risk notes and comment-section simulation.
+1. 识别品类、产品、目标用户、平台、预算级别和禁用主张；缺失信息会显著影响风险时再提问。
+2. 读取 `docs/data-index.md`、相关 `knowledge-base/{category}/_index.md`、`docs/templates/creative-output.md`、`docs/templates/message-house.md`、`docs/templates/quality-check-tools.md` 和必要的平台/人群参考。
+3. 需求涉及定位、上市策略、路线选择或预算分配时，先读取 `docs/templates/strategy-decision-system.md`。
+4. 涉及节日、KOL、AI硬件、价格/补贴或公共情绪风险时，读取 `docs/ecosystem/market-signals-2026.md`。
+5. 从数据优势、用户痛点、评论反应、竞品空位和平台机制生成创意。
+6. 检查 `docs/templates/used-ideas.md`，避免重复创意钩子。
+7. 附上快速风险提示和评论区模拟。
 
-### Competitor Analysis, Product Comparison, and Market Insight
+### 竞品分析、产品对比和市场洞察
 
-Use when the user asks who is stronger, what threat a launch creates, which product is worth buying, or what position to take.
+适用于谁更强、发布威胁、哪款值得买、该站什么位置等问题。
 
-1. Read `docs/templates/insight-output.md` and the relevant category file.
-2. Build a source-aware matrix for quantitative claims.
-3. Separate measured data, subjective evaluation, and inference.
-4. Return a one-line conclusion, key findings, data support, audience views, actionable recommendations, and confidence.
+1. 读取 `docs/templates/insight-output.md` 和相关品类文件。
+2. 对量化主张建立来源矩阵。
+3. 区分实测数据、主观评价和推断。
+4. 输出一句话结论、关键发现、数据支撑、人群视角、行动建议和置信度。
 
-### Risk Assessment
+### 风险评估
 
-Use when the user asks whether a claim, creative, launch, KOL plan, or comparison will backfire.
+适用于主张、创意、上市、KOL计划、对比话术和评论区风险判断。
 
-1. Read `docs/templates/risk-assessment.md`, `docs/references/comment-personas.md`, `docs/ecosystem/industry-memes.md`, `docs/ecosystem/negative-early-warning.md`, and relevant static ecosystem files.
-2. Score technical facts, competitor counterattack, platform compliance, comment-section risk, KOL risk, social-emotion boundary risk, and early negative-signal severity when applicable.
-3. Simulate at least one skeptical/拆解 comment, one parameter-driven comment, and one normal-user reaction.
-4. End with `直接执行`, `调整后执行`, or `暂停重做`.
+1. 读取 `docs/templates/risk-assessment.md`、`docs/references/comment-personas.md`、`docs/ecosystem/industry-memes.md`、`docs/ecosystem/negative-early-warning.md` 和相关静态生态文件。
+2. 评分技术事实、竞品反击、平台合规、评论区风险、KOL风险、社会情绪边界和早期负面信号严重度。
+3. 至少模拟一条怀疑/拆解评论、一条参数党评论和一条普通用户反应。
+4. 结尾给出 `直接执行`、`调整后执行` 或 `暂停重做`。
 
-### Data Import
+### 数据导入
 
-Use when the user provides review subtitles, comment exports, specs, or risk notes.
+适用于用户提供评测字幕、评论导出、规格参数或风险笔记。
 
-1. Read `docs/references/subagent-dataprocessor.md`.
-2. Run `scripts/preprocess.py` when working with a local file; use `--mode comments`, `--mode review`, `--mode campaign`, or `--mode document` to reduce false positives.
-3. Preserve original wording for user comments and subjective review phrases.
-4. Extract negative early-warning signals before summarizing positive findings.
-5. When updating negative-signal rules, run `python3 -B scripts/evaluate_negative_signals.py`.
-6. Extract findings with source labels and update only the relevant category files.
-7. Mark uncertain facts as `[待验证]`.
+1. 读取 `docs/references/subagent-dataprocessor.md`。
+2. 本地文件优先运行 `scripts/preprocess.py`；按材料选择 `--mode comments`、`--mode review`、`--mode campaign` 或 `--mode document`。
+3. 用户评论和主观评测短语保留原话。
+4. 先抽取负面早期信号，再总结正面发现。
+5. 更新负面规则后运行 `python3 -B scripts/evaluate_negative_signals.py`。
+6. 带来源标签提取发现，只更新相关品类文件。
+7. 不确定事实标注 `[待验证]`。
 
-### Formal Material Review
+### 正式物料审核
 
-Use when output may be used in ads, official copy, launch decks, product pages, or KOL briefs.
+适用于广告、官方文案、上市方案页、商品页和 KOL简报。
 
-1. Read `docs/references/subagent-factchecker.md`.
-2. Use `docs/ecosystem/market-signals-2026.md` when the material involves a KOL, holiday, AI-hardware claim, or price/subsidy claim.
-3. Use `docs/templates/message-house.md` to check claim hierarchy, proof pillars, objections, and forbidden expressions.
-4. Audit every number, product claim, absolute phrase, and comparison.
-5. Flag unverified items instead of smoothing them over.
-6. Prefer a shorter, safer wording when a claim cannot be proven.
+1. 读取 `docs/references/subagent-factchecker.md`。
+2. 物料涉及 KOL、节日、AI硬件主张或价格/补贴时，读取 `docs/ecosystem/market-signals-2026.md`。
+3. 使用 `docs/templates/message-house.md` 检查主张层级、证据柱、反对意见和禁用表达。
+4. 审核每个数字、产品主张、绝对化表达和对比。
+5. 对未核验内容直接标注，不替用户抹平风险。
+6. 无法证明的主张，改成更短、更稳的表达。
 
-## Output Contract
+## 输出约定
 
-End substantive outputs with:
+实质性输出结尾使用：
 
 ```text
 自检: {N}个数值已核 | {N}个产品已核 | {N}个来源已标注 | 置信度:{高/中/低}
 ```
 
-Use `置信度:低` when the answer depends on missing, stale, or externally unverified information.
+当答案依赖缺失、过期或未外部核验的信息时，使用 `置信度:低`。
