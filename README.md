@@ -7,18 +7,18 @@
 
 ## 版本和发布平台
 
-- 当前版本：`v1.3.4`
+- 当前版本：`v1.3.5`
 - 更新日期：`2026-06-17`
 - 版本源文件：[`VERSION`](VERSION)
 - 技能标识：`china-marketing-copilot`
 
 | 平台 | 当前版本 | 使用入口 | 发布口径 |
 |------|----------|----------|----------|
-| GitHub | `v1.3.4` | 仓库源码 | 源码、README、验证脚本以本仓库为准 |
-| ClawHub | `v1.3.4` | `SKILL.md` | 上传或同步时版本号填 `1.3.4` |
-| SkillHub | `v1.3.4` | zip 包上传 | 后台版本号填 `1.3.4`；如平台占用 slug，只调整平台 slug，不改内容版本 |
-| Codex / OpenAI 技能 | `v1.3.4` | `$china-marketing-copilot` | 使用 `SKILL.md` 和 `agents/openai.yaml` |
-| OpenClaw / Hermes | `v1.3.4` | `SKILL.md` + `docs/` | 默认离线可用，不依赖 browser-use、微博、新闻或实时网页能力 |
+| GitHub | `v1.3.5` | 仓库源码 | 源码、README、验证脚本以本仓库为准 |
+| ClawHub | `v1.3.5` | `SKILL.md` | 上传或同步时版本号填 `1.3.5` |
+| SkillHub | `v1.3.5` | zip 包上传 | 后台版本号填 `1.3.5`；如平台占用 slug，只调整平台 slug，不改内容版本 |
+| Codex / OpenAI 技能 | `v1.3.5` | `$china-marketing-copilot` | 使用 `SKILL.md` 和 `agents/openai.yaml` |
+| OpenClaw / Hermes | `v1.3.5` | `SKILL.md` + `docs/` | 默认离线可用，不依赖 browser-use、微博、新闻或实时网页能力 |
 
 发布前运行：
 
@@ -67,6 +67,7 @@ python3 -B scripts/validate_skill_pack.py
 │
 ├── docs/                               # 文档层（方法论+模板+参考）
 │   ├── data-index.md                   # 数据覆盖和时效索引
+│   ├── data-sources.json               # 机器可读数据源和时效台账
 │   ├── templates/                      # 输出模板
 │   │   ├── strategy-decision-system.md # 策略诊断和传播架构
 │   │   ├── message-house.md            # 信息屋和主张体系
@@ -91,6 +92,7 @@ python3 -B scripts/validate_skill_pack.py
 │   │   ├── negative-signal-rules.json  # 负面预警机器可读规则
 │   │   └── industry-memes.md           # 行业黑话/梗字典+避雷指南
 │   └── evals/
+│       ├── marketing-task-samples.md   # 真实营销任务评测集
 │       └── negative-signal-samples.md  # 负面识别样本集
 │
 ├── knowledge-base/                     # 知识库数据层（可扩展）
@@ -168,7 +170,7 @@ python3 -B scripts/validate_skill_pack.py
 - 优先读取包内 `docs/` 和 `knowledge-base/`
 - 外部搜索、浏览器、微博、新闻能力均为可选增强
 - OpenClaw / Hermes 环境缺少 browser-use 时，仍可用静态市场信号库和负面规则完成判断
-- 更新平台版本时，外部后台统一填写 `1.3.4`
+- 更新平台版本时，外部后台统一填写 `1.3.5`
 
 ## 子智能体指令
 
@@ -190,9 +192,10 @@ python3 -B scripts/validate_skill_pack.py
 4. 做策略判断 — 对照 [docs/templates/strategy-decision-system.md](docs/templates/strategy-decision-system.md) 先确定主路线、备选路线和弃用路线
 5. 搭信息屋 — 对照 [docs/templates/message-house.md](docs/templates/message-house.md) 明确核心主张、证据柱、反对意见和平台文案
 6. 拆执行 — 对照 [docs/templates/channel-kol-activation.md](docs/templates/channel-kol-activation.md) 输出渠道、KOL、评论区和复盘指标
-7. 更新负面规则后 — 运行 `python3 -B scripts/evaluate_negative_signals.py` 校准样本集
-8. 提交或发布前 — 运行 `python3 -B scripts/validate_skill_pack.py`
-9. 正式输出前 — 按 [docs/templates/quality-check-tools.md](docs/templates/quality-check-tools.md) 做事实和话术自检
+7. 更新数据源后 — 同步维护 [docs/data-sources.json](docs/data-sources.json)
+8. 更新负面规则后 — 运行 `python3 -B scripts/evaluate_negative_signals.py` 校准样本集
+9. 提交或发布前 — 运行 `python3 -B scripts/validate_skill_pack.py`
+10. 正式输出前 — 按 [docs/templates/quality-check-tools.md](docs/templates/quality-check-tools.md) 做事实和话术自检
 
 ## 免责声明
 

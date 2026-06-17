@@ -14,6 +14,7 @@ REQUIRED_PATHS = [
     "SKILL.md",
     "agents/openai.yaml",
     "docs/data-index.md",
+    "docs/data-sources.json",
     "docs/templates/strategy-decision-system.md",
     "docs/templates/message-house.md",
     "docs/templates/channel-kol-activation.md",
@@ -23,6 +24,7 @@ REQUIRED_PATHS = [
     "docs/ecosystem/market-signals-2026.md",
     "docs/ecosystem/negative-early-warning.md",
     "docs/ecosystem/negative-signal-rules.json",
+    "docs/evals/marketing-task-samples.md",
     "docs/evals/negative-signal-samples.md",
     "scripts/preprocess.py",
     "scripts/evaluate_negative_signals.py",
@@ -92,16 +94,88 @@ def validate_required_paths():
 
 
 def validate_json():
-    json_path = ROOT / "docs" / "ecosystem" / "negative-signal-rules.json"
-    json.loads(json_path.read_text(encoding="utf-8"))
-    print("PASS negative-signal-rules.json")
+    for rel in [
+        "docs/ecosystem/negative-signal-rules.json",
+        "docs/data-sources.json",
+    ]:
+        json_path = ROOT / rel
+        json.loads(json_path.read_text(encoding="utf-8"))
+        print(f"PASS {rel}")
+    return 0
+
+
+def validate_data_sources():
+    data_path = ROOT / "docs" / "data-sources.json"
+    data = json.loads(data_path.read_text(encoding="utf-8"))
+    if not isinstance(data.get("categories"), list) or len(data["categories"]) < 6:
+        return fail("data-sources.json must include at least 6 categories")
+    seen = set()
+    for item in data["categories"]:
+        category = item.get("category")
+        if not category or category in seen:
+            return fail("data-sources.json has missing or duplicate category")
+        seen.add(category)
+        if not item.get("data_cutoff") or not isinstance(item.get("must_refresh"), list) or not item["must_refresh"]:
+            return fail(f"data-sources.json category missing freshness fields: {category}")
+        if not isinstance(item.get("refresh_after_days"), int):
+            return fail(f"data-sources.json category missing refresh_after_days: {category}")
+        for rel in item.get("primary_files", []):
+            if not (ROOT / rel).exists():
+                return fail(f"data-sources.json references missing file: {rel}")
+    for item in data.get("cross_references", []):
+        rel = item.get("path", "")
+        if not rel or not (ROOT / rel).exists():
+            return fail(f"data-sources.json references missing cross file: {rel}")
+    print(f"PASS data-sources categories: {len(seen)}")
+    return 0
+
+
+def parse_markdown_table(path, columns):
+    rows = []
+    for line in path.read_text(encoding="utf-8").splitlines():
+        stripped = line.strip()
+        if not stripped.startswith("|"):
+            continue
+        cells = [cell.strip() for cell in stripped.strip("|").split("|")]
+        if len(cells) != columns or cells[0] in {"ID", "----"}:
+            continue
+        if not cells[0] or cells[0].startswith("-"):
+            continue
+        rows.append(cells)
+    return rows
+
+
+def validate_marketing_eval():
+    eval_path = ROOT / "docs" / "evals" / "marketing-task-samples.md"
+    rows = parse_markdown_table(eval_path, 8)
+    if len(rows) < 16:
+        return fail("marketing-task-samples.md must include at least 16 task rows")
+    ids = set()
+    allowed_types = {"策略诊断", "信息架构", "渠道KOL", "风控评估", "风险评估", "竞品洞察", "创意策划", "新品类破局", "负面预警", "正式审核", "数据导入", "平台兼容"}
+    for cells in rows:
+        sample_id, task_type, _category, _prompt, required_files, required_output, risk, pass_standard = cells
+        if sample_id in ids:
+            return fail(f"duplicate marketing eval id: {sample_id}")
+        ids.add(sample_id)
+        if task_type not in allowed_types:
+            return fail(f"unknown marketing eval task type: {task_type}")
+        if not required_output or not risk or not pass_standard:
+            return fail(f"marketing eval row missing scoring fields: {sample_id}")
+        for rel in re.findall(r"(?:docs|knowledge-base|SKILL\.md)[^; ]*", required_files):
+            if rel == "SKILL.md":
+                check_path = ROOT / rel
+            else:
+                check_path = ROOT / rel.rstrip("；,，")
+            if not check_path.exists():
+                return fail(f"marketing eval references missing file: {sample_id} -> {rel}")
+    print(f"PASS marketing-task eval rows: {len(rows)}")
     return 0
 
 
 def validate_release_version():
     version = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
     if not re.fullmatch(r"\d+\.\d+\.\d+", version):
-        return fail("VERSION must be semantic version like 1.3.3")
+        return fail("VERSION must use semantic version format x.y.z")
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
     if f"`v{version}`" not in readme or f"`{version}`" not in readme:
         return fail("README.md missing current release version")
@@ -146,6 +220,8 @@ def main():
         validate_skill_metadata,
         validate_required_paths,
         validate_json,
+        validate_data_sources,
+        validate_marketing_eval,
         validate_release_version,
         lambda: scan_patterns("legacy forced-scan wording", FORBIDDEN_PATTERNS),
         lambda: scan_patterns("secret scan", SECRET_PATTERNS),

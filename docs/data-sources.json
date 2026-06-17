@@ -1,0 +1,114 @@
+{
+  "version": 1,
+  "updated": "2026-06-17",
+  "purpose": "Machine-readable source freshness ledger for China 3C marketing skill outputs.",
+  "freshness_policy": {
+    "high_volatility_fields": ["价格", "排名", "市场份额", "新品规格", "平台热搜", "KOL近期口碑"],
+    "medium_volatility_fields": ["评测结论", "传播风险", "圈层黑话", "平台机制"],
+    "low_volatility_fields": ["方法论", "输出模板", "评论区人群原型"],
+    "default_warning": "输出正式物料前，涉及高时效字段时标注 [待验证] 或执行外部复核。"
+  },
+  "categories": [
+    {
+      "category": "mobile",
+      "label": "手机",
+      "coverage": "中高",
+      "data_cutoff": "2026-04",
+      "primary_files": ["knowledge-base/mobile/_index.md"],
+      "source_summary": ["16品牌矩阵", "价位段格局", "芯片阵营", "KOL生态", "传播风险"],
+      "refresh_after_days": 120,
+      "must_refresh": ["价格", "新品规格", "排名", "市场份额", "KOL近期口碑"],
+      "use_for": ["影像", "性能", "续航", "价位段", "品牌竞争"],
+      "status": "current_for_static_strategy_only"
+    },
+    {
+      "category": "headphones",
+      "label": "耳机",
+      "coverage": "中高",
+      "data_cutoff": "2026-04",
+      "primary_files": [
+        "knowledge-base/headphones/_index.md",
+        "knowledge-base/headphones/clip-earphones-comparison-2026.md"
+      ],
+      "source_summary": ["12款耳夹式横评", "品牌矩阵", "品类结论", "佩戴和漏音风险"],
+      "refresh_after_days": 180,
+      "must_refresh": ["单品价格", "新品", "平台口碑", "渠道优惠"],
+      "use_for": ["降噪", "音质", "佩戴", "种草创意", "耳夹式横评"],
+      "status": "current_for_comparison_with_same_source"
+    },
+    {
+      "category": "laptops",
+      "label": "笔记本",
+      "coverage": "中高",
+      "data_cutoff": "2025-11",
+      "primary_files": [
+        "knowledge-base/laptops/_index.md",
+        "knowledge-base/laptops/annual-negative-awards-2025.md"
+      ],
+      "source_summary": ["2025双11选购指南", "16品牌", "8价位段", "年度负面案例"],
+      "refresh_after_days": 180,
+      "must_refresh": ["新平台", "新品规格", "渠道价格", "功耗释放", "屏幕配置"],
+      "use_for": ["游戏本", "轻薄本", "选购", "翻车风险"],
+      "status": "needs_refresh_for_new_platform_claims"
+    },
+    {
+      "category": "wearables",
+      "label": "穿戴设备",
+      "coverage": "中高",
+      "data_cutoff": "2025-12",
+      "primary_files": ["knowledge-base/wearables/_index.md"],
+      "source_summary": ["品牌矩阵", "IDC 2025市场份额", "价位段", "功能阵营", "风险标注"],
+      "refresh_after_days": 180,
+      "must_refresh": ["市占率", "健康功能", "医疗合规", "新品续航", "传感器表现"],
+      "use_for": ["手表", "手环", "健康监测", "运动"],
+      "status": "needs_refresh_for_health_and_share_claims"
+    },
+    {
+      "category": "smart-home",
+      "label": "智能家居",
+      "coverage": "高",
+      "data_cutoff": "2026-04",
+      "primary_files": [
+        "knowledge-base/smart-home/_index.md",
+        "knowledge-base/smart-home/robot-vacuum-comparison-2025.md"
+      ],
+      "source_summary": ["扫地机器人深度横评", "4份评测交叉验证", "翻车案例", "品牌矩阵", "大疆ROMO", "投影仪", "全屋智能"],
+      "refresh_after_days": 180,
+      "must_refresh": ["新品", "渠道价格", "在售状态", "安装条件", "隐私政策"],
+      "use_for": ["扫地机", "投影", "全屋智能", "生态联动"],
+      "status": "current_for_robot_vacuum_strategy"
+    },
+    {
+      "category": "other",
+      "label": "其他3C",
+      "coverage": "占位",
+      "data_cutoff": "none",
+      "primary_files": ["knowledge-base/other/_index.md"],
+      "source_summary": ["平板", "机械键盘", "运动相机", "AR眼镜等品类待补充"],
+      "refresh_after_days": 0,
+      "must_refresh": ["基础数据", "核心竞品", "价格", "用户评论", "KOL生态"],
+      "use_for": ["新品类初筛", "数据导入前占位"],
+      "status": "requires_user_data_before_claims"
+    }
+  ],
+  "cross_references": [
+    {
+      "path": "docs/ecosystem/market-signals-2026.md",
+      "data_cutoff": "2026-06-06",
+      "refresh_after_days": 90,
+      "must_refresh": ["节日舆情", "KOL争议", "AI硬件叙事", "价格敏感期"]
+    },
+    {
+      "path": "docs/ecosystem/kols.md",
+      "data_cutoff": "2026-04",
+      "refresh_after_days": 90,
+      "must_refresh": ["KOL近期口碑", "粉丝量级", "争议记录", "合作风险"]
+    },
+    {
+      "path": "docs/ecosystem/negative-early-warning.md",
+      "data_cutoff": "2026-06-06",
+      "refresh_after_days": 120,
+      "must_refresh": ["新黑话", "新负面模式", "平台治理变化"]
+    }
+  ]
+}

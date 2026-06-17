@@ -26,6 +26,7 @@
 │       └── _index.md            # 品类优先级+覆盖计划
 ├── docs/
 │   ├── data-index.md            # 数据覆盖和时效索引
+│   ├── data-sources.json        # 机器可读数据源和时效台账
 │   ├── ecosystem/               # 行业生态
 │   │   ├── kols.md              # KOL/UP主名单（按品类和平台）
 │   │   ├── market-signals-2026.md # 2026市场舆情信号库
@@ -50,6 +51,7 @@
 │   │   ├── used-ideas.md        # 已使用创意去重记录（运行时维护）
 │   │   └── knowledge-base-structure.md # 本文件
 │   └── evals/
+│       ├── marketing-task-samples.md # 真实营销任务评测集
 │       └── negative-signal-samples.md # 负面识别样本集
 └── scripts/
     ├── preprocess.py            # 数据预处理脚本

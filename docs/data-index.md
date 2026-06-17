@@ -2,6 +2,8 @@
 
 本文件用于帮助智能体快速选择知识库文件，并判断哪些结论需要外部复核。
 
+机器可读台账见 [`docs/data-sources.json`](data-sources.json)。当本文件和台账冲突时，以台账的 `data_cutoff`、`must_refresh` 和 `status` 字段作为发布前复核依据。
+
 ## 总体原则
 
 - 价格、排名、市场份额、新品规格、平台热搜、KOL近期口碑属于高时效信息；正式输出前应外部复核。
@@ -44,6 +46,7 @@
 | `docs/references/industry-ecosystem.md` | 需要做平台适配、传播路径、内容形式选择 |
 | `docs/references/eco-integration.md` | 需要实时搜索、浏览器爬取、长文本总结 |
 | `docs/evals/negative-signal-samples.md` | 维护负面规则时，用于校准误报和漏报 |
+| `docs/evals/marketing-task-samples.md` | 维护任务级输出质量时，用于校准路由、事实纪律、策略判断、风险识别和可执行性 |
 
 ## 置信度规则
 
@@ -56,5 +59,6 @@
 ## 更新要求
 
 - 新增或大改品类文件时，同时更新本索引。
+- 新增或大改品类文件时，同时更新 `docs/data-sources.json`。
 - 导入新数据时记录来源、平台、标题、采集日期、适用品类。
 - 对明显过期的价格、排名、市场份额，不直接用于正式物料。
