@@ -1,9 +1,9 @@
 {
   "version": "1.4.31",
-  "validated_at": "2026-07-13T01:47:31.549175+00:00",
+  "validated_at": "2026-07-13T02:40:05.938383+00:00",
   "source_fingerprint_sha256": "bd9c0807c1fdc1bfcddd12319e20ab7b481cb4212ad8572e2dab780dbc817342",
-  "git_commit": "33aadbf9cb2e849aa0bf5c9a1ab60026ae6421a5",
-  "working_tree_dirty": true,
+  "git_commit": "14910f642ca2ac322fa39a2b8d121676dd697732",
+  "working_tree_dirty": false,
   "validator": "scripts/validate_skill_pack.py",
   "checks": [
     {
