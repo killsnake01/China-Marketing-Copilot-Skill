@@ -1,0 +1,82 @@
+{
+  "version": "1.4.31",
+  "actions": [
+    "verified",
+    "mark_pending",
+    "same_source_required",
+    "unsupported",
+    "forbidden_absolute"
+  ],
+  "samples": [
+    {
+      "id": "C001",
+      "claim": "同一份横评显示，A机夜景样张噪点更少，B机暗部细节更完整。",
+      "claim_type": "same_source_comparison",
+      "expected_action": "verified",
+      "required_marker": "同一份横评"
+    },
+    {
+      "id": "C002",
+      "claim": "这款耳机佩戴舒适度比竞品强，但当前材料没有同源横评。",
+      "claim_type": "comparison_without_same_source",
+      "expected_action": "same_source_required",
+      "required_marker": "同源"
+    },
+    {
+      "id": "C003",
+      "claim": "4499元价位当前影像第一。",
+      "claim_type": "price_ranking",
+      "expected_action": "mark_pending",
+      "required_marker": "[待验证]"
+    },
+    {
+      "id": "C004",
+      "claim": "知识库没有这款AR眼镜的公开评测数据。",
+      "claim_type": "missing_data",
+      "expected_action": "unsupported",
+      "required_marker": "知识库暂无此数据"
+    },
+    {
+      "id": "C005",
+      "claim": "这是行业唯一真正懂AI手机的品牌。",
+      "claim_type": "absolute_superlative",
+      "expected_action": "forbidden_absolute",
+      "required_marker": "禁用"
+    },
+    {
+      "id": "C006",
+      "claim": "某KOL近期口碑稳定，适合首发背书。",
+      "claim_type": "kol_reputation",
+      "expected_action": "mark_pending",
+      "required_marker": "[待验证]"
+    },
+    {
+      "id": "C007",
+      "claim": "根据用户提供的三条评论样本，续航焦虑主要集中在通勤场景。",
+      "claim_type": "user_supplied_evidence",
+      "expected_action": "verified",
+      "required_marker": "用户提供"
+    },
+    {
+      "id": "C008",
+      "claim": "全网都在刷屏这款智能手表。",
+      "claim_type": "platform_heat",
+      "expected_action": "mark_pending",
+      "required_marker": "[待验证]"
+    },
+    {
+      "id": "C009",
+      "claim": "历史案例显示，价格背刺会优先伤害首发用户信任。",
+      "claim_type": "historical_pattern",
+      "expected_action": "verified",
+      "required_marker": "历史案例"
+    },
+    {
+      "id": "C010",
+      "claim": "这台机器性能遥遥领先，竞品没有任何机会。",
+      "claim_type": "unsupported_absolute",
+      "expected_action": "forbidden_absolute",
+      "required_marker": "禁用"
+    }
+  ]
+}

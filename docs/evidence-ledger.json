@@ -1,0 +1,129 @@
+{
+  "version": 1,
+  "updated": "2026-07-12",
+  "purpose": "记录包内知识来源、可追溯程度、允许用途和强制复核字段。",
+  "status_definitions": {
+    "verified": "发布者、日期和稳定定位信息齐全，可回到原始材料复核。",
+    "partial": "已知来源名称或材料范围，但缺少稳定链接、逐条页码或完整采集信息。",
+    "missing": "当前只有占位框架，没有可支持事实主张的来源。"
+  },
+  "policy": {
+    "verified_required_for": ["当前价格", "当前排名", "当前市场份额", "新品规格", "KOL近期状态", "平台实时热度"],
+    "partial_default_label": "[待验证]",
+    "missing_default_label": "知识库暂无此数据",
+    "upgrade_rule": "补齐发布者、标题、发布日期、稳定定位信息和适用范围后，才可把来源升级为 verified。"
+  },
+  "sources": [
+    {
+      "source_id": "SRC-MOBILE-001",
+      "category": "mobile",
+      "source_type": "imported_knowledge_base",
+      "source_name": "phone-strategist 导入知识库",
+      "publishers": ["极客湾", "小白测评", "其他评测来源待逐条登记"],
+      "source_locators": [],
+      "published_at": null,
+      "captured_at": null,
+      "data_cutoff": "2026-04",
+      "provenance_status": "partial",
+      "claim_scope": ["品牌格局", "价位段框架", "传播风险模式"],
+      "allowed_use": ["静态上市策略", "竞品维度设计", "历史风险提示"],
+      "must_reverify": ["价格", "机型在售状态", "芯片与规格", "排名", "市场份额", "KOL近期状态"],
+      "files": ["knowledge-base/mobile/_index.md"],
+      "notes": "当前缺少74份评测的逐条标题、日期和稳定定位信息。"
+    },
+    {
+      "source_id": "SRC-HEADPHONES-001",
+      "category": "headphones",
+      "source_type": "public_review_summary",
+      "source_name": "耳夹式耳机横评与TWS评测汇总",
+      "publishers": ["爱否科技", "新浪财经"],
+      "source_locators": [],
+      "published_at": null,
+      "captured_at": null,
+      "data_cutoff": "2026-04",
+      "provenance_status": "partial",
+      "claim_scope": ["耳夹式横评维度", "佩戴与漏音风险", "品类传播框架"],
+      "allowed_use": ["同源比较框架", "风险问题清单", "种草人群拆分"],
+      "must_reverify": ["单品价格", "具体型号参数", "测试样本", "新品状态", "渠道优惠"],
+      "files": [
+        "knowledge-base/headphones/_index.md",
+        "knowledge-base/headphones/clip-earphones-comparison-2026.md"
+      ],
+      "notes": "已记录来源名称和测试方法，仍需补视频或文章定位信息及发布日期。"
+    },
+    {
+      "source_id": "SRC-LAPTOPS-001",
+      "category": "laptops",
+      "source_type": "public_review_summary",
+      "source_name": "2025双11笔记本选购与年度负面案例",
+      "publishers": ["笔吧评测室"],
+      "source_locators": [],
+      "published_at": "2025-11",
+      "captured_at": null,
+      "data_cutoff": "2025-11",
+      "provenance_status": "partial",
+      "claim_scope": ["2025双11历史格局", "年度负面案例", "笔记本风险维度"],
+      "allowed_use": ["历史案例", "风险清单", "评测维度设计"],
+      "must_reverify": ["2026新品平台", "价格", "功耗释放", "屏幕配置", "在售状态"],
+      "files": [
+        "knowledge-base/laptops/_index.md",
+        "knowledge-base/laptops/annual-negative-awards-2025.md"
+      ],
+      "notes": "资料已经过时效门限制，补齐原始内容定位后仍只能支持对应历史阶段。"
+    },
+    {
+      "source_id": "SRC-WEARABLES-001",
+      "category": "wearables",
+      "source_type": "industry_report_summary",
+      "source_name": "2025中国腕穿戴市场报告与公开横评汇总",
+      "publishers": ["IDC", "新浪财经"],
+      "source_locators": [],
+      "published_at": "2026-03",
+      "captured_at": null,
+      "data_cutoff": "2025-12",
+      "provenance_status": "partial",
+      "claim_scope": ["2025历史份额", "穿戴品类框架", "健康传播风险"],
+      "allowed_use": ["历史背景", "风险边界", "人群与场景框架"],
+      "must_reverify": ["当前份额", "医疗合规", "健康功能", "传感器表现", "新品续航"],
+      "files": ["knowledge-base/wearables/_index.md"],
+      "notes": "涉及健康和医疗的结论需进一步核对原始报告、产品说明与适用地区法规。"
+    },
+    {
+      "source_id": "SRC-SMART-HOME-001",
+      "category": "smart-home",
+      "source_type": "multi_source_review_summary",
+      "source_name": "扫地机器人横评、推荐指南与长期体验汇总",
+      "publishers": ["公开专业评测来源待逐条登记"],
+      "source_locators": [],
+      "published_at": null,
+      "captured_at": null,
+      "data_cutoff": "2026-04",
+      "provenance_status": "partial",
+      "claim_scope": ["扫地机器人评测维度", "安装与维护风险", "智能家居生态框架"],
+      "allowed_use": ["策略框架", "风险清单", "场景与人群拆分"],
+      "must_reverify": ["具体型号", "排名", "市场份额", "价格", "在售状态", "安装条件", "隐私政策"],
+      "files": [
+        "knowledge-base/smart-home/_index.md",
+        "knowledge-base/smart-home/robot-vacuum-comparison-2025.md"
+      ],
+      "notes": "当前多源汇总缺少逐条来源映射，禁止直接据此生成当前排名或品牌定性。"
+    },
+    {
+      "source_id": "SRC-OTHER-001",
+      "category": "other",
+      "source_type": "placeholder",
+      "source_name": "其他3C品类占位框架",
+      "publishers": [],
+      "source_locators": [],
+      "published_at": null,
+      "captured_at": null,
+      "data_cutoff": "none",
+      "provenance_status": "missing",
+      "claim_scope": ["待补品类清单", "新建知识库结构"],
+      "allowed_use": ["提出补充材料清单", "建立新品类研究框架"],
+      "must_reverify": ["全部事实主张", "竞品", "价格", "用户评论", "KOL生态"],
+      "files": ["knowledge-base/other/_index.md"],
+      "notes": "没有用户数据或外部复核时，只能输出研究框架。"
+    }
+  ]
+}

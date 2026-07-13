@@ -1,0 +1,115 @@
+{
+  "version": "1.4.31",
+  "status": "compatibility_contract_ready_no_live_results",
+  "purpose": "固定v1.3.7老用户常用提示词的触发、路由、默认模式和熟悉交付形态。",
+  "cases": [
+    {
+      "id": "LC001",
+      "prompt": "帮我判断这台影像旗舰上市前7天怎么打，预算有限。",
+      "should_trigger": true,
+      "expected_route": "docs/routes/launch-decision.md",
+      "expected_mode": "标准版",
+      "required_output_terms": ["推荐路线", "备选路线", "弃用路线", "72小时动作", "7天跟进"],
+      "forbidden_default_modules": ["上市决策包", "管理层决策纪要", "路线评分卡", "结构化决策单"]
+    },
+    {
+      "id": "LC002",
+      "prompt": "这句‘AI全面重塑体验’会不会翻车？帮我改成数码圈能接受的话术。",
+      "should_trigger": true,
+      "expected_route": "docs/routes/messaging-review.md",
+      "expected_mode": "快速版",
+      "required_output_terms": ["直接改写", "证据缺口", "替代表达"],
+      "forbidden_default_modules": ["上市决策包", "管理层决策纪要", "路线评分卡", "风险账本"]
+    },
+    {
+      "id": "LC003",
+      "prompt": "竞品刚发新品，对我们手机的威胁在哪里？给我推荐路线和弃用路线。",
+      "should_trigger": true,
+      "expected_route": "docs/routes/competitor-intelligence.md",
+      "expected_mode": "标准版",
+      "required_output_terms": ["一句话结论", "同源数据", "受影响人群", "行动建议"],
+      "forbidden_default_modules": ["上市决策包", "管理层决策纪要", "结构化决策单"]
+    },
+    {
+      "id": "LC004",
+      "prompt": "评测解禁当天，KOL排期和评论区动作怎么安排？",
+      "should_trigger": true,
+      "expected_route": "docs/routes/channel-kol.md",
+      "expected_mode": "标准版",
+      "required_output_terms": ["平台分工", "KOL类型", "内容任务", "评论区动作", "复盘指标"],
+      "forbidden_default_modules": ["上市决策包", "管理层决策纪要", "路线评分卡"]
+    },
+    {
+      "id": "LC005",
+      "prompt": "我导入了一批耳机评论，先找负面苗头，再总结可用卖点。",
+      "should_trigger": true,
+      "expected_route": "docs/routes/data-import.md",
+      "expected_mode": "标准版",
+      "required_output_terms": ["原文样本", "负面信号", "正面发现", "入库建议"],
+      "forbidden_default_modules": ["上市决策包", "管理层决策纪要", "路线评分卡"]
+    },
+    {
+      "id": "LC006",
+      "prompt": "帮开放式耳机想3个小红书创意，别像广告。",
+      "should_trigger": true,
+      "expected_route": "docs/routes/creative-campaign.md",
+      "expected_mode": "标准版",
+      "required_output_terms": ["3个方向", "核心钩子", "平台表达", "风险"],
+      "forbidden_default_modules": ["上市决策包", "管理层决策纪要", "路线评分卡", "风险账本"]
+    },
+    {
+      "id": "LC007",
+      "prompt": "只改这句产品标语，不需要分析，也不要完整方案。",
+      "should_trigger": true,
+      "expected_route": "docs/routes/messaging-review.md",
+      "expected_mode": "快速版",
+      "required_output_terms": ["直接改写"],
+      "forbidden_default_modules": ["信息屋", "评论区压力测试", "上市决策包", "风险账本"]
+    },
+    {
+      "id": "LC008",
+      "prompt": "这个KOL以前骂过品牌用户，合作会不会翻车？",
+      "should_trigger": true,
+      "expected_route": "docs/routes/risk-review.md",
+      "expected_mode": "快速版",
+      "required_output_terms": ["总体判定", "模拟评论", "立即动作"],
+      "forbidden_default_modules": ["上市决策包", "路线评分卡", "结构化决策单"]
+    },
+    {
+      "id": "LC009",
+      "prompt": "这是一份很长的评论导出，只找正在形成的负面，不要总结卖点。",
+      "should_trigger": true,
+      "expected_route": "docs/routes/data-import.md",
+      "expected_mode": "标准版",
+      "required_output_terms": ["原文样本", "负面信号", "叙事阶段"],
+      "forbidden_default_modules": ["正面发现", "上市决策包", "管理层决策纪要"]
+    },
+    {
+      "id": "LC010",
+      "prompt": "两款耳夹耳机哪款更适合小红书种草？帮我判断人群和卖点。",
+      "should_trigger": true,
+      "expected_route": "docs/routes/competitor-intelligence.md",
+      "expected_mode": "标准版",
+      "required_output_terms": ["同源数据", "目标人群", "种草建议"],
+      "forbidden_default_modules": ["上市决策包", "管理层决策纪要"]
+    },
+    {
+      "id": "LC011",
+      "prompt": "预算3000元，哪台手机最值得我自己买？",
+      "should_trigger": false,
+      "expected_route": null,
+      "expected_mode": "不适用",
+      "required_output_terms": [],
+      "forbidden_default_modules": []
+    },
+    {
+      "id": "LC012",
+      "prompt": "这份80页PPT只帮我改封面标题，其他内容先别动。",
+      "should_trigger": true,
+      "expected_route": "docs/routes/messaging-review.md",
+      "expected_mode": "快速版",
+      "required_output_terms": ["直接改写"],
+      "forbidden_default_modules": ["逐页审核", "上市决策包", "管理层决策纪要", "路线评分卡"]
+    }
+  ]
+}

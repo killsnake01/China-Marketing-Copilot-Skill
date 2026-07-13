@@ -1,0 +1,111 @@
+{
+  "version": "1.4.31",
+  "data_freshness": {
+    "ledger": "docs/data-sources.json",
+    "oldest_category_cutoff": "2025-11",
+    "latest_category_cutoff": "2026-04",
+    "refresh_required_categories": [
+      "laptops",
+      "wearables",
+      "other"
+    ]
+  },
+  "evidence_provenance": {
+    "ledger": "docs/evidence-ledger.json",
+    "schema": "schemas/evidence-ledger.schema.json",
+    "sources": 6,
+    "status_counts": {
+      "verified": 0,
+      "partial": 5,
+      "missing": 1
+    },
+    "release_claim": "provenance_inventory_only"
+  },
+  "network_required": false,
+  "secrets_required": false,
+  "install_hooks": false,
+  "write_scope": "user-specified output path only",
+  "dependencies": [],
+  "publish": {
+    "platforms": [
+      "codex",
+      "clawhub",
+      "skillhub"
+    ],
+    "platform_fields": "docs/platform-publish-fields.json",
+    "platform_fields_validator": "scripts/validate_platform_fields.py",
+    "package_builder": "scripts/build_publish_package.py",
+    "skillhub_filtered_root_files": [
+      ".gitignore",
+      "LICENSE",
+      "VERSION"
+    ],
+    "package_profile": "runtime_only",
+    "runtime_capabilities": "docs/runtime-capabilities.json",
+    "personal_packages": {
+      "hermes": {
+        "profile": "personal_full",
+        "package_name": "hermes-personal-china-marketing-copilot-v1.4.31.zip",
+        "install_target": "~/.hermes/skills/china-marketing-copilot/",
+        "network_mode": "offline_first"
+      }
+    },
+    "source_only_paths": [
+      "quickstart-example.md",
+      "docs/maintainer-guide.md",
+      "docs/platform-listing.md",
+      "docs/routes/platform-publish.md",
+      "scripts/build_publish_package.py",
+      "scripts/validate_skill_pack.py",
+      "docs/evals/cross-agent-benchmark.json",
+      "docs/evals/legacy-compatibility-samples.json",
+      "scripts/evaluate_cross_agent_runs.py",
+      "scripts/evaluate_legacy_compatibility.py",
+      "scripts/audit_evidence_ledger.py"
+    ],
+    "skillhub_license_path": "docs/package-license.txt",
+    "trust_documents": [
+      "CHANGELOG.md",
+      "SECURITY.md",
+      "RELEASE-MANIFEST.json",
+      "RELEASE-VALIDATION.json"
+    ]
+  },
+  "eval_counts": {
+    "trigger_queries": 17,
+    "output_mode_samples": 7,
+    "freshness_claim_samples": 9,
+    "evidence_claim_samples": 10,
+    "decision_package_samples": 6,
+    "executive_memo_samples": 6,
+    "route_scorecard_samples": 6,
+    "route_switch_samples": 7,
+    "execution_gate_samples": 7,
+    "post_launch_samples": 6,
+    "decision_learning_samples": 7,
+    "risk_ledger_samples": 8,
+    "decision_card_samples": 3,
+    "marketing_tasks": 25,
+    "negative_signal_samples": 58,
+    "negative_signal_adversarial_samples": 6,
+    "negative_propagation_samples": 10,
+    "golden_examples": 3,
+    "golden_example_assertion_sets": 3,
+    "route_files": 11,
+    "quality_rubric_dimensions": 8,
+    "cross_agent_benchmark_cases": 18,
+    "cross_agent_live_results": 0,
+    "legacy_compatibility_cases": 12,
+    "legacy_compatibility_live_results": 0
+  },
+  "quality_gate": {
+    "rubric": "docs/evals/output-quality-rubric.json",
+    "passing_score": 80,
+    "max_score": 100
+  },
+  "validation": {
+    "report": "RELEASE-VALIDATION.json",
+    "command": "python3 -B scripts/validate_skill_pack.py --write-report",
+    "semantics": "actual_run_results"
+  }
+}

@@ -42,8 +42,18 @@ CORRECTION_DICTS = {
 
 LEVEL_ORDER = {"低": 1, "中": 2, "高": 3}
 RULES_PATH = Path(__file__).resolve().parent.parent / "docs" / "ecosystem" / "negative-signal-rules.json"
+DETECTION_NORMALIZATIONS = (
+    (re.compile(r"背\s*c[i1]", re.I), "背刺"),
+    (re.compile(r"控\s*p", re.I), "控评"),
+    (re.compile(r"删\s*p", re.I), "删评"),
+    (re.compile(r"恰\s+饭"), "恰饭"),
+    (re.compile(r"软\s+广"), "软广"),
+    (re.compile(r"套\s+壳"), "套壳"),
+)
+NEGATION_PATTERN = re.compile(r"(?:没有|并未|并非|未曾|不曾|无|没)(?:任何|明显|所谓|发生)?[\s，、]{0,3}$")
+EVIDENCE_GAP_KEYWORDS = {"测试条件", "同源", "数据哪来的", "实测呢"}
 DOCUMENT_PATH_MARKERS = (
-    "README.md",
+    "README",
     "quickstart-example.md",
     "docs/templates/",
     "docs/references/",
@@ -110,6 +120,31 @@ def split_segments(text):
     """切分文本片段，保留足够上下文用于负面样本。"""
     return [part.strip() for part in re.split(r"[。！？!?；;\n]+", text) if part.strip()]
 
+
+def normalize_detection_text(text):
+    """Normalize common obfuscations while preserving readable evidence snippets."""
+    normalized = text.replace("\u200b", "").replace("\ufeff", "")
+    for pattern, replacement in DETECTION_NORMALIZATIONS:
+        normalized = pattern.sub(replacement, normalized)
+    return normalized
+
+
+def occurrence_is_negated(segment, start, keyword):
+    """Return true when a keyword occurrence sits inside a short negation window."""
+    if keyword in EVIDENCE_GAP_KEYWORDS:
+        return False
+    prefix = segment[max(0, start - 14):start]
+    return bool(NEGATION_PATTERN.search(prefix))
+
+
+def infer_narrative_stage(unique_segments):
+    """Infer only early stages from one imported batch; S3/S4 require external propagation data."""
+    if unique_segments >= 4:
+        return "S2"
+    if unique_segments >= 2:
+        return "S1"
+    return "S0"
+
 def markdown_cell(text):
     """转义 Markdown 表格单元格。"""
     return text.replace("|", "\\|").replace("\n", " ").strip()
@@ -131,12 +166,13 @@ def load_negative_signal_rules(category):
             rules.append(rule)
     return rules
 
-def detect_negative_signals(text, category, mode):
+def detect_negative_signals(text, category, mode, rules=None):
     """根据离线规则识别负面早期信号。"""
     if mode == "document":
         return []
-    rules = load_negative_signal_rules(category)
-    segments = split_segments(text)
+    rules = rules if rules is not None else load_negative_signal_rules(category)
+    normalized_text = normalize_detection_text(text)
+    segments = split_segments(normalized_text)
     results = []
     for rule in rules:
         name = rule["name"]
@@ -144,26 +180,32 @@ def detect_negative_signals(text, category, mode):
         hits = []
         total = 0
         for keyword in keywords:
-            count = text.count(keyword)
-            if count == 0:
-                continue
-            total += count
             for segment in segments:
-                if keyword in segment:
+                search_start = 0
+                while True:
+                    index = segment.find(keyword, search_start)
+                    if index == -1:
+                        break
+                    search_start = index + len(keyword)
+                    if occurrence_is_negated(segment, index, keyword):
+                        continue
+                    total += 1
                     sample = segment[:120]
                     if sample not in hits:
                         hits.append(sample)
-                    break
         if total == 0:
             continue
         level = rule.get("base_level", "中")
-        boost_count = int(rule.get("boost_count_gte", 3))
-        if total >= boost_count and LEVEL_ORDER[level] < LEVEL_ORDER["高"]:
+        unique_segments = len(hits)
+        boost_count = int(rule.get("boost_unique_segments_gte", rule.get("boost_count_gte", 3)))
+        if unique_segments >= boost_count and LEVEL_ORDER[level] < LEVEL_ORDER["高"]:
             level = "高"
         results.append({
             "name": name,
             "level": level,
             "count": total,
+            "unique_segments": unique_segments,
+            "stage": infer_narrative_stage(unique_segments),
             "samples": hits[:3],
             "action": rule.get("action", "人工复核该负面信号。"),
         })
@@ -211,13 +253,13 @@ def render_markdown(args, dtype, text, correction_count):
     ])
     if negative_signals:
         lines.extend([
-            "| 信号 | 等级 | 命中 | 样本 | 建议动作 |",
-            "|------|------|------|------|----------|",
+            "| 信号 | 等级 | 阶段 | 独立片段 | 命中 | 样本 | 建议动作 |",
+            "|------|------|------|----------|------|------|----------|",
         ])
         for signal in negative_signals:
             sample = " / ".join(signal["samples"]) if signal["samples"] else "需人工复核"
             lines.append(
-                f"| {markdown_cell(signal['name'])} | {signal['level']} | {signal['count']} | {markdown_cell(sample)} | {markdown_cell(signal['action'])} |"
+                f"| {markdown_cell(signal['name'])} | {signal['level']} | {signal['stage']} | {signal['unique_segments']} | {signal['count']} | {markdown_cell(sample)} | {markdown_cell(signal['action'])} |"
             )
         lines.extend([
             "",
@@ -226,6 +268,7 @@ def render_markdown(args, dtype, text, correction_count):
         ])
         for signal in negative_signals[:3]:
             lines.append(f"- {signal['name']}: {signal['action']}")
+        lines.append("- S3/S4 需要跨平台扩散、来源角色和业务影响证据，本地单批文本不自动升级到该阶段。")
     else:
         if mode == "document":
             lines.append("- 当前内容模式为 document，已跳过关键词式负面预警，避免把说明文档误判为真实评论。")

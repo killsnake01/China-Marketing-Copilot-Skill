@@ -1,0 +1,124 @@
+{
+  "version": "1.4.31",
+  "samples": [
+    {
+      "id": "G001",
+      "path": "assets/examples/image-flagship-launch.md",
+      "required_routes": [
+        "docs/routes/launch-decision.md",
+        "knowledge-base/mobile/_index.md",
+        "docs/templates/launch-decision-package.md",
+        "docs/templates/executive-decision-memo.md",
+        "docs/templates/route-scorecard.md",
+        "assets/launch-decision-card.md"
+      ],
+      "output_required_terms": [
+        "结论：调整后执行",
+        "上市决策包",
+        "包内目录",
+        "待决事项",
+        "上市总控台",
+        "管理层决策纪要",
+        "暂停条件",
+        "下一负责人动作",
+        "切换触发器",
+        "推荐路线",
+        "备选路线",
+        "弃用路线",
+        "路线评分卡",
+        "押主线",
+        "保留备选",
+        "负面雷达",
+        "路线影响",
+        "路线切换剧本",
+        "触发条件",
+        "决策一致性门",
+        "包状态一致",
+        "裁决一致",
+        "硬阻断项",
+        "待补项",
+        "未来72小时"
+      ],
+      "forbidden_output_terms": [
+        "样张已核验",
+        "价格已确认",
+        "权益已确认"
+      ],
+      "order_constraints": [
+        ["上市决策包", "上市总控台"],
+        ["上市总控台", "结论：调整后执行"],
+        ["结论：调整后执行", "## 管理层决策纪要"],
+        ["## 管理层决策纪要", "## 一句话判断"],
+        ["推荐路线：", "备选路线："],
+        ["备选路线：", "弃用路线："],
+        ["弃用路线：", "## 路线评分卡"],
+        ["## 路线评分卡", "## 负面雷达"],
+        ["## 负面雷达", "## 路线切换剧本"],
+        ["## 路线切换剧本", "## 执行就绪门"],
+        ["## 执行就绪门", "## 决策一致性门"],
+        ["## 决策一致性门", "## 未来72小时"],
+        ["硬阻断项", "未来72小时"]
+      ]
+    },
+    {
+      "id": "G002",
+      "path": "assets/examples/ai-claim-review.md",
+      "required_routes": [
+        "docs/routes/messaging-review.md",
+        "docs/routes/risk-review.md",
+        "docs/templates/quality-check-tools.md"
+      ],
+      "output_required_terms": [
+        "总体结论：调整后执行",
+        "风险等级：中高",
+        "AI空话",
+        "证据缺口",
+        "参数党可能如何拆",
+        "官方口径",
+        "社媒口径",
+        "KOL口播",
+        "平台文案"
+      ],
+      "forbidden_output_terms": [
+        "全面重塑体验成立",
+        "直接执行",
+        "无风险"
+      ],
+      "order_constraints": [
+        ["问题判断", "参数党可能如何拆"],
+        ["参数党可能如何拆", "替代主张"],
+        ["替代主张", "平台文案"]
+      ]
+    },
+    {
+      "id": "G003",
+      "path": "assets/examples/headphone-comment-analysis.md",
+      "required_routes": [
+        "docs/routes/data-import.md",
+        "docs/ecosystem/negative-early-warning.md",
+        "knowledge-base/headphones/_index.md"
+      ],
+      "output_required_terms": [
+        "优先结论",
+        "负面叙事",
+        "S1",
+        "S2",
+        "原文样本",
+        "可传播卖点",
+        "风险词",
+        "下一步监测",
+        "触发阈值"
+      ],
+      "forbidden_output_terms": [
+        "先总结卖点",
+        "无负面风险",
+        "直接放大卖点"
+      ],
+      "order_constraints": [
+        ["负面叙事", "原文样本"],
+        ["原文样本", "可传播卖点"],
+        ["可传播卖点", "风险词"]
+      ]
+    }
+  ]
+}

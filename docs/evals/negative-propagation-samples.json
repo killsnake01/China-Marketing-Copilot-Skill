@@ -1,0 +1,108 @@
+{
+  "version": "1.4.31",
+  "purpose": "校准结构化评论批次中的独立账号、传播速度、跨平台、权威放大、业务影响和重复噪声判断。",
+  "samples": [
+    {
+      "id": "NP001",
+      "category": "mobile",
+      "records": [
+        {"id": "r1", "content": "刚买就跳水，首发用户像冤种。", "timestamp": "2026-07-13T08:00:00+08:00", "platform": "weibo", "author_id": "u1", "author_role": "user", "engagement": 2}
+      ],
+      "expected": {"signal": "价格背刺", "stage": "S0", "level": "中", "forbidden_flags": ["跨平台", "权威角色放大", "业务影响"]}
+    },
+    {
+      "id": "NP002",
+      "category": "mobile",
+      "records": [
+        {"id": "r1", "content": "首发冤种，等降价。", "timestamp": "2026-07-13T08:00:00+08:00", "platform": "weibo", "author_id": "spam1", "author_role": "user", "engagement": 0},
+        {"id": "r2", "content": "这次又背刺首发用户。", "timestamp": "2026-07-13T08:10:00+08:00", "platform": "weibo", "author_id": "spam1", "author_role": "user", "engagement": 0},
+        {"id": "r3", "content": "晚买享折扣，首发别买。", "timestamp": "2026-07-13T08:20:00+08:00", "platform": "weibo", "author_id": "spam1", "author_role": "user", "engagement": 0},
+        {"id": "r4", "content": "国补一来就是价格背刺。", "timestamp": "2026-07-13T08:30:00+08:00", "platform": "weibo", "author_id": "spam1", "author_role": "user", "engagement": 0}
+      ],
+      "expected": {"signal": "价格背刺", "stage": "S0", "required_flags": ["重复传播噪声"], "unique_authors": 1}
+    },
+    {
+      "id": "NP003",
+      "category": "headphones",
+      "records": [
+        {"id": "r1", "content": "通勤风噪很明显。", "timestamp": "2026-07-13T08:00:00+08:00", "platform": "xiaohongshu", "author_id": "u1", "author_role": "user", "engagement": 3},
+        {"id": "r2", "content": "骑车时风噪压不住。", "timestamp": "2026-07-13T09:00:00+08:00", "platform": "xiaohongshu", "author_id": "u2", "author_role": "user", "engagement": 4},
+        {"id": "r3", "content": "地铁口风噪太大。", "timestamp": "2026-07-13T10:00:00+08:00", "platform": "xiaohongshu", "author_id": "u3", "author_role": "user", "engagement": 2}
+      ],
+      "expected": {"signal": "耳机体验风险", "stage": "S1", "unique_authors": 3, "forbidden_flags": ["跨平台", "权威角色放大"]}
+    },
+    {
+      "id": "NP004",
+      "category": "mobile",
+      "records": [
+        {"id": "r1", "content": "首发买完就跳水。", "timestamp": "2026-07-13T08:00:00+08:00", "platform": "weibo", "author_id": "u1", "author_role": "user", "engagement": 5},
+        {"id": "r2", "content": "晚买享折扣，首发权益在哪里。", "timestamp": "2026-07-13T08:30:00+08:00", "platform": "weibo", "author_id": "u2", "author_role": "user", "engagement": 8},
+        {"id": "r3", "content": "国补刚来就背刺老用户。", "timestamp": "2026-07-13T09:00:00+08:00", "platform": "weibo", "author_id": "u3", "author_role": "user", "engagement": 11},
+        {"id": "r4", "content": "等降价更稳，首发用户成冤种。", "timestamp": "2026-07-13T09:30:00+08:00", "platform": "weibo", "author_id": "u4", "author_role": "user", "engagement": 13}
+      ],
+      "expected": {"signal": "价格背刺", "stage": "S2", "level": "高", "required_flags": ["传播速度上升"], "unique_authors": 4}
+    },
+    {
+      "id": "NP005",
+      "category": "mobile",
+      "records": [
+        {"id": "r1", "content": "跑分第一的数据哪来的。", "timestamp": "2026-07-13T08:00:00+08:00", "platform": "weibo", "author_id": "u1", "author_role": "user", "engagement": 5},
+        {"id": "r2", "content": "没有同源测试就别说第一。", "timestamp": "2026-07-13T08:30:00+08:00", "platform": "bilibili", "author_id": "u2", "author_role": "user", "engagement": 15},
+        {"id": "r3", "content": "实测呢，测试条件要公开。", "timestamp": "2026-07-13T09:00:00+08:00", "platform": "bilibili", "author_id": "kol1", "author_role": "kol", "engagement": 800},
+        {"id": "r4", "content": "参数口径不同，跑分第一站不住。", "timestamp": "2026-07-13T09:30:00+08:00", "platform": "weibo", "author_id": "u3", "author_role": "user", "engagement": 30}
+      ],
+      "expected": {"signal": "数据打脸", "stage": "S3", "level": "高", "required_flags": ["跨平台", "权威角色放大"], "unique_authors": 4}
+    },
+    {
+      "id": "NP006",
+      "category": "mobile",
+      "records": [
+        {"id": "r1", "content": "手机断连，已经申请退货。", "timestamp": "2026-07-13T08:00:00+08:00", "platform": "ecommerce", "author_id": "u1", "author_role": "user", "engagement": 3, "business_impact": "return_refund"},
+        {"id": "r2", "content": "客服收到多起断连和故障反馈。", "timestamp": "2026-07-13T08:30:00+08:00", "platform": "support", "author_id": "cs1", "author_role": "customer_service", "engagement": 0, "business_impact": "support_spike"},
+        {"id": "r3", "content": "断连影响使用，我也准备退货。", "timestamp": "2026-07-13T09:00:00+08:00", "platform": "ecommerce", "author_id": "u2", "author_role": "user", "engagement": 9, "business_impact": "return_refund"},
+        {"id": "r4", "content": "渠道要求暂停故障卖点物料。", "timestamp": "2026-07-13T09:30:00+08:00", "platform": "channel", "author_id": "ch1", "author_role": "channel", "engagement": 0, "business_impact": "channel_delay"}
+      ],
+      "expected": {"signal": "产品缺陷", "stage": "S4", "level": "高", "required_flags": ["业务影响", "跨平台"], "business_impact_mentions": 4}
+    },
+    {
+      "id": "NP007",
+      "category": "wearables",
+      "records": [
+        {"id": "r1", "content": "跑步时GPS飘。", "platform": "unknown"},
+        {"id": "r2", "content": "心率飘得很明显。", "platform": "unknown"},
+        {"id": "r3", "content": "这次测不准。", "platform": "unknown"},
+        {"id": "r4", "content": "GPS飘到河里。", "platform": "unknown"}
+      ],
+      "expected": {"signal": "穿戴健康/续航风险", "stage": "S1", "required_flags": ["元数据缺口"], "metadata_quality": "低"}
+    },
+    {
+      "id": "NP008",
+      "category": "mobile",
+      "records": [
+        {"id": "r1", "content": "这条就是软广，还在控评。", "timestamp": "2026-07-13T08:00:00+08:00", "platform": "weibo", "author_id": "u1", "author_role": "user"},
+        {"id": "r2", "content": "这条就是软广，还在控评。", "timestamp": "2026-07-13T08:05:00+08:00", "platform": "weibo", "author_id": "u2", "author_role": "user"},
+        {"id": "r3", "content": "这条就是软广，还在控评。", "timestamp": "2026-07-13T08:10:00+08:00", "platform": "weibo", "author_id": "u3", "author_role": "user"},
+        {"id": "r4", "content": "这条就是软广，还在控评。", "timestamp": "2026-07-13T08:15:00+08:00", "platform": "weibo", "author_id": "u4", "author_role": "user"},
+        {"id": "r5", "content": "这条就是软广，还在控评。", "timestamp": "2026-07-13T08:20:00+08:00", "platform": "weibo", "author_id": "u5", "author_role": "user"}
+      ],
+      "expected": {"signal": "信任崩塌", "stage": "S1", "required_flags": ["重复传播噪声"], "unique_authors": 5}
+    },
+    {
+      "id": "NP009",
+      "category": "mobile",
+      "records": [
+        {"id": "r1", "content": "这条节日文案很冒犯，看着不舒服。", "timestamp": "2026-07-13T08:00:00+08:00", "platform": "weibo", "author_id": "u1", "author_role": "user", "engagement": 1}
+      ],
+      "expected": {"signal": "价值观冒犯", "stage": "S0", "level": "高", "route_impact": "暂停"}
+    },
+    {
+      "id": "NP010",
+      "category": "mobile",
+      "records": [
+        {"id": "r1", "content": "价格太高，先等降价再买。", "timestamp": "2026-07-13T08:00:00+08:00", "platform": "weibo", "author_id": "u1", "author_role": "user", "business_impact": "purchase_hesitation"},
+        {"id": "r2", "content": "怕首发背刺，我也先观望。", "timestamp": "2026-07-13T09:00:00+08:00", "platform": "weibo", "author_id": "u2", "author_role": "user", "business_impact": "purchase_hesitation"}
+      ],
+      "expected": {"signal": "价格背刺", "stage": "S1", "route_impact": "继续", "required_flags": ["业务影响"], "max_stage": "S1"}
+    }
+  ]
+}

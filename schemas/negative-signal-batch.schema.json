@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/china-marketing-copilot/negative-signal-record.schema.json",
+  "title": "负面传播批次单条记录",
+  "description": "JSONL 每一行对应一个对象。content 为唯一必填字段，其余字段用于提高阶段判断可信度。",
+  "type": "object",
+  "required": ["content"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {"type": "string", "minLength": 1},
+    "content": {"type": "string", "minLength": 1},
+    "timestamp": {"type": ["string", "null"], "format": "date-time"},
+    "platform": {"type": "string", "minLength": 1},
+    "author_id": {"type": ["string", "null"]},
+    "author_role": {
+      "enum": ["user", "kol", "media", "verified", "customer_service", "channel", "unknown"]
+    },
+    "engagement": {"type": "integer", "minimum": 0},
+    "business_impact": {
+      "enum": ["none", "purchase_hesitation", "return_refund", "support_spike", "channel_delay", "launch_change"]
+    },
+    "url": {"type": ["string", "null"]}
+  }
+}

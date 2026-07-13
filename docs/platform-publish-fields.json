@@ -1,0 +1,74 @@
+{
+  "version": "1.4.31",
+  "skill_name": "china-marketing-copilot",
+  "display_name": "中国3C营销助手",
+  "positioning": "中国3C上市决策系统",
+  "subtitle": "新品上市策略、负面预警与上线决策工作流",
+  "short_description": "输入产品、时间、预算、目标和证据，输出上市决策包、路线裁决、负面雷达、上线闸门和72小时动作。",
+  "slug": "china-marketing-copilot",
+  "category": "Marketing / Strategy / China 3C",
+  "primary_promise": "上市前把四件事说清楚：打哪条线、凭什么信、哪里会翻车、接下来72小时谁做什么",
+  "keywords": [
+    "中国3C",
+    "新品上市",
+    "上市决策",
+    "上线决策",
+    "负面预警",
+    "路线评分",
+    "KOL渠道",
+    "评论区压力测试"
+  ],
+  "first_screen_modules": [
+    "上市决策包",
+    "上市总控台",
+    "管理层决策纪要",
+    "路线评分卡",
+    "风险账本",
+    "负面雷达",
+    "上线闸门",
+    "72小时动作"
+  ],
+  "platforms": {
+    "github": {
+      "version_label": "v1.4.31",
+      "primary_copy": "README.md",
+      "trust_copy": [
+        "CHANGELOG.md",
+        "SECURITY.md",
+        "RELEASE-MANIFEST.json",
+        "RELEASE-VALIDATION.json"
+      ]
+    },
+    "clawhub": {
+      "version_label": "v1.4.31",
+      "package_name": "clawhub-china-marketing-copilot-v1.4.31.zip",
+      "listing_copy": "docs/platform-listing.md"
+    },
+    "skillhub": {
+      "version_label": "v1.4.31",
+      "package_name": "skillhub-china-marketing-copilot-v1.4.31.zip",
+      "listing_copy": "docs/platform-listing.md"
+    },
+    "codex": {
+      "version_label": "v1.4.31",
+      "package_name": "codex-china-marketing-copilot-v1.4.31.zip",
+      "entrypoint": "SKILL.md"
+    },
+    "openclaw_hermes": {
+      "version_label": "v1.4.31",
+      "package_name": "hermes-personal-china-marketing-copilot-v1.4.31.zip",
+      "entrypoint": "SKILL.md",
+      "install_target": "~/.hermes/skills/china-marketing-copilot/",
+      "package_profile": "personal_full",
+      "network_mode": "offline_first"
+    }
+  },
+  "copy_order": [
+    "positioning",
+    "primary_promise",
+    "first_screen_modules",
+    "trial_prompts",
+    "capability_boundaries",
+    "trust_materials"
+  ]
+}

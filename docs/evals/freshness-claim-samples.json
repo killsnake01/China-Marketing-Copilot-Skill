@@ -1,0 +1,69 @@
+{
+  "version": "1.4.31",
+  "actions": ["must_refresh", "mark_pending", "stable", "unsupported"],
+  "samples": [
+    {
+      "id": "F001",
+      "claim": "这台手机现在是4499元价位影像第一。",
+      "claim_type": "price_ranking",
+      "expected_action": "must_refresh",
+      "required_marker": "[待验证]"
+    },
+    {
+      "id": "F002",
+      "claim": "IDC 2025数据显示穿戴设备市场份额变化明显。",
+      "claim_type": "market_share",
+      "expected_action": "must_refresh",
+      "required_marker": "[待验证]"
+    },
+    {
+      "id": "F003",
+      "claim": "耳夹式耳机佩戴舒适度要优先看同源横评。",
+      "claim_type": "method",
+      "expected_action": "stable",
+      "required_marker": "同源"
+    },
+    {
+      "id": "F004",
+      "claim": "这位KOL近期口碑稳定，适合做首发背书。",
+      "claim_type": "kol_reputation",
+      "expected_action": "must_refresh",
+      "required_marker": "[待验证]"
+    },
+    {
+      "id": "F005",
+      "claim": "新品芯片规格已经确定，能直接写进发布会PPT。",
+      "claim_type": "new_product_specs",
+      "expected_action": "must_refresh",
+      "required_marker": "[待验证]"
+    },
+    {
+      "id": "F006",
+      "claim": "参数党会追问测试条件、版本和竞品同源数据。",
+      "claim_type": "persona_pattern",
+      "expected_action": "stable",
+      "required_marker": "测试条件"
+    },
+    {
+      "id": "F007",
+      "claim": "全网都在讨论这款智能手表。",
+      "claim_type": "platform_heat",
+      "expected_action": "must_refresh",
+      "required_marker": "[待验证]"
+    },
+    {
+      "id": "F008",
+      "claim": "知识库里没有这款AR眼镜的评测数据。",
+      "claim_type": "missing_data",
+      "expected_action": "unsupported",
+      "required_marker": "知识库暂无此数据"
+    },
+    {
+      "id": "F009",
+      "claim": "这条影像卖点看起来有优势，但来源还没有写清。",
+      "claim_type": "unclear_source",
+      "expected_action": "mark_pending",
+      "required_marker": "[待验证]"
+    }
+  ]
+}

@@ -1,0 +1,380 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "China 3C Launch Decision Card",
+  "type": "object",
+  "required": [
+    "launch_brief",
+    "decision_package",
+    "control_summary",
+    "executive_memo",
+    "decision",
+    "one_line_judgment",
+    "route_verdict",
+    "route_scorecard",
+    "claim_evidence",
+    "comment_pressure_test",
+    "risk_ledger",
+    "negative_radar",
+    "readiness_gate",
+    "route_switch_playbook",
+    "next_72_hours",
+    "next_7_days",
+    "self_check"
+  ],
+  "properties": {
+    "launch_brief": {
+      "type": "object",
+      "required": [
+        "product_category",
+        "launch_window",
+        "business_goal",
+        "target_audience",
+        "budget_level",
+        "evidence_available",
+        "competitors",
+        "planned_platforms",
+        "risk_constraints",
+        "missing_info"
+      ],
+      "properties": {
+        "product_category": {"type": "string", "minLength": 1},
+        "launch_window": {"type": "string", "minLength": 1},
+        "business_goal": {"type": "string", "minLength": 1},
+        "target_audience": {"type": "string", "minLength": 1},
+        "budget_level": {"type": "string", "minLength": 1},
+        "evidence_available": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "competitors": {"type": "array", "items": {"type": "string"}},
+        "planned_platforms": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "risk_constraints": {"type": "array", "items": {"type": "string"}},
+        "missing_info": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "decision_package": {
+      "type": "object",
+      "required": [
+        "package_title",
+        "package_version",
+        "package_status",
+        "primary_audience",
+        "decision_owner",
+        "handoff_summary",
+        "included_sections",
+        "open_decisions"
+      ],
+      "properties": {
+        "package_title": {"type": "string", "minLength": 1},
+        "package_version": {"type": "string", "minLength": 1},
+        "package_status": {"type": "string", "enum": ["可评审", "需补证据", "暂停评审"]},
+        "primary_audience": {"type": "string", "minLength": 1},
+        "decision_owner": {"type": "string", "minLength": 1},
+        "handoff_summary": {"type": "string", "minLength": 1},
+        "included_sections": {
+          "type": "array",
+          "minItems": 8,
+          "items": {
+            "type": "object",
+            "required": ["section_id", "section_name", "status", "source", "owner_role", "next_action"],
+            "properties": {
+              "section_id": {
+                "type": "string",
+                "enum": [
+                  "launch_brief",
+                  "control_summary",
+                  "executive_memo",
+                  "route_verdict",
+                  "route_scorecard",
+                  "evidence",
+                  "risk_ledger",
+                  "negative_radar",
+                  "route_switch",
+                  "readiness_gate",
+                  "next_actions",
+                  "self_check"
+                ]
+              },
+              "section_name": {"type": "string", "minLength": 1},
+              "status": {"type": "string", "enum": ["已完成", "待补", "阻断"]},
+              "source": {"type": "string", "minLength": 1},
+              "owner_role": {"type": "string", "minLength": 1},
+              "next_action": {"type": "string", "minLength": 1}
+            }
+          }
+        },
+        "open_decisions": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "control_summary": {
+      "type": "object",
+      "required": [
+        "verdict",
+        "recommended_route",
+        "confidence",
+        "key_evidence_status",
+        "top_risk",
+        "hard_blocker_status",
+        "next_72h_priority",
+        "switch_trigger"
+      ],
+      "properties": {
+        "verdict": {
+          "type": "string",
+          "enum": ["直接执行", "调整后执行", "暂停重做"]
+        },
+        "recommended_route": {"type": "string", "minLength": 1},
+        "confidence": {"type": "string", "enum": ["高", "中", "低"]},
+        "key_evidence_status": {"type": "string", "minLength": 1},
+        "top_risk": {"type": "string", "minLength": 1},
+        "hard_blocker_status": {"type": "string", "minLength": 1},
+        "next_72h_priority": {"type": "string", "minLength": 1},
+        "switch_trigger": {"type": "string", "minLength": 1}
+      }
+    },
+    "executive_memo": {
+      "type": "object",
+      "required": [
+        "decision_question",
+        "verdict",
+        "recommended_route",
+        "one_line_answer",
+        "evidence_basis",
+        "core_tradeoff",
+        "top_risk",
+        "no_go_condition",
+        "next_owner_action",
+        "confidence"
+      ],
+      "properties": {
+        "decision_question": {"type": "string", "minLength": 1},
+        "verdict": {"type": "string", "enum": ["直接执行", "调整后执行", "暂停重做"]},
+        "recommended_route": {"type": "string", "minLength": 1},
+        "one_line_answer": {"type": "string", "minLength": 1},
+        "evidence_basis": {"type": "array", "minItems": 1, "maxItems": 3, "items": {"type": "string"}},
+        "core_tradeoff": {"type": "string", "minLength": 1},
+        "top_risk": {"type": "string", "minLength": 1},
+        "no_go_condition": {"type": "string", "minLength": 1},
+        "next_owner_action": {"type": "string", "minLength": 1},
+        "confidence": {"type": "string", "enum": ["高", "中", "低"]}
+      }
+    },
+    "decision": {
+      "type": "string",
+      "enum": ["直接执行", "调整后执行", "暂停重做"]
+    },
+    "one_line_judgment": {
+      "type": "string",
+      "minLength": 1
+    },
+    "route_verdict": {
+      "type": "object",
+      "required": ["recommended", "backup", "rejected"],
+      "properties": {
+        "recommended": {
+          "type": "object",
+          "required": ["route_name", "rationale", "conditions"],
+          "properties": {
+            "route_name": {"type": "string", "minLength": 1},
+            "rationale": {"type": "string", "minLength": 1},
+            "conditions": {"type": "array", "minItems": 1, "items": {"type": "string"}}
+          }
+        },
+        "backup": {
+          "type": "object",
+          "required": ["route_name", "switch_condition"],
+          "properties": {
+            "route_name": {"type": "string", "minLength": 1},
+            "switch_condition": {"type": "string", "minLength": 1}
+          }
+        },
+        "rejected": {
+          "type": "object",
+          "required": ["route_name", "rejection_reason"],
+          "properties": {
+            "route_name": {"type": "string", "minLength": 1},
+            "rejection_reason": {"type": "string", "minLength": 1}
+          }
+        }
+      }
+    },
+    "route_scorecard": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "required": [
+          "route_name",
+          "route_role",
+          "evidence_score",
+          "audience_fit_score",
+          "competitor_defense_score",
+          "risk_control_score",
+          "resource_fit_score",
+          "timing_score",
+          "total_score",
+          "verdict",
+          "rationale",
+          "improvement_needed"
+        ],
+        "properties": {
+          "route_name": {"type": "string", "minLength": 1},
+          "route_role": {"type": "string", "enum": ["推荐", "备选", "弃用"]},
+          "evidence_score": {"type": "integer", "minimum": 0, "maximum": 5},
+          "audience_fit_score": {"type": "integer", "minimum": 0, "maximum": 5},
+          "competitor_defense_score": {"type": "integer", "minimum": 0, "maximum": 5},
+          "risk_control_score": {"type": "integer", "minimum": 0, "maximum": 5},
+          "resource_fit_score": {"type": "integer", "minimum": 0, "maximum": 5},
+          "timing_score": {"type": "integer", "minimum": 0, "maximum": 5},
+          "total_score": {"type": "integer", "minimum": 0, "maximum": 30},
+          "verdict": {"type": "string", "enum": ["押主线", "保留备选", "弃用"]},
+          "rationale": {"type": "string", "minLength": 1},
+          "improvement_needed": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "claim_evidence": {
+      "type": "object",
+      "required": ["core_claim", "evidence_pillars", "verified", "to_verify", "inferred"],
+      "properties": {
+        "core_claim": {"type": "string", "minLength": 1},
+        "evidence_pillars": {"type": "array", "minItems": 3, "items": {"type": "string"}},
+        "verified": {"type": "array", "items": {"type": "string"}},
+        "to_verify": {"type": "array", "items": {"type": "string"}},
+        "inferred": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "comment_pressure_test": {
+      "type": "object",
+      "required": ["parameter_driven", "ordinary_user", "deconstruction", "evidence_to_prepare"],
+      "properties": {
+        "parameter_driven": {"type": "string", "minLength": 1},
+        "ordinary_user": {"type": "string", "minLength": 1},
+        "deconstruction": {"type": "string", "minLength": 1},
+        "evidence_to_prepare": {"type": "array", "minItems": 1, "items": {"type": "string"}}
+      }
+    },
+    "risk_ledger": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "risk_id",
+          "priority",
+          "evidence_anchor",
+          "fact_status",
+          "trigger",
+          "actor",
+          "compressed_narrative",
+          "platform_path",
+          "business_impact",
+          "early_signal",
+          "route_impact",
+          "recommended_action",
+          "side_effect",
+          "disconfirming_evidence",
+          "confidence"
+        ],
+        "properties": {
+          "risk_id": {"type": "string", "pattern": "^R[0-9]{3}$"},
+          "priority": {"type": "string", "enum": ["P0", "P1", "P2", "P3"]},
+          "evidence_anchor": {"type": "string", "minLength": 1},
+          "fact_status": {"type": "string", "enum": ["known", "inferred", "needs_verification"]},
+          "trigger": {"type": "string", "minLength": 1},
+          "actor": {"type": "string", "minLength": 1},
+          "compressed_narrative": {"type": "string", "minLength": 1},
+          "platform_path": {"type": "string", "minLength": 1},
+          "business_impact": {"type": "string", "minLength": 1},
+          "early_signal": {"type": "string", "minLength": 1},
+          "route_impact": {"type": "string", "enum": ["继续", "缩窄", "切换", "暂停"]},
+          "recommended_action": {"type": "string", "minLength": 1},
+          "side_effect": {"type": "string", "minLength": 1},
+          "disconfirming_evidence": {"type": "string", "minLength": 1},
+          "confidence": {"type": "string", "enum": ["高", "中", "低"]}
+        }
+      }
+    },
+    "negative_radar": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["signal", "stage", "severity", "trigger_condition", "owner_role", "route_impact"],
+        "properties": {
+          "signal": {"type": "string", "minLength": 1},
+          "stage": {"type": "string", "enum": ["S0", "S1", "S2", "S3", "S4"]},
+          "severity": {"type": "string", "enum": ["低", "中", "高"]},
+          "trigger_condition": {"type": "string", "minLength": 1},
+          "owner_role": {"type": "string", "minLength": 1},
+          "route_impact": {"type": "string", "enum": ["继续", "缩窄", "切换", "暂停"]}
+        }
+      }
+    },
+    "readiness_gate": {
+      "type": "object",
+      "required": ["hard_blockers", "gaps", "owner_roles", "completion_deadline"],
+      "properties": {
+        "hard_blockers": {"type": "array", "items": {"type": "string"}},
+        "gaps": {"type": "array", "items": {"type": "string"}},
+        "owner_roles": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "completion_deadline": {"type": "string", "minLength": 1}
+      }
+    },
+    "route_switch_playbook": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["trigger", "signal_stage", "route_action", "action", "owner_role", "evidence_to_check", "deadline"],
+        "properties": {
+          "trigger": {"type": "string", "minLength": 1},
+          "signal_stage": {"type": "string", "enum": ["S0", "S1", "S2", "S3", "S4"]},
+          "route_action": {"type": "string", "enum": ["继续", "缩窄", "切换", "暂停"]},
+          "action": {"type": "string", "minLength": 1},
+          "owner_role": {"type": "string", "minLength": 1},
+          "evidence_to_check": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+          "deadline": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "next_72_hours": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["time", "action", "owner_role", "deliverable", "completion_standard"],
+        "properties": {
+          "time": {"type": "string", "minLength": 1},
+          "action": {"type": "string", "minLength": 1},
+          "owner_role": {"type": "string", "minLength": 1},
+          "deliverable": {"type": "string", "minLength": 1},
+          "completion_standard": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "next_7_days": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["metric", "signal", "threshold", "action"],
+        "properties": {
+          "metric": {"type": "string", "minLength": 1},
+          "signal": {"type": "string", "minLength": 1},
+          "threshold": {"type": "string", "minLength": 1},
+          "action": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "self_check": {
+      "type": "object",
+      "required": ["verified_facts", "to_verify", "inferred", "high_risks", "hard_blockers", "confidence"],
+      "properties": {
+        "verified_facts": {"type": "integer", "minimum": 0},
+        "to_verify": {"type": "integer", "minimum": 0},
+        "inferred": {"type": "integer", "minimum": 0},
+        "high_risks": {"type": "integer", "minimum": 0},
+        "hard_blockers": {"type": "integer", "minimum": 0},
+        "confidence": {"type": "string", "enum": ["高", "中", "低"]}
+      }
+    }
+  }
+}

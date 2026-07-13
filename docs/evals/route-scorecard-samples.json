@@ -1,0 +1,62 @@
+{
+  "version": "1.4.31",
+  "route_roles": ["推荐", "备选", "弃用"],
+  "score_fields": [
+    "evidence_score",
+    "audience_fit_score",
+    "competitor_defense_score",
+    "risk_control_score",
+    "resource_fit_score",
+    "timing_score"
+  ],
+  "samples": [
+    {
+      "id": "RS001",
+      "input": "夜景人像路线有主摄规格和样张，但样张条件待验证；预算有限，72小时内能补证据卡。",
+      "expected_role": "推荐",
+      "expected_verdict": "押主线",
+      "minimum_total": 20,
+      "required_terms": ["证据卡", "押主线", "补强动作"]
+    },
+    {
+      "id": "RS002",
+      "input": "轻量旗舰日常体验能承接普通用户，但证据锋利度弱，适合在影像样张争议扩大时切换。",
+      "expected_role": "备选",
+      "expected_verdict": "保留备选",
+      "minimum_total": 16,
+      "required_terms": ["切换触发", "保留备选", "普通用户"]
+    },
+    {
+      "id": "RS003",
+      "input": "泛AI旗舰叙事缺少任务级证据，容易被做成PPT功能和套壳固定梗。",
+      "expected_role": "弃用",
+      "expected_verdict": "弃用",
+      "maximum_total": 15,
+      "required_terms": ["任务级证据", "弃用", "固定梗"]
+    },
+    {
+      "id": "RS004",
+      "input": "价格解释路线能解决首发权益疑问，但无法承载影像主张，需要作为辅助路线。",
+      "expected_role": "备选",
+      "expected_verdict": "保留备选",
+      "minimum_total": 16,
+      "required_terms": ["辅助路线", "价格权益", "保留备选"]
+    },
+    {
+      "id": "RS005",
+      "input": "唯一医疗级健康守护涉及资质和监管，证据不足且风险不可控。",
+      "expected_role": "弃用",
+      "expected_verdict": "弃用",
+      "maximum_total": 12,
+      "required_terms": ["资质", "风险不可控", "弃用"]
+    },
+    {
+      "id": "RS006",
+      "input": "用户原话和同源横评都支持佩戴舒适路线，KOL脚本和评论区证据已准备。",
+      "expected_role": "推荐",
+      "expected_verdict": "押主线",
+      "minimum_total": 24,
+      "required_terms": ["同源横评", "用户原话", "押主线"]
+    }
+  ]
+}

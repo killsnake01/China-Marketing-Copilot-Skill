@@ -1,0 +1,64 @@
+{
+  "version": "1.4.31",
+  "priorities": ["P0", "P1", "P2", "P3"],
+  "route_impacts": ["继续", "缩窄", "切换", "暂停"],
+  "fact_statuses": ["known", "inferred", "needs_verification"],
+  "samples": [
+    {
+      "id": "R001",
+      "input": "发布会PPT写唯一医疗级健康守护，评论开始追问医疗资质和误导风险。",
+      "expected_priority": "P0",
+      "expected_route_impact": "暂停",
+      "required_terms": ["医疗资质", "暂停", "硬阻断"]
+    },
+    {
+      "id": "R002",
+      "input": "AI全面重塑体验被KOL和用户做成PPT功能、套壳固定梗。",
+      "expected_priority": "P1",
+      "expected_route_impact": "切换",
+      "required_terms": ["固定梗", "切换", "任务级证据"]
+    },
+    {
+      "id": "R003",
+      "input": "影像第一口径被多平台追问数据来源、样张条件和同源对比。",
+      "expected_priority": "P1",
+      "expected_route_impact": "缩窄",
+      "required_terms": ["数据来源", "缩窄", "证据锚点"]
+    },
+    {
+      "id": "R004",
+      "input": "首发冤种和晚买享折扣开始重复，客服收到价格权益追问。",
+      "expected_priority": "P1",
+      "expected_route_impact": "缩窄",
+      "required_terms": ["价格权益", "缩窄", "客服口径"]
+    },
+    {
+      "id": "R005",
+      "input": "外观颜色审美争议较多，但没有攻击核心影像路线。",
+      "expected_priority": "P2",
+      "expected_route_impact": "继续",
+      "required_terms": ["审美争议", "继续", "监控"]
+    },
+    {
+      "id": "R006",
+      "input": "用户自发复述夜景卖点，收藏和询价增加，负面没有攻击核心证据。",
+      "expected_priority": "P3",
+      "expected_route_impact": "继续",
+      "required_terms": ["可放大", "继续", "观察"]
+    },
+    {
+      "id": "R007",
+      "input": "客服机器人按旧口径回答绝对领先，被用户截图当成官方承认。",
+      "expected_priority": "P0",
+      "expected_route_impact": "暂停",
+      "required_terms": ["客服机器人", "暂停", "统一口径"]
+    },
+    {
+      "id": "R008",
+      "input": "KOL口播自行加了唯一和最强，评论区质疑恰饭。",
+      "expected_priority": "P1",
+      "expected_route_impact": "缩窄",
+      "required_terms": ["KOL口播", "缩窄", "禁用词"]
+    }
+  ]
+}

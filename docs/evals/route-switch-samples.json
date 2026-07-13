@@ -1,0 +1,48 @@
+{
+  "version": "1.4.31",
+  "actions": ["continue", "narrow_claim", "switch_route", "pause_spread"],
+  "samples": [
+    {
+      "id": "R001",
+      "input": "评测解禁前，样张条件、价格权益和KOL脚本都已确认，评论区预案也已经排班。",
+      "expected_action": "continue",
+      "required_terms": ["继续", "监控项", "放大动作"]
+    },
+    {
+      "id": "R002",
+      "input": "主路线仍可用，但影像第一口径没有同源横评，KOL建议先不要写第一。",
+      "expected_action": "narrow_claim",
+      "required_terms": ["缩窄", "删词", "补证据"]
+    },
+    {
+      "id": "R003",
+      "input": "性能路线被首批KOL打穿，发热和掉帧都指向主打卖点，备选日常体验路线更稳。",
+      "expected_action": "switch_route",
+      "required_terms": ["切换", "备选路线", "替换物料"]
+    },
+    {
+      "id": "R004",
+      "input": "评论区开始集中说控评删评，媒体也转发虚假宣传质疑。",
+      "expected_action": "pause_spread",
+      "required_terms": ["暂停", "复核事实", "统一口径"]
+    },
+    {
+      "id": "R005",
+      "input": "价格权益还没有统一，电商页和KOL脚本说法不一致，但24小时内能补渠道确认。",
+      "expected_action": "narrow_claim",
+      "required_terms": ["缩窄", "价格权益", "复核"]
+    },
+    {
+      "id": "R006",
+      "input": "AI功能被做成PPT功能和套壳固定梗，推荐的AI路线成立条件被反复质疑。",
+      "expected_action": "switch_route",
+      "required_terms": ["切换", "具体任务", "停用表达"]
+    },
+    {
+      "id": "R007",
+      "input": "出现隐私、安全和批量缺陷质疑，客服也收到重复投诉。",
+      "expected_action": "pause_spread",
+      "required_terms": ["暂停", "升级角色", "事实复核"]
+    }
+  ]
+}

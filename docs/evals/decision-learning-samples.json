@@ -1,0 +1,54 @@
+{
+  "version": "1.4.31",
+  "actions": [
+    "keep_route",
+    "update_evidence",
+    "ban_phrase",
+    "raise_threshold",
+    "update_kol_record"
+  ],
+  "samples": [
+    {
+      "id": "L001",
+      "input": "上线24小时，用户自发复述夜景人像卖点，询价和收藏增加，负面没有攻击核心证据。",
+      "expected_action": "keep_route",
+      "required_terms": ["路线保留", "可复用证据", "继续观察"]
+    },
+    {
+      "id": "L002",
+      "input": "评论区反复追问数据来源、样张条件和同源对比，缩窄主张后反馈稳定。",
+      "expected_action": "update_evidence",
+      "required_terms": ["补证据", "样张条件", "同源对比"]
+    },
+    {
+      "id": "L003",
+      "input": "AI全面重塑体验被做成PPT功能和套壳固定梗，KOL也建议停用这句。",
+      "expected_action": "ban_phrase",
+      "required_terms": ["禁用话术", "替代表达", "具体任务"]
+    },
+    {
+      "id": "L004",
+      "input": "单平台两条低赞评论触发了过早改稿，后来确认没有跨平台重复，阈值过低。",
+      "expected_action": "raise_threshold",
+      "required_terms": ["更新阈值", "跨平台重复", "误报"]
+    },
+    {
+      "id": "L005",
+      "input": "某体验向KOL口播时自行加了唯一和最强，评论区质疑恰饭，后续合作需要记录。",
+      "expected_action": "update_kol_record",
+      "required_terms": ["更新KOL记录", "口播禁词", "合作复核"]
+    },
+    {
+      "id": "L006",
+      "input": "价格权益被追问后，补上官方价、补贴条件和日期，首发冤种质疑下降。",
+      "expected_action": "update_evidence",
+      "required_terms": ["补证据", "价格权益", "日期"]
+    },
+    {
+      "id": "L007",
+      "input": "健康手表文案里的全天候守护健康被用户截图质疑医疗暗示，后续必须禁用。",
+      "expected_action": "ban_phrase",
+      "required_terms": ["禁用话术", "健康边界", "替代表达"]
+    }
+  ]
+}

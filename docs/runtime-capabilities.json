@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "updated": "2026-07-12",
+  "default_mode": "markdown_only",
+  "modes": {
+    "markdown_only": {
+      "requires": [],
+      "works_on": ["Codex", "OpenClaw", "Hermes", "通用支持SKILL.md的智能体"],
+      "can_do": ["路由选择", "离线知识检索", "策略判断", "创意与话术", "风险检查", "模板化交付"],
+      "fallbacks": ["机器校验改为按模板人工自检", "当前信息标注[待验证]", "缺失数据写知识库暂无此数据"]
+    },
+    "script_enhanced": {
+      "requires": ["Python 3", "允许读取包内文件和用户指定输入"],
+      "can_do": ["负面信号批处理", "结构化传播速度与阶段判断", "证据与时效校验", "结构化决策单校验", "维护回归测试"],
+      "fallback_mode": "markdown_only"
+    },
+    "connected": {
+      "requires": ["用户明确允许的外部搜索、浏览器或数据连接能力"],
+      "can_do": ["复核当前价格、排名、份额、新品参数、平台热度和KOL近期状态"],
+      "fallback_mode": "markdown_only",
+      "rules": ["外部工具只作增强", "保留来源与日期", "访问失败时回退离线模式"]
+    }
+  },
+  "selection_rule": "运行开始时选择当前环境可满足的最高模式；能力缺失时立即回退，不中断基础策略输出。"
+}

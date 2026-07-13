@@ -1,0 +1,182 @@
+{
+  "version": "1.4.31",
+  "validated_at": "2026-07-13T01:47:31.549175+00:00",
+  "source_fingerprint_sha256": "bd9c0807c1fdc1bfcddd12319e20ab7b481cb4212ad8572e2dab780dbc817342",
+  "git_commit": "33aadbf9cb2e849aa0bf5c9a1ab60026ae6421a5",
+  "working_tree_dirty": true,
+  "validator": "scripts/validate_skill_pack.py",
+  "checks": [
+    {
+      "name": "validate_skill_metadata",
+      "status": "passed"
+    },
+    {
+      "name": "validate_skill_router_shape",
+      "status": "passed"
+    },
+    {
+      "name": "validate_platform_listing",
+      "status": "passed"
+    },
+    {
+      "name": "validate_readme_landing",
+      "status": "passed"
+    },
+    {
+      "name": "validate_platform_publish_fields",
+      "status": "passed"
+    },
+    {
+      "name": "validate_trust_documents",
+      "status": "passed"
+    },
+    {
+      "name": "validate_required_paths",
+      "status": "passed"
+    },
+    {
+      "name": "validate_json",
+      "status": "passed"
+    },
+    {
+      "name": "validate_data_sources",
+      "status": "passed"
+    },
+    {
+      "name": "validate_runtime_capabilities",
+      "status": "passed"
+    },
+    {
+      "name": "validate_evidence_ledger",
+      "status": "passed"
+    },
+    {
+      "name": "validate_launch_decision_schema",
+      "status": "passed"
+    },
+    {
+      "name": "validate_trigger_queries",
+      "status": "passed"
+    },
+    {
+      "name": "validate_cross_agent_benchmark",
+      "status": "passed"
+    },
+    {
+      "name": "validate_legacy_compatibility",
+      "status": "passed"
+    },
+    {
+      "name": "validate_negative_propagation",
+      "status": "passed"
+    },
+    {
+      "name": "validate_golden_examples",
+      "status": "passed"
+    },
+    {
+      "name": "validate_output_modes",
+      "status": "passed"
+    },
+    {
+      "name": "validate_freshness_claims",
+      "status": "passed"
+    },
+    {
+      "name": "validate_evidence_claims",
+      "status": "passed"
+    },
+    {
+      "name": "validate_decision_package_samples",
+      "status": "passed"
+    },
+    {
+      "name": "validate_executive_memo_samples",
+      "status": "passed"
+    },
+    {
+      "name": "validate_route_scorecard_samples",
+      "status": "passed"
+    },
+    {
+      "name": "validate_route_switch_samples",
+      "status": "passed"
+    },
+    {
+      "name": "validate_execution_gate_samples",
+      "status": "passed"
+    },
+    {
+      "name": "validate_quality_rubric",
+      "status": "passed"
+    },
+    {
+      "name": "validate_post_launch_samples",
+      "status": "passed"
+    },
+    {
+      "name": "validate_decision_learning_samples",
+      "status": "passed"
+    },
+    {
+      "name": "validate_risk_ledger_samples",
+      "status": "passed"
+    },
+    {
+      "name": "validate_decision_card_samples",
+      "status": "passed"
+    },
+    {
+      "name": "validate_internal_links",
+      "status": "passed"
+    },
+    {
+      "name": "validate_script_safety",
+      "status": "passed"
+    },
+    {
+      "name": "validate_knowledge_claims",
+      "status": "passed"
+    },
+    {
+      "name": "validate_marketing_eval",
+      "status": "passed"
+    },
+    {
+      "name": "validate_release_manifest",
+      "status": "passed"
+    },
+    {
+      "name": "validate_release_validation_report",
+      "status": "passed"
+    },
+    {
+      "name": "validate_publish_package_builder",
+      "status": "passed"
+    },
+    {
+      "name": "validate_release_artifacts",
+      "status": "passed"
+    },
+    {
+      "name": "validate_release_version",
+      "status": "passed"
+    },
+    {
+      "name": "validate_forbidden_patterns",
+      "status": "passed"
+    },
+    {
+      "name": "validate_secret_patterns",
+      "status": "passed"
+    },
+    {
+      "name": "run_negative_eval",
+      "status": "passed"
+    }
+  ],
+  "summary": {
+    "passed": 42,
+    "failed": 0
+  }
+}

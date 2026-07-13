@@ -1,0 +1,55 @@
+{
+  "version": "1.4.31",
+  "package_statuses": ["可评审", "需补证据", "暂停评审"],
+  "required_section_ids": [
+    "launch_brief",
+    "control_summary",
+    "executive_memo",
+    "route_verdict",
+    "route_scorecard",
+    "evidence",
+    "risk_ledger",
+    "negative_radar",
+    "route_switch",
+    "readiness_gate",
+    "next_actions"
+  ],
+  "samples": [
+    {
+      "id": "DP001",
+      "input": "影像旗舰无硬阻断，但样张条件、首发权益和同源竞品对比待补，72小时内能补证据卡。",
+      "expected_status": "需补证据",
+      "required_terms": ["待补证据", "样张条件", "72小时"]
+    },
+    {
+      "id": "DP002",
+      "input": "主张证据已核验，KOL脚本、评论区口径、价格权益和7天复盘指标均已确认，无硬阻断。",
+      "expected_status": "可评审",
+      "required_terms": ["已核验", "无硬阻断", "复盘指标"]
+    },
+    {
+      "id": "DP003",
+      "input": "核心样张证据冲突，价格权益口径不一致，P0风险暂无负责人和暂停阈值。",
+      "expected_status": "暂停评审",
+      "required_terms": ["证据冲突", "P0", "暂停评审"]
+    },
+    {
+      "id": "DP004",
+      "input": "泛AI路线缺任务级证据，推荐路线证据强度低于3分，仍有待验证事实。",
+      "expected_status": "需补证据",
+      "required_terms": ["任务级证据", "低于3分", "待验证"]
+    },
+    {
+      "id": "DP005",
+      "input": "健康守护话术涉及医疗资质，法务审核未完成，监管风险可能影响上线节奏。",
+      "expected_status": "暂停评审",
+      "required_terms": ["资质", "法务审核", "监管风险"]
+    },
+    {
+      "id": "DP006",
+      "input": "耳机舒适佩戴路线有同源横评、用户原话、KOL脚本和评论区证据，包内目录完整。",
+      "expected_status": "可评审",
+      "required_terms": ["同源横评", "用户原话", "包内目录"]
+    }
+  ]
+}

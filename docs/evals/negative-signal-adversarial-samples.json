@@ -1,0 +1,60 @@
+{
+  "version": "1.4.31",
+  "samples": [
+    {
+      "id": "NA001",
+      "mode": "comments",
+      "category": "mobile",
+      "text": "并未控评，也没有删评。",
+      "expected": {},
+      "forbidden": ["信任崩塌"]
+    },
+    {
+      "id": "NA002",
+      "mode": "comments",
+      "category": "mobile",
+      "text": "AI功能并非鸡肋，完全没有套壳问题。",
+      "expected": {},
+      "forbidden": ["AI空话"]
+    },
+    {
+      "id": "NA003",
+      "mode": "comments",
+      "category": "mobile",
+      "text": "文案没有冒犯，语气很克制。",
+      "expected": {},
+      "forbidden": ["价值观冒犯"]
+    },
+    {
+      "id": "NA004",
+      "mode": "comments",
+      "category": "mobile",
+      "text": "评论区开始说背ci、控 p、恰 饭。",
+      "expected": {
+        "价格背刺": {"level": "中", "stage": "S0"},
+        "信任崩塌": {"level": "高", "stage": "S0"}
+      },
+      "forbidden": []
+    },
+    {
+      "id": "NA005",
+      "mode": "comments",
+      "category": "mobile",
+      "text": "背刺背刺背刺，首发用户很生气。",
+      "expected": {
+        "价格背刺": {"level": "中", "stage": "S0"}
+      },
+      "forbidden": []
+    },
+    {
+      "id": "NA006",
+      "mode": "comments",
+      "category": "mobile",
+      "text": "第一位用户说发热。\n第二位用户说卡顿。\n第三位用户说故障。\n第四位用户说续航崩。",
+      "expected": {
+        "产品缺陷": {"level": "高", "stage": "S2"}
+      },
+      "forbidden": []
+    }
+  ]
+}

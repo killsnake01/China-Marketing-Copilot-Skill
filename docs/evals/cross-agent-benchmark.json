@@ -1,0 +1,241 @@
+{
+  "version": 1,
+  "updated": "2026-07-12",
+  "status": "benchmark_ready_no_live_results",
+  "purpose": "用同一组盲测任务比较不同智能体的触发、路由、证据纪律和交付质量。",
+  "target_agents": ["codex", "openclaw", "hermes", "gpt"],
+  "integrity_rules": [
+    "运行目标智能体时只提供用户任务和待测技能包，不提供本评测文件。",
+    "保留原始输出，不先提示预期路由、错误类型或参考答案。",
+    "真实运行结果单独保存，不写回发布包。",
+    "静态校验通过只代表评测框架可用，不代表任何智能体已经通过。"
+  ],
+  "run_contract": {
+    "required_fields": ["case_id", "agent", "triggered", "selected_route", "selected_mode", "output"],
+    "selected_route_format": "命中技能时填写 docs/routes/*.md；未命中时填写 null。",
+    "selected_mode_values": ["快速版", "标准版", "深度版", "不适用"]
+  },
+  "pass_policy": {
+    "minimum_case_pass_rate": 0.85,
+    "hard_fail_checks": ["trigger", "route", "forbidden_regex"],
+    "release_claim_rule": "每个目标智能体完成全部案例后，才允许声明该智能体兼容。"
+  },
+  "cases": [
+    {
+      "id": "XA001",
+      "prompt": "7天后发布一台4499元影像旗舰，预算80万。请用深度版给上市路线和上线判断。",
+      "expected_trigger": true,
+      "expected_route": "docs/routes/launch-decision.md",
+      "accepted_modes": ["深度版"],
+      "required_all": ["推荐路线", "备选路线", "弃用路线", "上线"],
+      "required_any_groups": [["[待验证]", "知识库暂无此数据"], ["72小时", "未来72小时"]],
+      "forbidden_regex": ["4499元(?:已经|已)核验", "影像(?:行业)?第一(?:已经|已)确认"],
+      "max_output_chars": 12000,
+      "require_self_check": true
+    },
+    {
+      "id": "XA002",
+      "prompt": "快速审核‘AI全面重塑体验’，给风险和能直接用的替代说法。",
+      "expected_trigger": true,
+      "expected_route": "docs/routes/messaging-review.md",
+      "accepted_modes": ["快速版"],
+      "required_all": ["风险", "替代"],
+      "required_any_groups": [["场景", "用户"], ["证据", "待验证"]],
+      "forbidden_regex": ["AI全面重塑体验[^。\n]{0,20}(?:可以直接用|建议保留)"],
+      "max_output_chars": 2500,
+      "require_self_check": true
+    },
+    {
+      "id": "XA003",
+      "prompt": "给开放式耳机想3个小红书创意，别像广告，顺便预判评论区。",
+      "expected_trigger": true,
+      "expected_route": "docs/routes/creative-campaign.md",
+      "accepted_modes": ["标准版"],
+      "required_all": ["创意", "评论"],
+      "required_any_groups": [["漏音", "佩戴", "风噪"], ["钩子", "场景"]],
+      "forbidden_regex": ["保证(?:舒适|不漏音|音质)"],
+      "max_output_chars": 5000,
+      "require_self_check": true
+    },
+    {
+      "id": "XA004",
+      "prompt": "新机评测解禁当天，KOL、平台和评论区怎么排？给标准版。",
+      "expected_trigger": true,
+      "expected_route": "docs/routes/channel-kol.md",
+      "accepted_modes": ["标准版"],
+      "required_all": ["平台", "评论区", "复盘"],
+      "required_any_groups": [["KOL类型", "评测向", "体验向"], ["触发", "阈值"]],
+      "forbidden_regex": ["KOL名称[^。\n]{0,30}(?:当前报价|最新粉丝)"],
+      "max_output_chars": 6000,
+      "require_self_check": true
+    },
+    {
+      "id": "XA005",
+      "prompt": "竞品刚发了一款新机，请判断威胁和我们该守哪条线。没有给你参数。",
+      "expected_trigger": true,
+      "expected_route": "docs/routes/competitor-intelligence.md",
+      "accepted_modes": ["标准版"],
+      "required_all": ["威胁", "缺失"],
+      "required_any_groups": [["知识库暂无此数据", "[待验证]"], ["同源", "口径"]],
+      "forbidden_regex": ["竞品(?:已经|确定)(?:全面|明显)领先"],
+      "max_output_chars": 5000,
+      "require_self_check": true
+    },
+    {
+      "id": "XA006",
+      "prompt": "评论区开始出现‘首发冤种、晚买享折扣’，会不会形成负面标签？",
+      "expected_trigger": true,
+      "expected_route": "docs/routes/risk-review.md",
+      "accepted_modes": ["标准版"],
+      "required_all": ["负面", "触发"],
+      "required_any_groups": [["S0", "S1", "S2"], ["首发权益", "价格"]],
+      "forbidden_regex": ["已经形成S[34]"],
+      "max_output_chars": 5000,
+      "require_self_check": true
+    },
+    {
+      "id": "XA007",
+      "prompt": "上线24小时后，影像第一被KOL和评论区质疑。继续投、改话术还是撤？",
+      "expected_trigger": true,
+      "expected_route": "docs/routes/post-launch-war-room.md",
+      "accepted_modes": ["标准版"],
+      "required_all": ["24小时", "继续", "暂停"],
+      "required_any_groups": [["缩窄", "切换"], ["复盘", "学习记录"]],
+      "forbidden_regex": ["无条件继续投放"],
+      "max_output_chars": 6000,
+      "require_self_check": true
+    },
+    {
+      "id": "XA008",
+      "prompt": "这里有500条耳机评论。先找负面苗头，再总结卖点。",
+      "expected_trigger": true,
+      "expected_route": "docs/routes/data-import.md",
+      "accepted_modes": ["标准版"],
+      "required_all": ["原文", "负面", "卖点"],
+      "required_any_groups": [["来源", "样本"], ["阈值", "监测"]],
+      "forbidden_regex": ["先总结卖点"],
+      "max_output_chars": 6000,
+      "require_self_check": true
+    },
+    {
+      "id": "XA009",
+      "prompt": "审核发布会PPT里的‘行业唯一、性能遥遥领先’，判断能不能发。",
+      "expected_trigger": true,
+      "expected_route": "docs/routes/material-audit.md",
+      "accepted_modes": ["标准版"],
+      "required_all": ["行业唯一", "遥遥领先", "证据"],
+      "required_any_groups": [["拦截", "删除", "改写"], ["[待验证]", "无法核验"]],
+      "forbidden_regex": ["(?:行业唯一|遥遥领先)[^。\n]{0,30}可以直接发布"],
+      "max_output_chars": 5000,
+      "require_self_check": true
+    },
+    {
+      "id": "XA010",
+      "prompt": "这份上市方案够不够好？按100分标准验收，低于80分给补救顺序。",
+      "expected_trigger": true,
+      "expected_route": "docs/routes/output-quality.md",
+      "accepted_modes": ["标准版"],
+      "required_all": ["总分", "80", "补救"],
+      "required_any_groups": [["硬阻断", "阻断项"], ["扣分", "得分"]],
+      "forbidden_regex": ["没有看到方案[^。\n]{0,20}(?:仍然|也能)给出准确分数"],
+      "max_output_chars": 5000,
+      "require_self_check": true
+    },
+    {
+      "id": "XA011",
+      "prompt": "‘这台手机现在4499元，是影像第一’，这句话能直接写吗？",
+      "expected_trigger": true,
+      "expected_route": "docs/routes/messaging-review.md",
+      "accepted_modes": ["快速版", "标准版"],
+      "required_all": ["价格", "排名"],
+      "required_any_groups": [["[待验证]", "当前复核"], ["口径", "同源"]],
+      "forbidden_regex": ["可以直接写", "4499元和影像第一(?:都|均)(?:已经|已)核验"],
+      "max_output_chars": 3000,
+      "require_self_check": true
+    },
+    {
+      "id": "XA012",
+      "prompt": "既要一个能破圈的母亲节创意，也要判断明天能不能上线。预算和素材都没定。",
+      "expected_trigger": true,
+      "expected_route": "docs/routes/launch-decision.md",
+      "accepted_modes": ["标准版", "深度版"],
+      "required_all": ["上线", "缺失"],
+      "required_any_groups": [["价值观", "节日"], ["暂停", "调整后"]],
+      "forbidden_regex": ["可以直接上线"],
+      "max_output_chars": 7000,
+      "require_self_check": true
+    },
+    {
+      "id": "XA013",
+      "prompt": "把‘全天候守护健康’改得更有传播力，同时看看会不会翻车。",
+      "expected_trigger": true,
+      "expected_route": "docs/routes/risk-review.md",
+      "accepted_modes": ["快速版", "标准版"],
+      "required_all": ["健康", "风险"],
+      "required_any_groups": [["医疗", "监测边界", "适用边界"], ["替代", "改写"]],
+      "forbidden_regex": ["保证健康", "全天候守护健康[^。\n]{0,20}建议保留"],
+      "max_output_chars": 4000,
+      "require_self_check": true
+    },
+    {
+      "id": "XA014",
+      "prompt": "OpenClaw没有浏览器和Python。给我做一份智能眼镜新品策略。",
+      "expected_trigger": true,
+      "expected_route": "docs/routes/launch-decision.md",
+      "accepted_modes": ["标准版"],
+      "required_all": ["离线", "缺失"],
+      "required_any_groups": [["知识库暂无此数据", "[待验证]"], ["补充材料", "需要提供"]],
+      "forbidden_regex": ["已经查询(?:微博|新闻|网页)"],
+      "max_output_chars": 6000,
+      "require_self_check": true
+    },
+    {
+      "id": "XA015",
+      "prompt": "我的耳机左边没声音，怎么维修？",
+      "expected_trigger": false,
+      "expected_route": null,
+      "accepted_modes": ["不适用"],
+      "required_all": [],
+      "required_any_groups": [],
+      "forbidden_regex": [],
+      "max_output_chars": 10000,
+      "require_self_check": false
+    },
+    {
+      "id": "XA016",
+      "prompt": "预算3000元，直接推荐一台最值得买的手机。",
+      "expected_trigger": false,
+      "expected_route": null,
+      "accepted_modes": ["不适用"],
+      "required_all": [],
+      "required_any_groups": [],
+      "forbidden_regex": [],
+      "max_output_chars": 10000,
+      "require_self_check": false
+    },
+    {
+      "id": "XA017",
+      "prompt": "总结一下今天的科技新闻。",
+      "expected_trigger": false,
+      "expected_route": null,
+      "accepted_modes": ["不适用"],
+      "required_all": [],
+      "required_any_groups": [],
+      "forbidden_regex": [],
+      "max_output_chars": 10000,
+      "require_self_check": false
+    },
+    {
+      "id": "XA018",
+      "prompt": "把这句话翻译成英文：这款手机很好看。",
+      "expected_trigger": false,
+      "expected_route": null,
+      "accepted_modes": ["不适用"],
+      "required_all": [],
+      "required_any_groups": [],
+      "forbidden_regex": [],
+      "max_output_chars": 10000,
+      "require_self_check": false
+    }
+  ]
+}

@@ -6,6 +6,7 @@
 
 - [strategy-decision-system.md](strategy-decision-system.md)：确定路线和目标。
 - [message-house.md](message-house.md)：确定主张、证据、禁用表达和回应口径。
+- [execution-readiness-gate.md](execution-readiness-gate.md)：确认执行门、负责人、触发条件和复盘指标。
 - [../references/industry-ecosystem.md](../references/industry-ecosystem.md)：平台传播规律。
 - [../ecosystem/kols.md](../ecosystem/kols.md)：KOL 风格、恰饭风险和合作注意事项。
 - [../ecosystem/negative-early-warning.md](../ecosystem/negative-early-warning.md)：负面苗头和处理动作。
@@ -65,6 +66,12 @@ KOL组合
 | 信任 | 数据质疑是否下降 | 高赞负面占比 |
 | 转化 | 询价/收藏/跳转 | 平台后台或人工记录 |
 | 风险 | 负面信号是否扩散 | 截图、跨平台重复、KOL跟进 |
+
+执行就绪门
+- 上线结论: {直接执行/调整后执行/暂停重做}
+- 关键卡点: {物料/证据/KOL/评论区/复盘}
+- 24小时补齐项: {上线前必须补齐的内容}
+- 暂停/切换阈值: {触发后动作}
 ```
 
 ## 执行纪律
@@ -74,3 +81,4 @@ KOL组合
 - 种草类内容必须允许真实缺点，避免一眼软广。
 - 评论区优先解释事实和条件，谨慎使用情绪对抗。
 - 如果触发高等级负面信号，先暂停扩散，再补证据或改口径。
+- 每个平台动作都要有交付物、负责人角色、发布时间和复盘指标。

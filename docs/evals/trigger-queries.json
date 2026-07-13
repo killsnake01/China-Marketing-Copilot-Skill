@@ -1,0 +1,144 @@
+{
+  "version": "1.4.31",
+  "queries": [
+    {
+      "id": "T001",
+      "query": "7天后发布一台4499元影像旗舰，预算80万，请给我上市决策单。",
+      "should_trigger": true,
+      "expected_route": "docs/routes/launch-decision.md",
+      "expected_artifacts": ["assets/launch-decision-card.md", "docs/templates/launch-decision-package.md", "docs/templates/executive-decision-memo.md", "docs/templates/route-scorecard.md"],
+      "required_terms": ["上市决策包", "管理层决策纪要", "路线裁决", "路线评分卡", "上线闸门", "未来72小时"]
+    },
+    {
+      "id": "T002",
+      "query": "把‘AI全面重塑体验’改成可验证的发布会主张。",
+      "should_trigger": true,
+      "expected_route": "docs/routes/messaging-review.md",
+      "expected_artifacts": ["docs/templates/message-house.md"],
+      "required_terms": ["核心主张", "证据缺口", "替代表达"]
+    },
+    {
+      "id": "T003",
+      "query": "这是500条耳机评论，先识别负面叙事，再总结卖点。",
+      "should_trigger": true,
+      "expected_route": "docs/routes/data-import.md",
+      "expected_artifacts": ["docs/ecosystem/negative-early-warning.md"],
+      "required_terms": ["负面叙事", "原文样本", "下一步监测"]
+    },
+    {
+      "id": "T004",
+      "query": "竞品刚发新品，对我们手机的威胁在哪里？",
+      "should_trigger": true,
+      "expected_route": "docs/routes/competitor-intelligence.md",
+      "expected_artifacts": ["docs/templates/insight-output.md"],
+      "required_terms": ["同源数据矩阵", "受影响人群", "禁用表达"]
+    },
+    {
+      "id": "T005",
+      "query": "评测解禁当天，KOL排期和评论区动作怎么安排？",
+      "should_trigger": true,
+      "expected_route": "docs/routes/channel-kol.md",
+      "expected_artifacts": ["docs/templates/channel-kol-activation.md"],
+      "required_terms": ["平台角色", "KOL类型", "暂停或切换阈值"]
+    },
+    {
+      "id": "T006",
+      "query": "发布会PPT里有‘唯一、第一、遥遥领先’，帮我逐页审核。",
+      "should_trigger": true,
+      "expected_route": "docs/routes/material-audit.md",
+      "expected_artifacts": ["docs/references/subagent-factchecker.md"],
+      "required_terms": ["绝对化", "未验证事实", "替代表达"]
+    },
+    {
+      "id": "T007",
+      "query": "这份上市方案够不够好？请按标准打分，低于80分就告诉我怎么补。",
+      "should_trigger": true,
+      "expected_route": "docs/routes/output-quality.md",
+      "expected_artifacts": ["docs/evals/output-quality-rubric.json", "docs/templates/quality-check-tools.md"],
+      "required_terms": ["硬阻断项", "8维评分", "补救优先级"]
+    },
+    {
+      "id": "T008",
+      "query": "上线24小时后，评论区和KOL反馈要不要继续放大？帮我做战情复盘。",
+      "should_trigger": true,
+      "expected_route": "docs/routes/post-launch-war-room.md",
+      "expected_artifacts": ["docs/templates/post-launch-war-room.md", "docs/templates/decision-learning-record.md", "docs/ecosystem/negative-early-warning.md"],
+      "required_terms": ["战情摘要", "主张动作", "未来72小时", "决策学习记录"]
+    },
+    {
+      "id": "T009",
+      "query": "这句手机宣传会不会翻车？先判断负面会从哪里形成。",
+      "should_trigger": true,
+      "expected_route": "docs/routes/risk-review.md",
+      "expected_artifacts": ["docs/ecosystem/negative-early-warning.md", "docs/references/comment-personas.md"],
+      "required_terms": ["负面信号", "叙事阶段", "触发阈值"]
+    },
+    {
+      "id": "T010",
+      "query": "帮这款降噪耳机想三个小红书种草创意，并推荐一条主线。",
+      "should_trigger": true,
+      "expected_route": "docs/routes/creative-campaign.md",
+      "expected_artifacts": ["docs/templates/creative-output.md", "docs/ecosystem/industry-memes.md"],
+      "required_terms": ["推荐创意路线", "备选创意路线", "证据需求"]
+    },
+    {
+      "id": "T011",
+      "query": "这是明天要发布的微博成稿，帮我审核能不能直接上线。",
+      "should_trigger": true,
+      "expected_route": "docs/routes/material-audit.md",
+      "expected_artifacts": ["docs/templates/execution-readiness-gate.md"],
+      "required_terms": ["问题项", "未验证事实", "上线结论"]
+    },
+    {
+      "id": "T012",
+      "query": "这份完整传播方案准备给老板看，请按统一标准验收并打分。",
+      "should_trigger": true,
+      "expected_route": "docs/routes/output-quality.md",
+      "expected_artifacts": ["docs/evals/output-quality-rubric.json"],
+      "required_terms": ["评分范围", "总分", "补救优先级"]
+    },
+    {
+      "id": "T013",
+      "query": "只改这句产品标语，不需要完整上市方案。",
+      "should_trigger": true,
+      "expected_route": "docs/routes/messaging-review.md",
+      "expected_artifacts": ["docs/templates/message-house.md"],
+      "required_terms": ["替代表达", "证据边界"]
+    },
+    {
+      "id": "T014",
+      "query": "两款耳夹耳机哪款更适合小红书种草？请判断目标人群和卖点。",
+      "should_trigger": true,
+      "expected_route": "docs/routes/competitor-intelligence.md",
+      "expected_artifacts": ["docs/templates/insight-output.md", "knowledge-base/headphones/clip-earphones-comparison-2026.md"],
+      "required_terms": ["同源数据", "目标人群", "种草建议"]
+    },
+    {
+      "id": "N001",
+      "query": "预算3000元，哪台手机最值得买？",
+      "should_trigger": false,
+      "expected_route": null,
+      "expected_artifacts": [],
+      "required_terms": [],
+      "reason": "纯购买咨询"
+    },
+    {
+      "id": "N002",
+      "query": "手机进水后无法开机，怎么维修？",
+      "should_trigger": false,
+      "expected_route": null,
+      "expected_artifacts": [],
+      "required_terms": [],
+      "reason": "维修排障"
+    },
+    {
+      "id": "N003",
+      "query": "总结今天的科技新闻。",
+      "should_trigger": false,
+      "expected_route": null,
+      "expected_artifacts": [],
+      "required_terms": [],
+      "reason": "通用新闻摘要"
+    }
+  ]
+}

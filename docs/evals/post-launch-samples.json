@@ -1,0 +1,48 @@
+{
+  "version": "1.4.31",
+  "decisions": ["continue", "narrow_claim", "switch_route", "pause_spread"],
+  "samples": [
+    {
+      "id": "P001",
+      "window": "0-2h",
+      "input": "上线2小时，评论区高赞都在问“数据哪来的”“实测呢”，主文案写了影像第一。",
+      "expected_decision": "narrow_claim",
+      "required_terms": ["证据缺口", "缩窄主张", "补来源"]
+    },
+    {
+      "id": "P002",
+      "window": "2-6h",
+      "input": "首批KOL视频下面开始集中说发热、掉帧，且都点名我们主打的性能路线。",
+      "expected_decision": "switch_route",
+      "required_terms": ["主线被打穿", "切换路线", "备选路线"]
+    },
+    {
+      "id": "P003",
+      "window": "6-24h",
+      "input": "用户开始截图说控评、删评，还有媒体转发“是不是虚假宣传”。",
+      "expected_decision": "pause_spread",
+      "required_terms": ["暂停扩散", "复核事实", "统一口径"]
+    },
+    {
+      "id": "P004",
+      "window": "0-2h",
+      "input": "评论区很多人在自发复述卖点，收藏和询价增多，负面只集中在外观审美。",
+      "expected_decision": "continue",
+      "required_terms": ["继续放大", "正向可放大", "监控项"]
+    },
+    {
+      "id": "P005",
+      "window": "24-72h",
+      "input": "开售后渠道反馈首发冤种、晚买享折扣开始重复出现，客服也收到价格权益追问。",
+      "expected_decision": "narrow_claim",
+      "required_terms": ["价格权益", "缩窄主张", "客服口径"]
+    },
+    {
+      "id": "P006",
+      "window": "6-24h",
+      "input": "AI功能视频被做成“PPT功能”“套壳”的固定梗，KOL也开始用同一句质疑。",
+      "expected_decision": "switch_route",
+      "required_terms": ["标签形成", "切换路线", "具体任务"]
+    }
+  ]
+}

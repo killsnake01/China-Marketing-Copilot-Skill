@@ -1,0 +1,561 @@
+{
+  "version": "1.4.31",
+  "valid": [
+    {
+      "id": "D001",
+      "payload": {
+        "launch_brief": {
+          "product_category": "手机影像旗舰",
+          "launch_window": "7天后发布",
+          "business_goal": "上市首轮声量和影像路线信任建立",
+          "target_audience": "关注夜景、人像和首发权益的中高端换机用户",
+          "budget_level": "80万，预算有限",
+          "evidence_available": ["主摄规格", "夜景样张", "人像算法升级"],
+          "competitors": ["同价位影像旗舰"],
+          "planned_platforms": ["微博", "小红书", "B站", "KOL评测"],
+          "risk_constraints": ["禁用影像第一绝对化表达", "价格权益需统一日期和条件"],
+          "missing_info": ["样张测试条件", "当前价格权益", "同源竞品对比"]
+        },
+        "decision_package": {
+          "package_title": "4499元影像旗舰上市决策包",
+          "package_version": "v1.4.31",
+          "package_status": "需补证据",
+          "primary_audience": "品牌市场、产品、内容、公关和KOL负责人",
+          "decision_owner": "上市评审负责人",
+          "handoff_summary": "影像路线可以推进，但样张条件和首发权益要先补齐；72小时内交付证据卡后进入最终评审。",
+          "included_sections": [
+            {
+              "section_id": "launch_brief",
+              "section_name": "上市任务简报归一化",
+              "status": "已完成",
+              "source": "launch_brief",
+              "owner_role": "品牌市场",
+              "next_action": "保持现有输入口径"
+            },
+            {
+              "section_id": "control_summary",
+              "section_name": "上市总控台",
+              "status": "待补",
+              "source": "control_summary",
+              "owner_role": "上市评审负责人",
+              "next_action": "样张条件补齐后复核裁决"
+            },
+            {
+              "section_id": "executive_memo",
+              "section_name": "管理层决策纪要",
+              "status": "待补",
+              "source": "executive_memo",
+              "owner_role": "品牌市场",
+              "next_action": "补首发权益和样张条件后更新依据摘要"
+            },
+            {
+              "section_id": "route_verdict",
+              "section_name": "路线裁决",
+              "status": "已完成",
+              "source": "route_verdict",
+              "owner_role": "品牌市场",
+              "next_action": "保留推荐、备选和弃用路线"
+            },
+            {
+              "section_id": "route_scorecard",
+              "section_name": "路线评分卡",
+              "status": "待补",
+              "source": "route_scorecard",
+              "owner_role": "产品+内容",
+              "next_action": "补同源竞品对比后更新证据强度"
+            },
+            {
+              "section_id": "evidence",
+              "section_name": "证据架构",
+              "status": "待补",
+              "source": "claim_evidence",
+              "owner_role": "产品+内容",
+              "next_action": "补公开样张条件和当前权益"
+            },
+            {
+              "section_id": "risk_ledger",
+              "section_name": "风险账本",
+              "status": "已完成",
+              "source": "risk_ledger",
+              "owner_role": "公关",
+              "next_action": "上线前复核P1风险负责人"
+            },
+            {
+              "section_id": "negative_radar",
+              "section_name": "负面雷达",
+              "status": "已完成",
+              "source": "negative_radar",
+              "owner_role": "社媒",
+              "next_action": "监测样张质疑信号"
+            },
+            {
+              "section_id": "route_switch",
+              "section_name": "路线切换剧本",
+              "status": "已完成",
+              "source": "route_switch_playbook",
+              "owner_role": "公关+KOL",
+              "next_action": "确认切换物料"
+            },
+            {
+              "section_id": "readiness_gate",
+              "section_name": "执行就绪门",
+              "status": "待补",
+              "source": "readiness_gate",
+              "owner_role": "上市评审负责人",
+              "next_action": "上线前24小时复核待补项"
+            },
+            {
+              "section_id": "next_actions",
+              "section_name": "72小时和7天动作",
+              "status": "已完成",
+              "source": "next_72_hours / next_7_days",
+              "owner_role": "产品+内容+公关",
+              "next_action": "按时间窗推进交付物"
+            }
+          ],
+          "open_decisions": ["样张条件能否公开", "首发权益日期和条件", "同源竞品对比口径"]
+        },
+        "control_summary": {
+          "verdict": "调整后执行",
+          "recommended_route": "夜景人像证据压实",
+          "confidence": "中",
+          "key_evidence_status": "主摄规格来自用户提供，样张条件和价格权益待验证。",
+          "top_risk": "影像第一口径被追问来源，进入样张质疑叙事。",
+          "hard_blocker_status": "无硬阻断，但上线前24小时必须补样张条件。",
+          "next_72h_priority": "补证据卡、统一首发权益、复核KOL口播禁用词。",
+          "switch_trigger": "样张质疑进入S2或KOL无法确认测试条件时切换到日常体验路线。"
+        },
+        "executive_memo": {
+          "decision_question": "7天后影像旗舰能否押夜景人像路线并进入上市执行。",
+          "verdict": "调整后执行",
+          "recommended_route": "夜景人像证据压实",
+          "one_line_answer": "影像路线可以推进，但样张条件和首发权益必须先补齐。",
+          "evidence_basis": ["用户提供主摄规格", "夜景样张和人像算法升级待补测试条件", "首发权益需要统一日期和条件"],
+          "core_tradeoff": "押夜景人像证据压实，放弃泛AI首发叙事，先牺牲口号力度换证据可信度。",
+          "top_risk": "影像第一口径被追问来源，进入样张质疑叙事。",
+          "no_go_condition": "样张质疑进入S2或KOL无法确认测试条件时切换到日常体验路线。",
+          "next_owner_action": "0-6小时由产品+内容补证据卡，交付样张条件和同源对比。",
+          "confidence": "中"
+        },
+        "decision": "调整后执行",
+        "one_line_judgment": "影像路线可以推进，但必须先补同源样张和首发权益口径。",
+        "route_verdict": {
+          "recommended": {
+            "route_name": "夜景人像证据压实",
+            "rationale": "用户阻力集中在样张可信度和价格权益，路线需要证据托底。",
+            "conditions": ["补公开样张条件", "统一首发权益", "准备评论区证据卡"]
+          },
+          "backup": {
+            "route_name": "轻量旗舰日常体验",
+            "switch_condition": "影像样张被质疑进入S2，或KOL无法确认测试条件。"
+          },
+          "rejected": {
+            "route_name": "泛AI旗舰叙事",
+            "rejection_reason": "AI主张缺少任务级证据，容易触发AI空话质疑。"
+          }
+        },
+        "route_scorecard": [
+          {
+            "route_name": "夜景人像证据压实",
+            "route_role": "推荐",
+            "evidence_score": 4,
+            "audience_fit_score": 4,
+            "competitor_defense_score": 3,
+            "risk_control_score": 3,
+            "resource_fit_score": 4,
+            "timing_score": 4,
+            "total_score": 22,
+            "verdict": "押主线",
+            "rationale": "主摄规格来自用户提供，夜景样张和人像算法能支撑首轮影像心智，但样张条件仍需补齐。",
+            "improvement_needed": "补公开样张条件、首发权益和同源竞品对比。"
+          },
+          {
+            "route_name": "轻量旗舰日常体验",
+            "route_role": "备选",
+            "evidence_score": 3,
+            "audience_fit_score": 4,
+            "competitor_defense_score": 3,
+            "risk_control_score": 4,
+            "resource_fit_score": 3,
+            "timing_score": 3,
+            "total_score": 20,
+            "verdict": "保留备选",
+            "rationale": "普通用户更容易理解，但证据锋利度低于影像主线。",
+            "improvement_needed": "准备日常体验场景短视频和普通用户问题回应。"
+          },
+          {
+            "route_name": "泛AI旗舰叙事",
+            "route_role": "弃用",
+            "evidence_score": 1,
+            "audience_fit_score": 2,
+            "competitor_defense_score": 1,
+            "risk_control_score": 1,
+            "resource_fit_score": 2,
+            "timing_score": 2,
+            "total_score": 9,
+            "verdict": "弃用",
+            "rationale": "缺少任务级证据，容易触发AI空话和套壳质疑。",
+            "improvement_needed": "上线前先积累任务级视频、隐私边界和稳定性证据。"
+          }
+        ],
+        "claim_evidence": {
+          "core_claim": "4499元价位主打夜景人像体验",
+          "evidence_pillars": ["主摄规格", "夜景样张", "人像算法升级"],
+          "verified": ["用户提供主摄规格"],
+          "to_verify": ["当前价格权益", "同源样张条件"],
+          "inferred": ["影像路线适合首轮传播"]
+        },
+        "comment_pressure_test": {
+          "parameter_driven": "会追问样张原图、测试条件和竞品同源对比。",
+          "ordinary_user": "会关心首发权益和夜景是否真能提升日常拍摄。",
+          "deconstruction": "可能把“影像第一”截成无来源口号。",
+          "evidence_to_prepare": ["样张原图", "测试条件", "竞品同源对比"]
+        },
+        "risk_ledger": [
+          {
+            "risk_id": "R001",
+            "priority": "P1",
+            "evidence_anchor": "影像第一口径和夜景样张证据缺口",
+            "fact_status": "needs_verification",
+            "trigger": "多平台追问样张来源、测试条件和竞品同源对比",
+            "actor": "参数党+KOL",
+            "compressed_narrative": "影像第一没有来源",
+            "platform_path": "评论区高赞截图到KOL二次转述",
+            "business_impact": "影像推荐路线可信度下降，首轮声量转成证据质疑",
+            "early_signal": "同一质疑跨两个平台重复出现",
+            "route_impact": "缩窄",
+            "recommended_action": "删除影像第一，补样张条件和同源对比",
+            "side_effect": "首轮传播锋利度下降",
+            "disconfirming_evidence": "公开同源横评和样张原图能支撑主张",
+            "confidence": "中"
+          },
+          {
+            "risk_id": "R002",
+            "priority": "P1",
+            "evidence_anchor": "泛AI旗舰叙事缺少任务级证据",
+            "fact_status": "inferred",
+            "trigger": "AI主张被追问具体任务、端侧能力和稳定性",
+            "actor": "数码KOL+解构找茬用户",
+            "compressed_narrative": "AI又在套壳",
+            "platform_path": "短视频切片和评论区固定梗",
+            "business_impact": "泛AI路线会拖累影像主线可信度",
+            "early_signal": "PPT功能、套壳等固定句式出现",
+            "route_impact": "切换",
+            "recommended_action": "停用泛AI首发叙事，切到日常体验路线",
+            "side_effect": "AI功能曝光减少",
+            "disconfirming_evidence": "任务级视频和隐私边界可公开验证",
+            "confidence": "中"
+          }
+        ],
+        "negative_radar": [
+          {
+            "signal": "样张质疑",
+            "stage": "S1",
+            "severity": "中",
+            "trigger_condition": "多个平台追问样张来源或算法味",
+            "owner_role": "产品+内容",
+            "route_impact": "缩窄"
+          }
+        ],
+        "readiness_gate": {
+          "hard_blockers": [],
+          "gaps": ["样张来源待公开", "首发权益待统一"],
+          "owner_roles": ["产品", "内容", "公关"],
+          "completion_deadline": "上线前24小时"
+        },
+        "route_switch_playbook": [
+          {
+            "trigger": "样张来源追问跨两个平台重复出现",
+            "signal_stage": "S1",
+            "route_action": "缩窄",
+            "action": "删除“影像第一”，改为夜景人像体验主张并补样张条件",
+            "owner_role": "内容+产品",
+            "evidence_to_check": ["样张原图", "测试条件", "同源对比"],
+            "deadline": "2小时内"
+          },
+          {
+            "trigger": "KOL无法确认测试版本或样张被质疑进入S2",
+            "signal_stage": "S2",
+            "route_action": "切换",
+            "action": "切到轻量旗舰日常体验路线，停用影像第一相关物料",
+            "owner_role": "公关+KOL",
+            "evidence_to_check": ["KOL脚本", "样机版本", "替换标题"],
+            "deadline": "6小时内"
+          }
+        ],
+        "next_72_hours": [
+          {
+            "time": "0-6小时",
+            "action": "补证据卡",
+            "owner_role": "产品+内容",
+            "deliverable": "样张条件和同源对比",
+            "completion_standard": "可公开引用"
+          }
+        ],
+        "next_7_days": [
+          {
+            "metric": "高赞质疑",
+            "signal": "样张来源追问",
+            "threshold": "单平台3条以上高赞重复",
+            "action": "缩窄主张并补证据"
+          }
+        ],
+        "self_check": {
+          "verified_facts": 1,
+          "to_verify": 2,
+          "inferred": 1,
+          "high_risks": 0,
+          "hard_blockers": 0,
+          "confidence": "中"
+        }
+      }
+    }
+  ],
+  "invalid": [
+    {
+      "id": "D101",
+      "reason": "缺少备选路线",
+      "payload": {
+        "launch_brief": {
+          "product_category": "手机影像旗舰",
+          "launch_window": "上线前",
+          "business_goal": "上市传播",
+          "target_audience": "影像用户",
+          "budget_level": "[待补]",
+          "evidence_available": ["样张", "规格", "算法"],
+          "competitors": [],
+          "planned_platforms": ["微博"],
+          "risk_constraints": ["避免绝对化表达"],
+          "missing_info": ["价格"]
+        },
+        "decision": "直接执行",
+        "one_line_judgment": "直接上。",
+        "route_verdict": {
+          "recommended": {
+            "route_name": "影像主线",
+            "rationale": "方向清楚",
+            "conditions": ["补样张"]
+          },
+          "rejected": {
+            "route_name": "AI主线",
+            "rejection_reason": "证据不足"
+          }
+        },
+        "claim_evidence": {
+          "core_claim": "影像旗舰",
+          "evidence_pillars": ["样张", "规格", "算法"],
+          "verified": [],
+          "to_verify": ["价格"],
+          "inferred": []
+        },
+        "comment_pressure_test": {
+          "parameter_driven": "问数据",
+          "ordinary_user": "问价格",
+          "deconstruction": "截口号",
+          "evidence_to_prepare": ["样张"]
+        },
+        "risk_ledger": [
+          {
+            "risk_id": "R001",
+            "priority": "P1",
+            "evidence_anchor": "影像旗舰主张",
+            "fact_status": "needs_verification",
+            "trigger": "高赞追问数据来源",
+            "actor": "参数党",
+            "compressed_narrative": "影像没有证据",
+            "platform_path": "评论区截图",
+            "business_impact": "推荐路线受损",
+            "early_signal": "追问来源",
+            "route_impact": "缩窄",
+            "recommended_action": "补证据",
+            "side_effect": "传播力度下降",
+            "disconfirming_evidence": "公开同源证据",
+            "confidence": "低"
+          }
+        ],
+        "negative_radar": [
+          {
+            "signal": "数据打脸",
+            "stage": "S1",
+            "severity": "中",
+            "trigger_condition": "高赞追问",
+            "owner_role": "内容",
+            "route_impact": "缩窄"
+          }
+        ],
+        "readiness_gate": {
+          "hard_blockers": [],
+          "gaps": ["价格"],
+          "owner_roles": ["内容"],
+          "completion_deadline": "上线前"
+        },
+        "next_72_hours": [
+          {
+            "time": "0-6小时",
+            "action": "补证据",
+            "owner_role": "内容",
+            "deliverable": "证据卡",
+            "completion_standard": "可发布"
+          }
+        ],
+        "next_7_days": [
+          {
+            "metric": "负面",
+            "signal": "追问来源",
+            "threshold": "3条高赞",
+            "action": "改口径"
+          }
+        ],
+        "self_check": {
+          "verified_facts": 0,
+          "to_verify": 1,
+          "inferred": 0,
+          "high_risks": 0,
+          "hard_blockers": 0,
+          "confidence": "低"
+        }
+      }
+    },
+    {
+      "id": "D102",
+      "reason": "裁决直接执行但存在硬阻断和待验证事实",
+      "payload": {
+        "launch_brief": {
+          "product_category": "手机影像旗舰",
+          "launch_window": "上线前",
+          "business_goal": "上市传播",
+          "target_audience": "影像用户",
+          "budget_level": "[待补]",
+          "evidence_available": ["样张", "规格", "算法"],
+          "competitors": ["同价位竞品"],
+          "planned_platforms": ["微博", "KOL评测"],
+          "risk_constraints": ["核心证据冲突未解除"],
+          "missing_info": ["样张条件"]
+        },
+        "control_summary": {
+          "verdict": "直接执行",
+          "recommended_route": "影像主线",
+          "confidence": "高",
+          "key_evidence_status": "样张条件待验证。",
+          "top_risk": "样张来源被追问。",
+          "hard_blocker_status": "存在核心证据冲突。",
+          "next_72h_priority": "补样张条件。",
+          "switch_trigger": "样张质疑扩大时暂停扩散。"
+        },
+        "executive_memo": {
+          "decision_question": "影像主线能否直接执行。",
+          "verdict": "调整后执行",
+          "recommended_route": "影像主线",
+          "one_line_answer": "样张条件需要先补齐。",
+          "evidence_basis": ["样张条件待验证"],
+          "core_tradeoff": "先保留影像主线，但降低绝对化表达。",
+          "top_risk": "样张来源被追问。",
+          "no_go_condition": "样张质疑扩大时暂停扩散。",
+          "next_owner_action": "0-6小时由产品补样张证据卡。",
+          "confidence": "高"
+        },
+        "decision": "直接执行",
+        "one_line_judgment": "可以直接执行。",
+        "route_verdict": {
+          "recommended": {
+            "route_name": "影像主线",
+            "rationale": "影像卖点清楚。",
+            "conditions": ["样张条件补齐"]
+          },
+          "backup": {
+            "route_name": "日常体验线",
+            "switch_condition": "样张质疑扩大。"
+          },
+          "rejected": {
+            "route_name": "泛AI线",
+            "rejection_reason": "证据不足。"
+          }
+        },
+        "claim_evidence": {
+          "core_claim": "影像体验强",
+          "evidence_pillars": ["样张", "规格", "算法"],
+          "verified": [],
+          "to_verify": ["样张条件"],
+          "inferred": []
+        },
+        "comment_pressure_test": {
+          "parameter_driven": "追问样张原图。",
+          "ordinary_user": "追问价格权益。",
+          "deconstruction": "截成影像口号。",
+          "evidence_to_prepare": ["样张原图"]
+        },
+        "risk_ledger": [
+          {
+            "risk_id": "R001",
+            "priority": "P0",
+            "evidence_anchor": "样张条件待验证且核心证据冲突",
+            "fact_status": "needs_verification",
+            "trigger": "跨平台追问样张来源",
+            "actor": "参数党+KOL",
+            "compressed_narrative": "影像样张造假",
+            "platform_path": "评论区高赞到KOL视频",
+            "business_impact": "推荐路线失效并影响上市节奏",
+            "early_signal": "高赞追问来源",
+            "route_impact": "暂停",
+            "recommended_action": "暂停影像第一物料并复核样张条件",
+            "side_effect": "上市声量短期下降",
+            "disconfirming_evidence": "样张原图和测试条件公开可复现",
+            "confidence": "高"
+          }
+        ],
+        "negative_radar": [
+          {
+            "signal": "样张质疑",
+            "stage": "S2",
+            "severity": "高",
+            "trigger_condition": "跨平台追问样张来源",
+            "owner_role": "产品+内容",
+            "route_impact": "暂停"
+          }
+        ],
+        "readiness_gate": {
+          "hard_blockers": ["核心证据冲突"],
+          "gaps": [],
+          "owner_roles": ["产品"],
+          "completion_deadline": "上线前"
+        },
+        "route_switch_playbook": [
+          {
+            "trigger": "样张来源被跨平台追问",
+            "signal_stage": "S2",
+            "route_action": "暂停",
+            "action": "暂停影像第一物料并复核样张条件",
+            "owner_role": "产品+内容",
+            "evidence_to_check": ["样张原图", "测试条件"],
+            "deadline": "2小时内"
+          }
+        ],
+        "next_72_hours": [
+          {
+            "time": "0-6小时",
+            "action": "补样张条件",
+            "owner_role": "产品",
+            "deliverable": "样张证据卡",
+            "completion_standard": "来源可公开"
+          }
+        ],
+        "next_7_days": [
+          {
+            "metric": "样张质疑",
+            "signal": "高赞追问来源",
+            "threshold": "3条以上",
+            "action": "暂停扩散"
+          }
+        ],
+        "self_check": {
+          "verified_facts": 0,
+          "to_verify": 1,
+          "inferred": 0,
+          "high_risks": 1,
+          "hard_blockers": 1,
+          "confidence": "高"
+        }
+      }
+    }
+  ]
+}

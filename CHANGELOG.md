@@ -1,0 +1,197 @@
+# 更新记录
+
+本文件记录公开发布时需要给 GitHub、ClawHub、SkillHub 和 Codex 本机安装版同步展示的版本变化。
+
+## v1.4.31 - 2026-07-13
+
+- `SKILL.md` 恢复旧版平台首页的阅读顺序，先介绍适合人群、安装价值、试用问题和默认交付，再进入智能体运行说明。
+- 首屏重新使用“随身策略台”和“能打方案、能审话术、能提前发现负面”等旧版熟悉表达，降低老用户的认知迁移成本。
+- 日常创意、文案、KOL、竞品和评论任务改用更直白的中文介绍；复杂决策能力收束为按需展开的进阶模块。
+- 旧提示词、信息屋、上市打法、KOL简报、72小时动作和7天跟进继续保留，并明确单项任务的输出边界。
+- 智能体路由、证据时效、上线闸门、机器验收和安全规则统一移到页面后部，兼顾平台访客阅读和智能体执行。
+- 同步刷新 ClawHub、SkillHub、Codex 和 Hermes 四个平台包，平台页面正文保持同源。
+
+## v1.4.30 - 2026-07-13
+
+- 新增老用户无感升级合同，固定v1.3.7常用提示词、旧术语、默认路由、输出模式和熟悉交付形态。
+- 创意、文案、KOL、竞品、风险和评论导入恢复任务优先的轻量默认输出，单项需求不会自动展开完整上市决策系统。
+- 模式选择改为智能体内部逻辑，默认不显示模式标签；材料长度不再单独触发深度版。
+- 上市决策包、管理层纪要、路线评分卡、风险账本和结构化决策单改为显式或交付所需时展开。
+- “信息屋、上市打法、KOL简报、72小时动作、7天跟进”等旧说法继续映射当前资源。
+- 营销种草和竞品站位语境下的产品比较继续触发；个人购买选型保持在技能范围外。
+- 新增12题旧用法兼容回归和两个材料长度对抗样本；静态合同与真实老用户体感分开记录。
+
+## v1.4.29 - 2026-07-13
+
+- 新增结构化负面批次分析器，离线读取JSONL中的时间、平台、账号、角色、互动和业务影响字段。
+- S0-S4开始依据独立账号、2小时传播速度、跨平台扩散、权威角色和业务影响证据判断，单文本关键词不再承担高阶段推断。
+- 单账号重复发布压回S0，高度重复内容最高按S1处理；账号和时间字段缺失时限制阶段上限。
+- S3要求权威放大或跨平台证据，S4要求机构性业务影响或多条独立退货记录；两条购买观望不会直接升级S4。
+- 价值观冒犯和KOL合作反噬即使处于S0，也会暂停相关物料或合作复核，避免低传播阶段掩盖高严重度风险。
+- 新增10个传播对抗样本和记录Schema，批次结论明确限定在用户导入范围内，不外推全网热度。
+- 正式发布目录改为只保留四个平台 ZIP；核验脚本可从 ZIP 临时解压完成必备文件、内部引用和平台字段检查。
+
+## v1.4.28 - 2026-07-12
+
+- 新增来源可追溯台账和无第三方依赖审计器，为每个知识文件绑定唯一来源编号，并区分已核验、部分可追溯和缺少来源。
+- 修正笔记本索引数据截止时间冲突，降低智能家居资料的过度核验表述，高时效结论需要同时通过来源门和时效门。
+- 新增18题跨智能体盲测协议和 JSONL 评分器，覆盖10条正向路由、路由冲突、离线回退与4条不触发边界。
+- 盲测题库与评分器排除在全部待测安装包之外；静态校验结果不再代表 Codex、OpenClaw、Hermes 或 GPT 已通过真实兼容性测试。
+- 新增纯文档、脚本增强和联网增强三种运行能力声明，工具缺失时统一回退纯文档模式。
+- 公共运行包继续保持离线优先，Hermes 个人全量包增加来源状态统计和完整性指纹。
+
+## v1.4.27 - 2026-07-11
+
+- 清理快速示例中的无来源降噪数字、KOL占位和错误核验标记，并新增知识库高风险主张扫描。
+- 负面雷达增加否定语境、常见变体归一化、独立片段计数和S0-S2阶段判断；基础样本与对抗样本分开校准。
+- 新增创意策划任务路由、路由冲突仲裁和纯购买、维修、通用新闻等不触发样本。
+- 发布清单移除固定零值，改为引用带时间、源码指纹、Git状态和逐项结果的真实验证报告。
+- 数据时效校验开始计算复核日期，并统一穿戴设备知识库和数据台账的截止时间。
+- 用户可见术语进一步中文化，默认提示压缩为按任务类型和输出模式加载最小上下文。
+- 新增 Hermes 个人全量构建配置，包含完整知识库、生态资料、全部评测、黄金样例、Schema 和运行评估脚本，并注入 Hermes 原生元数据、按需读取说明和包内完整性清单。
+
+## v1.4.26 - 2026-07-09
+
+- 新增 `docs/platform-publish-fields.json`，把 GitHub、ClawHub、SkillHub、Codex 和 OpenClaw/Hermes 的标题、副标题、短描述、slug、版本、包名和展示顺序收束到同一份机器可读台账。
+- 新增 `scripts/validate_platform_fields.py`，发布前校验平台字段、README、平台详情页、Agent 元数据和包名是否和当前 `VERSION` 对齐。
+- 平台发布路由、Agent 路由、数据索引、维护指南、发布清单、发布包构建脚本和发布产物核验脚本同步接入平台字段台账。
+- README 和平台详情页补充平台字段台账与校验命令，减少多平台上传时的人工复制漂移。
+
+## v1.4.25 - 2026-07-09
+
+- README 改为下载者首页，首屏突出“中国3C上市决策系统”、首屏交付、典型试用 prompt、能力边界和可验证版本，减少维护材料对安装决策的干扰。
+- 新增 `docs/maintainer-guide.md`，集中承接资源地图、发布流程、样本脚本对应关系、更新流程、发布包清理和安全边界。
+- `docs/platform-listing.md` 新增推荐展示顺序，明确平台详情页先讲决策价值，再讲试用、边界和可信度材料。
+- 发布校验新增 README 首页形态检查，并把维护指南纳入三平台发布包必备路径。
+
+## v1.4.24 - 2026-07-09
+
+- 新增 `docs/templates/launch-decision-package.md`，把完整上市决策收束成封面、包状态、包内目录、决策负责人、交接摘要和待决事项。
+- 结构化上市决策单新增 `decision_package` 必填字段，`schemas/launch-decision.schema.json` 与 `scripts/validate_decision_output.py` 会校验包状态、目录模块、硬阻断、待补事实和最终裁决是否一致。
+- 新增 `docs/evals/decision-package-samples.json` 和 `scripts/evaluate_decision_package.py`，发布前校准可评审、需补证据、暂停评审三种包状态。
+- README、平台详情页、上市决策路由、质量清单、Agent 路由、OpenAI 元数据和三平台发布包同步接入上市决策包封面。
+
+## v1.4.23 - 2026-07-09
+
+- 新增 `docs/templates/route-scorecard.md`，把推荐、备选、弃用路线放进同一套 0-5 分维度：证据强度、用户匹配、竞品防守、风险可控、资源匹配和时机匹配。
+- 结构化上市决策单新增 `route_scorecard` 必填字段，`schemas/launch-decision.schema.json` 与 `scripts/validate_decision_output.py` 会校验路线名、角色、总分排序、裁决和直接执行门槛。
+- 新增 `docs/evals/route-scorecard-samples.json` 和 `scripts/evaluate_route_scorecard.py`，发布前校准推荐、备选、弃用三类路线判断。
+- README、平台详情页、上市决策路由、质量清单、Agent 路由、OpenAI 元数据和三平台发布包同步接入路线评分卡。
+
+## v1.4.22 - 2026-07-09
+
+- 新增 `docs/templates/executive-decision-memo.md`，把完整上市决策单压缩成管理层第一屏纪要：决策问题、裁决、推荐路线、依据摘要、核心取舍、暂停条件和下一负责人动作。
+- 结构化上市决策单新增 `executive_memo` 必填字段，`schemas/launch-decision.schema.json` 与 `scripts/validate_decision_output.py` 会校验纪要裁决、推荐路线和置信度是否与总控台及路线裁决一致。
+- 新增 `docs/evals/executive-memo-samples.json` 和 `scripts/evaluate_executive_memo.py`，覆盖直接执行、调整后执行、暂停重做三类管理层纪要判断。
+- README、平台详情页、上市决策路由、质量清单、Agent 路由和 OpenAI 元数据同步强化“第一屏可汇报”的交付形态。
+
+## v1.4.21 - 2026-06-30
+
+- 新增 `docs/templates/risk-ledger.md`，把高优先级风险整理成证据锚点、压缩叙事、扩散路径、业务影响、早期信号、路线影响和反证条件。
+- 结构化上市决策单新增 `risk_ledger` 必填字段，`schemas/launch-decision.schema.json` 与 `scripts/validate_decision_output.py` 会校验 P0/P1 风险是否映射到负面雷达和路线切换剧本。
+- 新增 `docs/evals/risk-ledger-samples.json` 和 `scripts/evaluate_risk_ledger.py`，覆盖 P0/P1/P2/P3 优先级和继续、缩窄、切换、暂停四类路线影响。
+- 发布包构建和核验脚本新增 `dist-v*` 过滤，避免历史发布目录被打进新版平台包。
+
+## v1.4.20 - 2026-06-30
+
+- 结构化上市决策单新增 `launch_brief` 必填字段，先归一化产品、上市时间、商业目标、目标人群、预算、证据、竞品、平台、风险边界和缺失信息。
+- `assets/launch-decision-card.md`、`schemas/launch-decision.schema.json`、`scripts/validate_decision_output.py` 和决策单样本同步接入 上市任务简报，防止把推断内容写成用户已提供事实。
+- README、平台详情页、上市决策路由、质量清单、Agent 路由和 OpenAI 元数据同步强化“先归一化输入，再给裁决”的输出合同。
+
+## v1.4.19 - 2026-06-25
+
+- 新增 `docs/templates/decision-learning-record.md`，把上线后反馈和战情复盘结果沉淀成路线保留、补证据、禁用话术、更新阈值和更新KOL记录。
+- 新增 `docs/evals/decision-learning-samples.json` 和 `scripts/evaluate_decision_learning.py`，发布前校准复盘学习动作，避免上线后只复盘不入库。
+- 上线后战情路由、数据导入路由、README、平台详情页、Agent 元数据、发布清单和三平台发布包同步接入决策学习记录。
+
+## v1.4.18 - 2026-06-25
+
+- 新增 `docs/templates/decision-consistency-gate.md`，用于检查总控台裁决、决策结论、硬阻断、置信度、自检计数和雷达-剧本动作的一致性。
+- `scripts/validate_decision_output.py` 新增跨字段一致性校验，能拦截“直接执行但仍有硬阻断/待验证事实”等结构完整但语义冲突的决策单。
+- 决策单样本新增语义冲突反例，发布前校验覆盖结构完整和决策自洽两类风险。
+
+## v1.4.17 - 2026-06-25
+
+- 新增 `docs/templates/route-switch-playbook.md`，把切换触发器展开为继续、缩窄、切换、暂停四类可执行动作。
+- 新增 `docs/evals/route-switch-samples.json` 和 `scripts/evaluate_route_switches.py`，发布前校准路线切换动作。
+- 上市决策单 schema 新增 `route_switch_playbook` 必填字段，要求写清触发条件、信号阶段、路线动作、负责人、核验证据和截止时间。
+
+## v1.4.16 - 2026-06-25
+
+- 上市决策单新增 `control_summary` 总控台字段，深度版先给裁决、推荐路线、置信度、关键证据、第一风险、硬阻断、72小时优先动作和切换触发器。
+- `schemas/launch-decision.schema.json`、`scripts/validate_decision_output.py` 和决策单样本同步强制校验总控台结构。
+- 黄金样例和上市决策路由新增“上市总控台”第一屏展示，强化管理层可读性。
+
+## v1.4.15 - 2026-06-25
+
+- 新增 `docs/evals/evidence-claim-samples.json`，覆盖已标注证据、待验证、同源不足、知识库无数据和禁用绝对化五类主张处理。
+- 新增 `scripts/evaluate_evidence_claims.py`，用于扫描单条营销主张并给出标注或拦截动作。
+- 发布总校验、发布清单和三平台发布包纳入证据主张纪律样本。
+
+## v1.4.14 - 2026-06-25
+
+- 新增 `docs/evals/execution-gate-samples.json`，覆盖直接执行、调整后执行、暂停重做三类上市前执行闸门判断。
+- 新增 `scripts/evaluate_execution_gate.py`，用于校准硬阻断项优先、24小时内可补缺口和可直接执行条件。
+- 发布总校验和发布清单纳入执行闸门样本计数。
+
+## v1.4.13 - 2026-06-25
+
+- 新增 `docs/evals/golden-example-assertions.json`，把三份黄金样例的路由、必含词、禁用词和顺序约束结构化。
+- 新增 `scripts/evaluate_golden_examples.py`，发布前检查黄金样例断言，防止样例只展示不验收。
+- 发布总校验和发布清单纳入黄金样例断言集计数。
+
+## v1.4.12 - 2026-06-25
+
+- 新增 `scripts/verify_release_artifacts.py`，自动核验 Codex、ClawHub、SkillHub 三平台发布目录和 zip 包。
+- 发布总校验新增临时构建产物核验，覆盖 zip 完整性、版本一致、SkillHub front matter、平台过滤规则和旧版本包混入。
+- `RELEASE-MANIFEST.json` 增加 `release_artifact_failures` 字段，把产物完整性纳入可信度材料。
+
+## v1.4.11 - 2026-06-25
+
+- 新增 `scripts/audit_script_safety.py`，发布前审计脚本中的联网导入、shell 调用、交互输入、动态执行和密钥环境变量读取。
+- 发布总校验接入脚本安全审计，风险写法会阻断发布。
+- `RELEASE-MANIFEST.json` 增加 `script_safety_findings` 验证字段，可信度材料覆盖脚本行为边界。
+
+## v1.4.10 - 2026-06-25
+
+- 新增 `scripts/check_internal_links.py`，发布前检查包内 Markdown 链接和路径引用。
+- 发布总校验接入内部引用完整性门禁，断链会阻断发布。
+- `RELEASE-MANIFEST.json` 增加 `broken_internal_links` 验证字段，平台可信度材料同步展示。
+
+## v1.4.9 - 2026-06-25
+
+- 新增 `SECURITY.md`，明确网络、密钥、写入范围、外部工具和漏洞反馈边界。
+- 新增根目录更新记录，便于平台详情页展示版本可信度。
+- 发布清单增加信任文档字段，包级校验同步检查 `CHANGELOG.md` 和 `SECURITY.md`。
+
+## v1.4.8 - 2026-06-24
+
+- 新增 `docs/platform-listing.md`，集中维护 ClawHub、SkillHub 和 GitHub 类平台详情页文案。
+- README 首屏补充“中国3C上市决策系统”定位和六个核心交付模块。
+- 平台发布路由接入详情页文案、标题、副标题、短简介和能力边界。
+
+## v1.4.7 - 2026-06-24
+
+- 将 `SKILL.md` 压缩为 73 行运行合约，细粒度路由移入 `docs/agent-router.md`。
+- 包级校验新增 `SKILL.md router shape` 检查，限制主入口重新膨胀。
+- 发布包同步包含 Agent 路由索引。
+
+## v1.4.6 - 2026-06-24
+
+- 强化结构化上市决策单 schema。
+- 新增 `docs/evals/launch-decision-card-samples.json` 正反样本。
+- 新增 `scripts/validate_decision_output.py`，用于检查决策单字段完整性。
+
+## v1.4.5 - 2026-06-24
+
+- 新增上线后战情复盘路由、模板、样本和脚本。
+- 上线反馈可判断继续放大、缩窄主张、切换路线或暂停扩散。
+
+## v1.4.4 - 2026-06-23
+
+- 新增证据时效门，覆盖价格、排名、份额、新品参数、KOL近期口碑和平台热度。
+- 新增时效样本和脚本，要求高时效主张标注 `[待验证]`。
+
+## v1.4.3 及更早
+
+- 建立三档输出、质量评分、负面早期预警、平台发布包和本地安装同步验证链路。
