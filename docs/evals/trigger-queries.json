@@ -1,5 +1,5 @@
 {
-  "version": "1.4.31",
+  "version": "1.4.33",
   "queries": [
     {
       "id": "T001",
@@ -112,6 +112,14 @@
       "expected_route": "docs/routes/competitor-intelligence.md",
       "expected_artifacts": ["docs/templates/insight-output.md", "knowledge-base/headphones/clip-earphones-comparison-2026.md"],
       "required_terms": ["同源数据", "目标人群", "种草建议"]
+    },
+    {
+      "id": "T015",
+      "query": "给老板做一份户外KOL新品视频合作提案，按Keynote结构写。",
+      "should_trigger": true,
+      "expected_route": "docs/routes/creative-campaign.md",
+      "expected_artifacts": ["docs/templates/audience-layering.md", "docs/templates/creative-output.md"],
+      "required_terms": ["前台可见层", "创作者价值", "观众体验", "演讲者备注", "内部附录"]
     },
     {
       "id": "N001",

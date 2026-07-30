@@ -1,5 +1,5 @@
 {
-  "version": "1.4.31",
+  "version": "1.4.33",
   "route_roles": ["推荐", "备选", "弃用"],
   "score_fields": [
     "evidence_score",

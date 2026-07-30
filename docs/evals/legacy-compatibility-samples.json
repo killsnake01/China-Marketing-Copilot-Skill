@@ -1,5 +1,5 @@
 {
-  "version": "1.4.31",
+  "version": "1.4.33",
   "status": "compatibility_contract_ready_no_live_results",
   "purpose": "固定v1.3.7老用户常用提示词的触发、路由、默认模式和熟悉交付形态。",
   "cases": [
@@ -110,6 +110,15 @@
       "expected_mode": "快速版",
       "required_output_terms": ["直接改写"],
       "forbidden_default_modules": ["逐页审核", "上市决策包", "管理层决策纪要", "路线评分卡"]
+    },
+    {
+      "id": "LC013",
+      "prompt": "给老板做一份户外KOL新品视频合作提案，直接按PPT结构写。",
+      "should_trigger": true,
+      "expected_route": "docs/routes/creative-campaign.md",
+      "expected_mode": "标准版",
+      "required_output_terms": ["创作者价值", "观众体验", "合作方式", "演讲者备注", "内部附录"],
+      "forbidden_default_modules": ["上市决策包", "管理层决策纪要", "路线评分卡", "完整执行就绪门"]
     }
   ]
 }

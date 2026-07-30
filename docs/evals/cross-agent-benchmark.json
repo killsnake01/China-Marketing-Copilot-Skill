@@ -1,9 +1,15 @@
 {
-  "version": 1,
-  "updated": "2026-07-12",
+  "version": 2,
+  "updated": "2026-07-30",
   "status": "benchmark_ready_no_live_results",
   "purpose": "用同一组盲测任务比较不同智能体的触发、路由、证据纪律和交付质量。",
   "target_agents": ["codex", "openclaw", "hermes", "gpt"],
+  "agent_package_profiles": {
+    "codex": "codex",
+    "openclaw": "clawhub",
+    "hermes": "hermes-personal",
+    "gpt": "codex"
+  },
   "integrity_rules": [
     "运行目标智能体时只提供用户任务和待测技能包，不提供本评测文件。",
     "保留原始输出，不先提示预期路由、错误类型或参考答案。",
@@ -12,12 +18,13 @@
   ],
   "run_contract": {
     "required_fields": ["case_id", "agent", "triggered", "selected_route", "selected_mode", "output"],
+    "release_required_fields": ["captured_at", "skill_version", "runtime_package_fingerprint_sha256"],
     "selected_route_format": "命中技能时填写 docs/routes/*.md；未命中时填写 null。",
     "selected_mode_values": ["快速版", "标准版", "深度版", "不适用"]
   },
   "pass_policy": {
     "minimum_case_pass_rate": 0.85,
-    "hard_fail_checks": ["trigger", "route", "forbidden_regex"],
+    "hard_fail_checks": ["trigger", "route", "forbidden_regex", "advanced_section_leakage", "frontstage_language_leakage"],
     "release_claim_rule": "每个目标智能体完成全部案例后，才允许声明该智能体兼容。"
   },
   "cases": [
@@ -42,6 +49,9 @@
       "required_all": ["风险", "替代"],
       "required_any_groups": [["场景", "用户"], ["证据", "待验证"]],
       "forbidden_regex": ["AI全面重塑体验[^。\n]{0,20}(?:可以直接用|建议保留)"],
+      "forbidden_sections": ["上市决策包", "管理层决策纪要", "路线评分卡", "路线切换剧本", "决策一致性门"],
+      "direct_answer_terms": ["风险", "调整后执行", "建议改"],
+      "direct_answer_within_chars": 300,
       "max_output_chars": 2500,
       "require_self_check": true
     },
@@ -54,6 +64,9 @@
       "required_all": ["创意", "评论"],
       "required_any_groups": [["漏音", "佩戴", "风噪"], ["钩子", "场景"]],
       "forbidden_regex": ["保证(?:舒适|不漏音|音质)"],
+      "forbidden_sections": ["上市决策包", "管理层决策纪要", "路线评分卡", "路线切换剧本", "决策一致性门"],
+      "direct_answer_terms": ["创意1", "创意一", "先给结论"],
+      "direct_answer_within_chars": 500,
       "max_output_chars": 5000,
       "require_self_check": true
     },
@@ -66,6 +79,7 @@
       "required_all": ["平台", "评论区", "复盘"],
       "required_any_groups": [["KOL类型", "评测向", "体验向"], ["触发", "阈值"]],
       "forbidden_regex": ["KOL名称[^。\n]{0,30}(?:当前报价|最新粉丝)"],
+      "forbidden_sections": ["上市决策包", "管理层决策纪要", "路线评分卡", "决策一致性门"],
       "max_output_chars": 6000,
       "require_self_check": true
     },
@@ -78,6 +92,7 @@
       "required_all": ["威胁", "缺失"],
       "required_any_groups": [["知识库暂无此数据", "[待验证]"], ["同源", "口径"]],
       "forbidden_regex": ["竞品(?:已经|确定)(?:全面|明显)领先"],
+      "forbidden_sections": ["上市决策包", "管理层决策纪要", "路线评分卡", "决策一致性门"],
       "max_output_chars": 5000,
       "require_self_check": true
     },
@@ -90,6 +105,9 @@
       "required_all": ["负面", "触发"],
       "required_any_groups": [["S0", "S1", "S2"], ["首发权益", "价格"]],
       "forbidden_regex": ["已经形成S[34]"],
+      "forbidden_sections": ["上市决策包", "管理层决策纪要", "路线评分卡", "路线切换剧本", "决策一致性门"],
+      "direct_answer_terms": ["会", "判断", "当前"],
+      "direct_answer_within_chars": 350,
       "max_output_chars": 5000,
       "require_self_check": true
     },
@@ -114,6 +132,9 @@
       "required_all": ["原文", "负面", "卖点"],
       "required_any_groups": [["来源", "样本"], ["阈值", "监测"]],
       "forbidden_regex": ["先总结卖点"],
+      "forbidden_sections": ["上市决策包", "管理层决策纪要", "路线评分卡", "路线切换剧本", "决策一致性门"],
+      "direct_answer_terms": ["负面", "优先结论", "先处理"],
+      "direct_answer_within_chars": 400,
       "max_output_chars": 6000,
       "require_self_check": true
     },
@@ -126,6 +147,7 @@
       "required_all": ["行业唯一", "遥遥领先", "证据"],
       "required_any_groups": [["拦截", "删除", "改写"], ["[待验证]", "无法核验"]],
       "forbidden_regex": ["(?:行业唯一|遥遥领先)[^。\n]{0,30}可以直接发布"],
+      "forbidden_sections": ["上市决策包", "管理层决策纪要", "路线评分卡", "路线切换剧本", "决策一致性门"],
       "max_output_chars": 5000,
       "require_self_check": true
     },
@@ -150,6 +172,9 @@
       "required_all": ["价格", "排名"],
       "required_any_groups": [["[待验证]", "当前复核"], ["口径", "同源"]],
       "forbidden_regex": ["可以直接写", "4499元和影像第一(?:都|均)(?:已经|已)核验"],
+      "forbidden_sections": ["上市决策包", "管理层决策纪要", "路线评分卡", "路线切换剧本", "决策一致性门"],
+      "direct_answer_terms": ["不能直接", "先核验", "风险"],
+      "direct_answer_within_chars": 300,
       "max_output_chars": 3000,
       "require_self_check": true
     },
@@ -174,6 +199,9 @@
       "required_all": ["健康", "风险"],
       "required_any_groups": [["医疗", "监测边界", "适用边界"], ["替代", "改写"]],
       "forbidden_regex": ["保证健康", "全天候守护健康[^。\n]{0,20}建议保留"],
+      "forbidden_sections": ["上市决策包", "管理层决策纪要", "路线评分卡", "路线切换剧本", "决策一致性门"],
+      "direct_answer_terms": ["风险", "建议改", "调整后执行"],
+      "direct_answer_within_chars": 350,
       "max_output_chars": 4000,
       "require_self_check": true
     },
@@ -236,6 +264,49 @@
       "forbidden_regex": [],
       "max_output_chars": 10000,
       "require_self_check": false
+    },
+    {
+      "id": "XA019",
+      "prompt": "请做一份给老板审阅的 HyperShell × Linksphotograph 发布会视频合作提案。Links 一边徒步一边讲解更大电机功率、更快反应、AI 芯片预测抬腿和新增膝关节电机。解释 Links 的年轻户外受众，以及“年轻人定义装备、活力长者承接转化”的人群策略。交付为 Keynote/PPT，并保留演讲者备注。",
+      "expected_trigger": true,
+      "expected_route": "docs/routes/creative-campaign.md",
+      "accepted_modes": ["标准版"],
+      "required_all": ["Links", "年轻户外", "活力长者", "[待验证]"],
+      "required_any_groups": [["观众", "受众"], ["合作", "共同完成"], ["下一步", "决定"]],
+      "forbidden_regex": [
+        "电机功率(?:提升|增加)\\s*\\d+%",
+        "Linksphotograph[^。\\n]{0,30}(?:粉丝|受众)(?:已经|已)核验"
+      ],
+      "forbidden_sections": [
+        "上市决策包",
+        "管理层决策纪要",
+        "路线评分卡",
+        "路线切换剧本",
+        "决策一致性门"
+      ],
+      "direct_answer_terms": ["为什么是 Links", "一场走进山里的发布会", "合作提案"],
+      "direct_answer_within_chars": 500,
+      "frontstage_markers": ["## 前台可见层", "## 可见页面"],
+      "backstage_markers": ["## 演讲者备注", "## 内部附录", "## 后台审核层"],
+      "visible_required_all": ["Links", "观众", "产品", "合作", "下一步"],
+      "visible_forbidden_regex": [
+        "过门",
+        "禁用",
+        "需补",
+        "暂停阈值",
+        "当前结论[｜|]调整后执行",
+        "对外禁用",
+        "话术边界",
+        "剪辑纪律",
+        "避免混用",
+        "不填虚数",
+        "(?:产品|证据|安全|合作)门",
+        "控制在\\s*\\d+(?:\\s*[-–]\\s*\\d+)?\\s*秒"
+      ],
+      "backstage_required_all": ["工程", "法务", "安全"],
+      "backstage_required_any_groups": [["评论区", "舆情"], ["测试条件", "待验证"], ["暂停", "切换"]],
+      "max_output_chars": 9000,
+      "require_self_check": true
     }
   ]
 }

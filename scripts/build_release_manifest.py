@@ -32,6 +32,11 @@ def count_output_mode_samples() -> int:
     return len(data.get("samples", []))
 
 
+def count_audience_layering_samples() -> int:
+    data = json.loads((ROOT / "docs/evals/audience-layering-samples.json").read_text(encoding="utf-8"))
+    return len(data.get("samples", []))
+
+
 def count_freshness_claim_samples() -> int:
     data = json.loads((ROOT / "docs/evals/freshness-claim-samples.json").read_text(encoding="utf-8"))
     return len(data.get("samples", []))
@@ -92,6 +97,10 @@ def count_golden_example_assertion_sets() -> int:
     return len(data.get("samples", []))
 
 
+def load_live_release_status() -> dict:
+    return json.loads((ROOT / "docs/evals/live-release-status.json").read_text(encoding="utf-8"))
+
+
 def load_quality_rubric() -> dict:
     return json.loads((ROOT / "docs/evals/output-quality-rubric.json").read_text(encoding="utf-8"))
 
@@ -149,6 +158,7 @@ def build_manifest() -> dict:
             "platform_fields": "docs/platform-publish-fields.json",
             "platform_fields_validator": "scripts/validate_platform_fields.py",
             "package_builder": "scripts/build_publish_package.py",
+            "live_release_gate": "docs/evals/live-release-status.json",
             "skillhub_filtered_root_files": [".gitignore", "LICENSE", "VERSION"],
             "package_profile": "runtime_only",
             "runtime_capabilities": "docs/runtime-capabilities.json",
@@ -168,9 +178,11 @@ def build_manifest() -> dict:
                 "scripts/build_publish_package.py",
                 "scripts/validate_skill_pack.py",
                 "docs/evals/cross-agent-benchmark.json",
+                "docs/evals/live-release-status.json",
                 "docs/evals/legacy-compatibility-samples.json",
                 "scripts/evaluate_cross_agent_runs.py",
                 "scripts/evaluate_legacy_compatibility.py",
+                "scripts/install_local.py",
                 "scripts/audit_evidence_ledger.py",
             ],
             "skillhub_license_path": "docs/package-license.txt",
@@ -179,6 +191,7 @@ def build_manifest() -> dict:
         "eval_counts": {
             "trigger_queries": count_trigger_queries(),
             "output_mode_samples": count_output_mode_samples(),
+            "audience_layering_samples": count_audience_layering_samples(),
             "freshness_claim_samples": count_freshness_claim_samples(),
             "evidence_claim_samples": count_evidence_claim_samples(),
             "decision_package_samples": count_decision_package_samples(),
@@ -205,7 +218,7 @@ def build_manifest() -> dict:
             "cross_agent_benchmark_cases": len(
                 json.loads((ROOT / "docs/evals/cross-agent-benchmark.json").read_text(encoding="utf-8")).get("cases", [])
             ),
-            "cross_agent_live_results": 0,
+            "cross_agent_live_results": load_live_release_status().get("run_records", 0),
             "legacy_compatibility_cases": len(
                 json.loads((ROOT / "docs/evals/legacy-compatibility-samples.json").read_text(encoding="utf-8")).get("cases", [])
             ),
@@ -220,6 +233,7 @@ def build_manifest() -> dict:
             "report": "RELEASE-VALIDATION.json",
             "command": "python3 -B scripts/validate_skill_pack.py --write-report",
             "semantics": "actual_run_results",
+            "live_release_status": "docs/evals/live-release-status.json",
         },
     }
 

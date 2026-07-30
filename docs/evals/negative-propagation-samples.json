@@ -1,5 +1,5 @@
 {
-  "version": "1.4.31",
+  "version": "1.4.33",
   "purpose": "校准结构化评论批次中的独立账号、传播速度、跨平台、权威放大、业务影响和重复噪声判断。",
   "samples": [
     {
@@ -40,7 +40,7 @@
         {"id": "r3", "content": "国补刚来就背刺老用户。", "timestamp": "2026-07-13T09:00:00+08:00", "platform": "weibo", "author_id": "u3", "author_role": "user", "engagement": 11},
         {"id": "r4", "content": "等降价更稳，首发用户成冤种。", "timestamp": "2026-07-13T09:30:00+08:00", "platform": "weibo", "author_id": "u4", "author_role": "user", "engagement": 13}
       ],
-      "expected": {"signal": "价格背刺", "stage": "S2", "level": "高", "required_flags": ["传播速度上升"], "unique_authors": 4}
+      "expected": {"signal": "价格背刺", "stage": "S2", "level": "高", "trend": "新增", "required_flags": ["传播速度上升"], "unique_authors": 4}
     },
     {
       "id": "NP005",
@@ -73,7 +73,7 @@
         {"id": "r3", "content": "这次测不准。", "platform": "unknown"},
         {"id": "r4", "content": "GPS飘到河里。", "platform": "unknown"}
       ],
-      "expected": {"signal": "穿戴健康/续航风险", "stage": "S1", "required_flags": ["元数据缺口"], "metadata_quality": "低"}
+      "expected": {"signal": "穿戴健康/续航风险", "stage": "S1", "trend": "缺少时间", "required_flags": ["元数据缺口"], "metadata_quality": "低"}
     },
     {
       "id": "NP008",
@@ -103,6 +103,42 @@
         {"id": "r2", "content": "怕首发背刺，我也先观望。", "timestamp": "2026-07-13T09:00:00+08:00", "platform": "weibo", "author_id": "u2", "author_role": "user", "business_impact": "purchase_hesitation"}
       ],
       "expected": {"signal": "价格背刺", "stage": "S1", "route_impact": "继续", "required_flags": ["业务影响"], "max_stage": "S1"}
+    },
+    {
+      "id": "NP011",
+      "category": "mobile",
+      "records": [
+        {"id": "r1", "content": "首发买完就跳水。", "timestamp": "2026-07-13T08:00:00+08:00", "platform": "weibo", "author_id": "u1"},
+        {"id": "r2", "content": "首发降价就是背刺。", "timestamp": "2026-07-13T09:00:00+08:00", "platform": "weibo", "author_id": "u2"},
+        {"id": "r3", "content": "又在背刺首发用户。", "timestamp": "2026-07-13T10:00:00+08:00", "platform": "weibo", "author_id": "u3"},
+        {"id": "r4", "content": "等降价再买更稳。", "timestamp": "2026-07-13T11:00:00+08:00", "platform": "weibo", "author_id": "u4"}
+      ],
+      "expected": {"signal": "价格背刺", "stage": "S2", "trend": "稳定"}
+    },
+    {
+      "id": "NP012",
+      "category": "mobile",
+      "records": [
+        {"id": "r1", "content": "首发价格很快就跳水。", "timestamp": "2026-07-13T08:00:00+08:00", "platform": "weibo", "author_id": "u1"},
+        {"id": "r2", "content": "晚买享折扣。", "timestamp": "2026-07-13T09:00:00+08:00", "platform": "weibo", "author_id": "u2"},
+        {"id": "r3", "content": "首发冤种又出现了。", "timestamp": "2026-07-13T10:00:00+08:00", "platform": "weibo", "author_id": "u3"},
+        {"id": "r4", "content": "国补一来就背刺。", "timestamp": "2026-07-13T10:30:00+08:00", "platform": "weibo", "author_id": "u4"},
+        {"id": "r5", "content": "现在只想等降价。", "timestamp": "2026-07-13T11:00:00+08:00", "platform": "weibo", "author_id": "u5"},
+        {"id": "r6", "content": "首发权益补不到位就是背刺。", "timestamp": "2026-07-13T11:30:00+08:00", "platform": "weibo", "author_id": "u6"}
+      ],
+      "expected": {"signal": "价格背刺", "stage": "S2", "trend": "加速", "required_flags": ["传播速度上升"]}
+    },
+    {
+      "id": "NP013",
+      "category": "mobile",
+      "records": [
+        {"id": "r1", "content": "首发买完马上跳水。", "timestamp": "2026-07-13T08:00:00+08:00", "platform": "weibo", "author_id": "u1"},
+        {"id": "r2", "content": "等降价的人越来越多。", "timestamp": "2026-07-13T08:30:00+08:00", "platform": "weibo", "author_id": "u2"},
+        {"id": "r3", "content": "首发冤种的说法又来了。", "timestamp": "2026-07-13T09:00:00+08:00", "platform": "weibo", "author_id": "u3"},
+        {"id": "r4", "content": "这次价格背刺太快。", "timestamp": "2026-07-13T09:30:00+08:00", "platform": "weibo", "author_id": "u4"},
+        {"id": "r5", "content": "现在还是等降价更稳。", "timestamp": "2026-07-13T11:30:00+08:00", "platform": "weibo", "author_id": "u5"}
+      ],
+      "expected": {"signal": "价格背刺", "stage": "S2", "trend": "减弱"}
     }
   ]
 }

@@ -9,6 +9,7 @@
 > 本仓库包含 `SKILL.md`，可作为 AI 智能体技能包使用，也可独立阅读作为中国3C上市决策参考。
 > 价格、销量、份额、新品参数、KOL近期状态和平台热度都属于高时效信息，正式使用前请按当前日期重新核验。
 > 日常创意、文案、KOL、竞品和评论分析默认直接完成当前任务；完整决策包、管理层纪要、评分卡和风险账本按明确需求展开。
+> 老板提案、发布会方案和KOL合作提案会把可见创意与内部审核分层：前台讲清价值与故事，备注和附录保留证据、法务、安全与舆情边界。
 
 ## 深度版可交付
 
@@ -59,6 +60,10 @@
 上线24小时后，评论区和KOL反馈要不要继续放大？请给我战情复盘和决策学习记录。
 ```
 
+```text
+给老板做一份户外KOL新品视频合作提案。前台讲创作者价值、观众体验和合作方式，演讲者备注保留工程、法务、安全与舆情检查。
+```
+
 ## 为什么值得安装
 
 | 能力 | 下载价值 |
@@ -69,6 +74,7 @@
 | 路线可比较 | 路线评分卡把证据强度、用户匹配、竞品防守、风险可控、资源匹配和时机匹配统一成分数 |
 | 风险前置 | 评论区压力测试、风险账本和负面雷达把潜在反噬放到上线前处理 |
 | 传播证据分层 | 结构化评论批次区分独立账号、单账号刷屏、跨平台扩散、权威放大和真实业务影响 |
+| 正式物料分层 | 老板看到创作者价值、观众体验和商业机会，项目组在备注与附录中保留证据和风险控制 |
 | 旧用法兼容 | 旧提示词、旧术语和熟悉交付形态继续生效，高级模块按需展开 |
 | 执行可切换 | 每个关键风险都对应继续、缩窄、切换或暂停动作 |
 | 离线优先 | OpenClaw / Hermes 缺少 browser-use、微博、新闻或实时网页能力时，仍可依靠包内知识库和模板完成基础判断 |
@@ -105,19 +111,19 @@ flowchart LR
 
 ## 可验证版本
 
-- 当前版本：`v1.4.31`
-- 版本号：`1.4.31`
-- 更新日期：`2026-07-13`
+- 当前版本：`v1.4.33`
+- 版本号：`1.4.33`
+- 更新日期：`2026-07-30`
 - 技能标识：`china-marketing-copilot`
 - 平台字段台账：[docs/platform-publish-fields.json](docs/platform-publish-fields.json)
 
 | 平台 | 当前版本 | 发布口径 |
 |------|----------|----------|
-| GitHub | `v1.4.31` | 源码、README、验证脚本以本仓库为准 |
-| ClawHub | `v1.4.31` | 使用 `scripts/build_publish_package.py --platform clawhub` 生成 |
-| SkillHub | `v1.4.31` | 使用 `scripts/build_publish_package.py --platform skillhub` 生成，临时补平台字段 |
-| Codex / OpenAI 技能 | `v1.4.31` | 使用 `SKILL.md` 和 `agents/openai.yaml` |
-| OpenClaw / Hermes | `v1.4.31` | 使用 `scripts/build_publish_package.py --platform hermes-personal` 生成个人全量版，原生安装到 `~/.hermes/skills/china-marketing-copilot/` |
+| GitHub | `v1.4.33` | 源码、README、验证脚本以本仓库为准 |
+| ClawHub | `v1.4.33` | 使用 `scripts/build_publish_package.py --platform clawhub` 生成 |
+| SkillHub | `v1.4.33` | 使用 `scripts/build_publish_package.py --platform skillhub` 生成，临时补平台字段 |
+| Codex / OpenAI 技能 | `v1.4.33` | 使用 `SKILL.md` 和 `agents/openai.yaml` |
+| OpenClaw / Hermes | `v1.4.33` | 使用 `scripts/build_publish_package.py --platform hermes-personal` 生成个人全量版，原生安装到 `~/.hermes/skills/china-marketing-copilot/` |
 
 发布前校验：
 
@@ -139,8 +145,8 @@ python3 -B scripts/verify_release_artifacts.py --build-temp
 - 包内来源可追溯程度见 [docs/evidence-ledger.json](docs/evidence-ledger.json)；当前台账仍含部分可追溯和缺少来源资料。
 - 不同来源的数据会先说明测试口径，再进行判断。
 - 没有实时平台访问时，不声称掌握当前舆情热度或传播趋势。
-- 已建立18题跨智能体盲测协议；完成真实全量运行前，不对外宣称各智能体均已通过。
-- 已建立12题旧用法兼容合同；静态合同通过不代替真实老用户试用反馈。
+- 已建立19题跨智能体盲测协议；完成真实全量运行前，不对外宣称各智能体均已通过。
+- 已建立13题旧用法兼容合同；静态合同通过不代替真实老用户试用反馈。
 - 结构化负面批次只判断用户提供的样本范围，不外推为全网热度或平台整体趋势。
 - 上线闸门属于营销决策支持，不替代法务、广告合规和产品安全审核。
 

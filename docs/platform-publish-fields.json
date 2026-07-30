@@ -1,5 +1,5 @@
 {
-  "version": "1.4.31",
+  "version": "1.4.33",
   "skill_name": "china-marketing-copilot",
   "display_name": "中国3C营销助手",
   "positioning": "中国3C上市决策系统",
@@ -30,7 +30,7 @@
   ],
   "platforms": {
     "github": {
-      "version_label": "v1.4.31",
+      "version_label": "v1.4.33",
       "primary_copy": "README.md",
       "trust_copy": [
         "CHANGELOG.md",
@@ -40,23 +40,23 @@
       ]
     },
     "clawhub": {
-      "version_label": "v1.4.31",
-      "package_name": "clawhub-china-marketing-copilot-v1.4.31.zip",
+      "version_label": "v1.4.33",
+      "package_name": "clawhub-china-marketing-copilot-v1.4.33.zip",
       "listing_copy": "docs/platform-listing.md"
     },
     "skillhub": {
-      "version_label": "v1.4.31",
-      "package_name": "skillhub-china-marketing-copilot-v1.4.31.zip",
+      "version_label": "v1.4.33",
+      "package_name": "skillhub-china-marketing-copilot-v1.4.33.zip",
       "listing_copy": "docs/platform-listing.md"
     },
     "codex": {
-      "version_label": "v1.4.31",
-      "package_name": "codex-china-marketing-copilot-v1.4.31.zip",
+      "version_label": "v1.4.33",
+      "package_name": "codex-china-marketing-copilot-v1.4.33.zip",
       "entrypoint": "SKILL.md"
     },
     "openclaw_hermes": {
-      "version_label": "v1.4.31",
-      "package_name": "hermes-personal-china-marketing-copilot-v1.4.31.zip",
+      "version_label": "v1.4.33",
+      "package_name": "hermes-personal-china-marketing-copilot-v1.4.33.zip",
       "entrypoint": "SKILL.md",
       "install_target": "~/.hermes/skills/china-marketing-copilot/",
       "package_profile": "personal_full",

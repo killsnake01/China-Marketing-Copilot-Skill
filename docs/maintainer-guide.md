@@ -18,6 +18,7 @@
 | 下载展示 | `README.md`; `docs/platform-listing.md` | 平台详情页、安装理由、示例输入和能力边界 |
 | 平台字段 | `docs/platform-publish-fields.json`; `scripts/validate_platform_fields.py` | ClawHub、SkillHub、GitHub、Codex 的标题、副标题、短描述、版本和包名一致性 |
 | 路由层 | `docs/agent-router.md`; `docs/routes/*.md` | 用户任务到模板、品类索引和校验脚本的选择 |
+| 正式物料分层 | `docs/templates/audience-layering.md`; `docs/evals/audience-layering-samples.json`; `scripts/evaluate_audience_layering.py` | 区分前台可见内容、演讲者备注与内部附录，拦截审核语言泄露 |
 | 运行能力 | `docs/runtime-capabilities.json` | 纯文档、脚本增强和联网增强三种环境的能力选择与回退 |
 | 决策模板 | `assets/launch-decision-card.md`; `docs/templates/launch-decision-package.md`; `docs/templates/executive-decision-memo.md`; `docs/templates/route-scorecard.md`; `docs/templates/risk-ledger.md`; `docs/templates/route-switch-playbook.md`; `docs/templates/decision-consistency-gate.md` | 完整上市决策包、管理层纪要、路线评分、风险因果链和切换剧本 |
 | 事实纪律 | `docs/templates/evidence-freshness-gate.md`; `docs/evals/evidence-claim-samples.json`; `docs/data-sources.json`; `docs/evidence-ledger.json` | 高时效事实复核、主张降级、数据时效与来源可追溯台账 |
@@ -40,10 +41,19 @@ python3 -B scripts/check_internal_links.py
 python3 -B scripts/audit_script_safety.py
 python3 -B scripts/audit_evidence_ledger.py
 python3 -B scripts/evaluate_cross_agent_runs.py --check
+python3 -B scripts/evaluate_cross_agent_runs.py --self-test
 python3 -B scripts/evaluate_legacy_compatibility.py
+python3 -B scripts/evaluate_audience_layering.py --check
+python3 -B scripts/install_local.py --self-test
 ```
 
-生成正式三平台包：
+生成供四端盲测的候选包：
+
+```bash
+python3 -B scripts/build_publish_package.py --platform all-with-personal --output candidate-v{version} --format zip --candidate
+```
+
+真实运行闸门通过后生成正式三平台包：
 
 ```bash
 python3 -B scripts/build_publish_package.py --platform all-with-personal --output dist-v{version} --format zip
@@ -68,6 +78,7 @@ python3 -B scripts/verify_release_artifacts.py --output dist-v{version}
 | 触发路由 | `docs/evals/trigger-queries.json` | `scripts/validate_skill_pack.py` |
 | 负面传播批次 | `docs/evals/negative-propagation-samples.json` | `scripts/evaluate_negative_propagation.py` |
 | 输出模式 | `docs/evals/output-mode-samples.json` | `scripts/validate_skill_pack.py` |
+| 正式物料分层 | `docs/evals/audience-layering-samples.json`; `assets/examples/hypershell-links-boss-proposal.md` | `scripts/evaluate_audience_layering.py --check` |
 | 证据时效 | `docs/evals/freshness-claim-samples.json` | `scripts/evaluate_freshness_claims.py --check` |
 | 证据主张 | `docs/evals/evidence-claim-samples.json` | `scripts/evaluate_evidence_claims.py --check` |
 | 上市决策包 | `docs/evals/decision-package-samples.json` | `scripts/evaluate_decision_package.py --check` |
@@ -89,11 +100,23 @@ python3 -B scripts/verify_release_artifacts.py --output dist-v{version}
 
 1. 用待发布安装包分别安装到 Codex、OpenClaw、Hermes 和 GPT 测试环境。
 2. 每次只发送 `docs/evals/cross-agent-benchmark.json` 中的 `prompt`，不发送预期路由、必备词或禁用规则。
-3. 把原始结果逐行保存为 JSONL：`case_id`、`agent`、`triggered`、`selected_route`、`selected_mode`、`output`。
-4. 运行 `python3 -B scripts/evaluate_cross_agent_runs.py --input runs.jsonl --require-complete`。
-5. 每个目标智能体完成全部案例且通过率达到85%后，才在对外文案中声明对应兼容性。
+3. 按 `agent_package_profiles` 记录待测包指纹，例如运行 `python3 -B scripts/evaluate_cross_agent_runs.py --print-runtime-fingerprint --package-profile codex`、`--package-profile clawhub` 和 `--package-profile hermes-personal`。
+4. 把原始结果逐行保存为 JSONL：`case_id`、`agent`、`triggered`、`selected_route`、`selected_mode`、`output`、`captured_at`、`skill_version`、`runtime_package_fingerprint_sha256`。
+5. 运行 `python3 -B scripts/evaluate_cross_agent_runs.py --input runs.jsonl --release-gate --summary-output docs/evals/live-release-status.json`。
+6. 每个目标智能体完成全部19个案例且通过率达到85%后，正式公开包才会放行；仓库只保存脱敏汇总，原始回答继续留在外部测试记录。
 
-静态命令 `--check` 只验证题库、路由覆盖和评分规则可用，不产生兼容性成绩。真实结果保留为独立测试产物，避免写入待测安装包。
+静态命令 `--check` 只验证题库和路由覆盖；`--self-test` 使用76条合成记录检查评分器机械逻辑。两者都不产生兼容性成绩。真实结果保留为独立测试产物，避免写入待测安装包。
+
+## 本机 Codex 安装同步
+
+```bash
+python3 -B scripts/install_local.py --check
+python3 -B scripts/install_local.py --sync
+```
+
+- `--check` 会用当前源码临时构建 Codex 运行包，并逐文件检查本机安装漂移。
+- `--sync` 会先把旧安装移动到 `~/.codex/skill-backups/`，再安装当前运行包并复核。
+- `--self-test` 只在临时目录验证同步和漂移检测，不修改本机安装。
 
 ## 来源升级流程
 

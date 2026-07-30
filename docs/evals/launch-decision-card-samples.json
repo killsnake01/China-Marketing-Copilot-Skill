@@ -1,5 +1,5 @@
 {
-  "version": "1.4.31",
+  "version": "1.4.33",
   "valid": [
     {
       "id": "D001",
@@ -18,7 +18,7 @@
         },
         "decision_package": {
           "package_title": "4499元影像旗舰上市决策包",
-          "package_version": "v1.4.31",
+          "package_version": "v1.4.33",
           "package_status": "需补证据",
           "primary_audience": "品牌市场、产品、内容、公关和KOL负责人",
           "decision_owner": "上市评审负责人",

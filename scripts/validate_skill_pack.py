@@ -26,6 +26,8 @@ REQUIRED_PATHS = [
     "assets/examples/image-flagship-launch.md",
     "assets/examples/ai-claim-review.md",
     "assets/examples/headphone-comment-analysis.md",
+    "assets/examples/open-ear-creative-directions.md",
+    "assets/examples/hypershell-links-boss-proposal.md",
     "schemas/launch-decision.schema.json",
     "schemas/evidence-ledger.schema.json",
     "schemas/negative-signal-batch.schema.json",
@@ -52,6 +54,7 @@ REQUIRED_PATHS = [
     "docs/templates/strategy-decision-system.md",
     "docs/templates/message-house.md",
     "docs/templates/channel-kol-activation.md",
+    "docs/templates/audience-layering.md",
     "docs/templates/execution-readiness-gate.md",
     "docs/templates/post-launch-war-room.md",
     "docs/templates/output-mode-policy.md",
@@ -75,6 +78,7 @@ REQUIRED_PATHS = [
     "docs/evals/negative-propagation-samples.json",
     "docs/evals/trigger-queries.json",
     "docs/evals/output-mode-samples.json",
+    "docs/evals/audience-layering-samples.json",
     "docs/evals/freshness-claim-samples.json",
     "docs/evals/evidence-claim-samples.json",
     "docs/evals/decision-package-samples.json",
@@ -89,9 +93,11 @@ REQUIRED_PATHS = [
     "docs/evals/output-quality-rubric.json",
     "docs/evals/golden-example-assertions.json",
     "docs/evals/cross-agent-benchmark.json",
+    "docs/evals/live-release-status.json",
     "docs/evals/legacy-compatibility-samples.json",
     "scripts/preprocess.py",
     "scripts/evaluate_negative_signals.py",
+    "scripts/evaluate_audience_layering.py",
     "scripts/analyze_signal_batch.py",
     "scripts/evaluate_negative_propagation.py",
     "scripts/evaluate_execution_gate.py",
@@ -113,6 +119,7 @@ REQUIRED_PATHS = [
     "scripts/audit_evidence_ledger.py",
     "scripts/evaluate_cross_agent_runs.py",
     "scripts/evaluate_legacy_compatibility.py",
+    "scripts/install_local.py",
     "scripts/validate_platform_fields.py",
     "scripts/verify_release_artifacts.py",
     "scripts/build_release_manifest.py",
@@ -184,6 +191,7 @@ def validate_skill_router_shape():
     required_terms = [
         "docs/agent-router.md",
         "docs/templates/output-mode-policy.md",
+        "docs/templates/audience-layering.md",
         "docs/templates/launch-decision-package.md",
         "docs/templates/executive-decision-memo.md",
         "docs/templates/route-scorecard.md",
@@ -328,6 +336,7 @@ def validate_json():
         "schemas/negative-signal-batch.schema.json",
         "docs/evals/trigger-queries.json",
         "docs/evals/output-mode-samples.json",
+        "docs/evals/audience-layering-samples.json",
         "docs/evals/freshness-claim-samples.json",
         "docs/evals/evidence-claim-samples.json",
         "docs/evals/decision-package-samples.json",
@@ -431,7 +440,7 @@ def validate_evidence_ledger():
 
 def validate_cross_agent_benchmark():
     result = subprocess.run(
-        [sys.executable, "-B", "scripts/evaluate_cross_agent_runs.py", "--check"],
+        [sys.executable, "-B", "scripts/evaluate_cross_agent_runs.py", "--self-test"],
         cwd=ROOT,
         text=True,
         capture_output=True,
@@ -444,6 +453,62 @@ def validate_cross_agent_benchmark():
     if result.returncode != 0:
         return fail("cross-agent benchmark readiness failed")
     print("PASS cross-agent benchmark readiness; live compatibility remains unclaimed")
+    return 0
+
+
+def validate_live_release_status():
+    status_path = ROOT / "docs/evals/live-release-status.json"
+    status = json.loads(status_path.read_text(encoding="utf-8"))
+    benchmark = json.loads((ROOT / "docs/evals/cross-agent-benchmark.json").read_text(encoding="utf-8"))
+    version = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
+    if status.get("schema_version") != 1:
+        return fail("live release status schema_version mismatch")
+    if status.get("status") not in {"no_live_runs", "failed", "passed"}:
+        return fail("live release status value is invalid")
+    if status.get("skill_version") != version:
+        return fail("live release status version mismatch")
+    if status.get("target_agents") != len(benchmark.get("target_agents", [])):
+        return fail("live release status target-agent count mismatch")
+    if set(status.get("target_agent_names", [])) != set(benchmark.get("target_agents", [])):
+        return fail("live release status target-agent names mismatch")
+    if status.get("total_cases") != len(benchmark.get("cases", [])):
+        return fail("live release status case count mismatch")
+    if status.get("raw_outputs_bundled") is not False:
+        return fail("live release status must exclude raw outputs")
+    if status.get("status") == "no_live_runs":
+        for field in ("run_records", "complete_agents", "passed_agents"):
+            if status.get(field) != 0:
+                return fail(f"no-live release status must set {field}=0")
+        if status.get("package_fingerprints_sha256") != {}:
+            return fail("no-live release status must not claim package fingerprints")
+    if status.get("status") == "passed":
+        from build_publish_package import live_release_gate_errors
+
+        errors = live_release_gate_errors()
+        if errors:
+            return fail("live release status is stale: " + "; ".join(errors))
+    print(
+        "PASS live release status: "
+        f"{status.get('status')}, {status.get('run_records', 0)} sanitized run record(s)"
+    )
+    return 0
+
+
+def validate_local_installer():
+    result = subprocess.run(
+        [sys.executable, "-B", "scripts/install_local.py", "--self-test"],
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+    if result.stdout.strip():
+        print(result.stdout.strip())
+    if result.stderr.strip():
+        print(result.stderr.strip(), file=sys.stderr)
+    if result.returncode != 0:
+        return fail("local install synchronization self-test failed")
+    print("PASS local install synchronization and drift detection")
     return 0
 
 
@@ -844,6 +909,24 @@ def validate_output_modes():
         if mode not in policy:
             return fail(f"output-mode-policy.md missing mode: {mode}")
     print(f"PASS output-mode samples: {len(samples)}")
+    return 0
+
+
+def validate_audience_layering():
+    result = subprocess.run(
+        [sys.executable, "-B", "scripts/evaluate_audience_layering.py", "--check"],
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+    if result.stdout.strip():
+        print(result.stdout.strip())
+    if result.stderr.strip():
+        print(result.stderr.strip(), file=sys.stderr)
+    if result.returncode != 0:
+        return fail("formal-material audience layering check failed")
+    print("PASS formal-material frontstage and backstage separation")
     return 0
 
 
@@ -1450,6 +1533,8 @@ def validate_release_manifest():
         return fail("RELEASE-MANIFEST.json publish package_builder missing")
     if publish.get("runtime_capabilities") != "docs/runtime-capabilities.json":
         return fail("RELEASE-MANIFEST.json runtime capabilities path mismatch")
+    if publish.get("live_release_gate") != "docs/evals/live-release-status.json":
+        return fail("RELEASE-MANIFEST.json live release gate path mismatch")
     hermes = publish.get("personal_packages", {}).get("hermes", {})
     expected_hermes = {
         "profile": "personal_full",
@@ -1478,6 +1563,7 @@ def validate_release_manifest():
     expected_counts = {
         "trigger_queries": len(json.loads((ROOT / "docs/evals/trigger-queries.json").read_text(encoding="utf-8")).get("queries", [])),
         "output_mode_samples": len(json.loads((ROOT / "docs/evals/output-mode-samples.json").read_text(encoding="utf-8")).get("samples", [])),
+        "audience_layering_samples": len(json.loads((ROOT / "docs/evals/audience-layering-samples.json").read_text(encoding="utf-8")).get("samples", [])),
         "freshness_claim_samples": len(json.loads((ROOT / "docs/evals/freshness-claim-samples.json").read_text(encoding="utf-8")).get("samples", [])),
         "evidence_claim_samples": len(json.loads((ROOT / "docs/evals/evidence-claim-samples.json").read_text(encoding="utf-8")).get("samples", [])),
         "decision_package_samples": len(json.loads((ROOT / "docs/evals/decision-package-samples.json").read_text(encoding="utf-8")).get("samples", [])),
@@ -1507,7 +1593,9 @@ def validate_release_manifest():
         "cross_agent_benchmark_cases": len(
             json.loads((ROOT / "docs/evals/cross-agent-benchmark.json").read_text(encoding="utf-8")).get("cases", [])
         ),
-        "cross_agent_live_results": 0,
+        "cross_agent_live_results": json.loads(
+            (ROOT / "docs/evals/live-release-status.json").read_text(encoding="utf-8")
+        ).get("run_records", 0),
         "legacy_compatibility_cases": len(
             json.loads((ROOT / "docs/evals/legacy-compatibility-samples.json").read_text(encoding="utf-8")).get("cases", [])
         ),
@@ -1539,6 +1627,7 @@ def validate_release_manifest():
         "report": "RELEASE-VALIDATION.json",
         "command": "python3 -B scripts/validate_skill_pack.py --write-report",
         "semantics": "actual_run_results",
+        "live_release_status": "docs/evals/live-release-status.json",
     }
     if validation != expected_validation:
         return fail("RELEASE-MANIFEST.json validation contract mismatch")
@@ -1782,10 +1871,13 @@ def main():
         validate_launch_decision_schema,
         validate_trigger_queries,
         validate_cross_agent_benchmark,
+        validate_live_release_status,
+        validate_local_installer,
         validate_legacy_compatibility,
         validate_negative_propagation,
         validate_golden_examples,
         validate_output_modes,
+        validate_audience_layering,
         validate_freshness_claims,
         validate_evidence_claims,
         validate_decision_package_samples,

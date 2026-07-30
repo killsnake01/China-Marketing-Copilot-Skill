@@ -6,9 +6,10 @@
 
 1. `docs/runtime-capabilities.json`：判断纯文档、脚本增强或联网增强模式。
 2. `docs/templates/output-mode-policy.md`：判断快速版、标准版或深度版。
-3. 本文件：选择主任务路由和最小上下文。
-4. `docs/data-index.md`：选择品类索引、来源状态、时效规则和深度数据文件。
-5. 主任务路由文件：读取该路由指定的模板和参考文件。
+3. 交付物属于 PPT、Keynote、广告、发布会方案、导演阐述、KOL 合作方案或成片脚本时，读取 `docs/templates/audience-layering.md`。
+4. 本文件：选择主任务路由和最小上下文。
+5. `docs/data-index.md`：选择品类索引、来源状态、时效规则和深度数据文件。
+6. 主任务路由文件：读取该路由指定的模板和参考文件。
 
 ## 主任务路由 选择
 
@@ -22,7 +23,7 @@
 | 翻车风险、负面苗头、评论区压力测试 | `docs/routes/risk-review.md` | `docs/ecosystem/negative-early-warning.md`; `docs/references/comment-personas.md` |
 | 上线后反馈、战情复盘、撤稿或继续投 | `docs/routes/post-launch-war-room.md` | `docs/templates/post-launch-war-room.md`; `docs/templates/decision-learning-record.md`; `docs/templates/evidence-freshness-gate.md` |
 | 评论、评测字幕、规格参数导入 | `docs/routes/data-import.md` | `docs/references/subagent-dataprocessor.md`; `docs/evals/negative-signal-samples.md`; `docs/templates/decision-learning-record.md` |
-| 广告、PPT、商品页、KOL简报审核 | `docs/routes/material-audit.md` | `docs/references/subagent-factchecker.md`; `docs/templates/risk-assessment.md` |
+| 已成稿广告、PPT、商品页、KOL简报的审核或上线判断 | `docs/routes/material-audit.md` | `docs/references/subagent-factchecker.md`; `docs/templates/risk-assessment.md`; `docs/templates/audience-layering.md` |
 | 输出评分、验收、交付前判断 | `docs/routes/output-quality.md` | `docs/evals/output-quality-rubric.json`; `docs/templates/quality-check-tools.md` |
 
 ## 路由冲突仲裁
@@ -37,6 +38,8 @@
 6. 重点要求新创意、传播方案或内容方向：`creative-campaign`。
 7. 提供原始评论、字幕、规格表或风险笔记并要求整理：`data-import`。
 8. 涉及总路线、预算取舍或上线裁决：`launch-decision`。
+
+从零制作老板创意提案、发布会方案、导演阐述或 KOL 合作方案时，按创作动作选择 `creative-campaign`、`channel-kol` 或 `messaging-review`。`material-audit` 只在后台辅助，不能接管前台结构。
 
 纯购买咨询、维修排障和通用新闻摘要不触发本技能。
 
@@ -85,19 +88,24 @@
 | 决策学习样本 | `python3 -B scripts/evaluate_decision_learning.py --check` |
 | 结构化决策单 | `python3 -B scripts/validate_decision_output.py --check` |
 | 质量评分卡 | `python3 -B scripts/evaluate_quality_rubric.py --check` |
+| 正式物料分层 | `python3 -B scripts/evaluate_audience_layering.py --check` |
 
 ## 路由纪律
 
 - 一次任务只选一个主任务路由，其他路由只作为辅助。
+- 先确定最终受众，再区分前台正式物料与后台审核；两层可以同轮交付，但不能混在同一画布。
+- 同时使用演示文稿、文档或创意制作技能时，营销技能提供判断、证据和风险，输出技能决定最终受众可见的语言、标题与信息密度。
+- 最终受众表达要求优先于内部审核模板的可见呈现要求；审核结果默认进入备注、内部附录或独立检查表。
+- 禁止把风险评分、执行门、智能体工作指令和制作纪律原样复制到前台页面。
 - 先用包内文件；外部搜索、微博、新闻和浏览器只作增强。
 - 当前价格、排名、份额、新品参数、平台热度和KOL近期口碑先过证据时效门。
 - 包内来源可追溯程度按 `docs/evidence-ledger.json` 判断；部分可追溯来源不能支撑当前高时效结论。
 - 批量评论有时间、平台、账号和互动字段时优先运行结构化批次分析；单账号刷屏和高度重复内容不能直接推高叙事阶段。
-- 用户明确要求管理层汇报时，先输出上市任务简报、上市总控台和管理层决策纪要。
+- 用户明确要求管理层上市裁决、决策记录或路线取舍时，先输出上市任务简报、上市总控台和管理层决策纪要；仅说明“给老板看”时按物料用途选择。
 - 用户明确要求完整上市决策包时，增加封面、包状态、包内目录、负责人角色和待决事项。
 - 用户要求路线比较、统一评分或解释取舍时，增加路线评分卡。
 - 用户要求路线切换预案时，把触发器展开成继续、缩窄、切换或暂停动作。
 - 用户要求结构化决策单、JSON或机器验收时，才生成包含 `launch_brief`、`decision_package`、`executive_memo`、`route_scorecard` 和 `risk_ledger` 的验收对象。
-- 正式上线、排期、管理层汇报和物料审核必须跑执行就绪门。
+- 明确的正式上线、排期、管理层决策记录和物料审核必须跑执行就绪门；创意提案制作在后台运行，并将可见内容改写为自然推进建议。
 - 上线后反馈必须判断主张动作：继续放大、缩窄主张、切换路线或暂停扩散。
 - 上线后复盘需要沉淀为路线保留、补证据、禁用话术、更新阈值或KOL记录。

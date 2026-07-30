@@ -88,10 +88,10 @@
 
 ### 结构化批次阶段证据
 
-评论批次包含时间、平台、账号、角色、互动或业务影响字段时，按 `schemas/negative-signal-batch.schema.json` 整理为 JSONL，并运行：
+评论批次可直接使用 JSONL、CSV、TSV 或逐行文本。CSV/TSV 支持常见中英文字段名；字段越完整，阶段和趋势判断越可靠。运行：
 
 ```bash
-python3 -B scripts/analyze_signal_batch.py --input comments.jsonl --category mobile
+python3 -B scripts/analyze_signal_batch.py --input comments.csv --category mobile
 ```
 
 批次判断规则：
@@ -104,6 +104,8 @@ python3 -B scripts/analyze_signal_batch.py --input comments.jsonl --category mob
 - 单账号重复发布会压回S0；重复内容占比达到80%时最高按S1处理。
 - 账号字段覆盖不足50%时最高按S1处理；时间字段覆盖不足50%时最高按S2处理。
 - 两条购买观望只记录业务影响苗头，不直接升级S4。
+- 趋势比较当前批次最近2小时与此前2小时，输出新增、加速、稳定、减弱、低样本或缺少时间。
+- CSV/TSV 的时间缺少时区时按中国标准时间 `+08:00` 处理，并在数据质量提醒中标记。
 
 脚本输出只代表当前导入批次，不能写成全网舆情规模。
 

@@ -25,9 +25,11 @@ COMMON_SKIP_FILES = {".DS_Store"}
 SOURCE_ONLY_PRIVATE_PATHS = {
     "docs/evals/cross-agent-benchmark.json",
     "docs/evals/legacy-compatibility-samples.json",
+    "docs/evals/live-release-status.json",
     "scripts/audit_evidence_ledger.py",
     "scripts/evaluate_cross_agent_runs.py",
     "scripts/evaluate_legacy_compatibility.py",
+    "scripts/install_local.py",
 }
 ROOT_FILES_BY_PLATFORM = {
     "codex": {"SKILL.md", "LICENSE", "VERSION"},
@@ -41,6 +43,7 @@ ROOT_FILES_BY_PLATFORM = {
     },
 }
 RUNTIME_EVAL_FILES = {
+    "audience-layering-samples.json",
     "decision-learning-samples.json",
     "decision-package-samples.json",
     "evidence-claim-samples.json",
@@ -58,6 +61,7 @@ RUNTIME_EVAL_FILES = {
     "route-switch-samples.json",
 }
 RUNTIME_SCRIPT_FILES = {
+    "evaluate_audience_layering.py",
     "evaluate_decision_learning.py",
     "evaluate_decision_package.py",
     "evaluate_evidence_claims.py",
@@ -91,6 +95,7 @@ COMMON_PACKAGE_REQUIRED_PATHS = [
     "docs/routes/creative-campaign.md",
     "docs/routes/post-launch-war-room.md",
     "docs/routes/output-quality.md",
+    "docs/templates/audience-layering.md",
     "docs/templates/execution-readiness-gate.md",
     "docs/templates/post-launch-war-room.md",
     "docs/templates/output-mode-policy.md",
@@ -104,6 +109,7 @@ COMMON_PACKAGE_REQUIRED_PATHS = [
     "docs/templates/risk-ledger.md",
     "docs/ecosystem/negative-signal-rules.json",
     "docs/evals/negative-signal-samples.md",
+    "docs/evals/audience-layering-samples.json",
     "docs/evals/freshness-claim-samples.json",
     "docs/evals/evidence-claim-samples.json",
     "docs/evals/decision-package-samples.json",
@@ -119,6 +125,7 @@ COMMON_PACKAGE_REQUIRED_PATHS = [
     "docs/evals/negative-signal-adversarial-samples.json",
     "docs/evals/negative-propagation-samples.json",
     "scripts/preprocess.py",
+    "scripts/evaluate_audience_layering.py",
     "scripts/evaluate_negative_signals.py",
     "scripts/analyze_signal_batch.py",
     "scripts/evaluate_negative_propagation.py",
@@ -244,6 +251,54 @@ def should_include(path: Path, platform: str) -> bool:
     if section == "evals":
         return rel.name in RUNTIME_EVAL_FILES
     return False
+
+
+def runtime_fingerprint(platform: str = "codex") -> str:
+    if platform not in SUPPORTED_PLATFORMS:
+        raise ValueError(f"unknown platform: {platform}")
+    if platform in {"skillhub", "hermes-personal"}:
+        with tempfile.TemporaryDirectory(prefix=f"china-marketing-{platform}-fingerprint-") as temp_dir:
+            package_dir, _zip_path = build_platform(platform, Path(temp_dir), "dir")
+            return source_fingerprint(package_dir)
+    digest = hashlib.sha256()
+    for path in sorted(ROOT.rglob("*")):
+        if not path.is_file() or not should_include(path, platform):
+            continue
+        rel = path.relative_to(ROOT).as_posix()
+        digest.update(rel.encode("utf-8"))
+        digest.update(b"\0")
+        digest.update(path.read_bytes())
+        digest.update(b"\0")
+    return digest.hexdigest()
+
+
+def live_release_gate_errors() -> list[str]:
+    status_path = ROOT / "docs/evals/live-release-status.json"
+    if not status_path.is_file():
+        return ["missing docs/evals/live-release-status.json"]
+    try:
+        status = json.loads(status_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        return [f"invalid live release status: {exc}"]
+    if status.get("status") != "passed":
+        return [f"live release status is {status.get('status', 'missing')}"]
+    benchmark = json.loads((ROOT / "docs/evals/cross-agent-benchmark.json").read_text(encoding="utf-8"))
+    expected_agents = len(benchmark.get("target_agents", []))
+    expected_records = expected_agents * len(benchmark.get("cases", []))
+    package_profiles = set(benchmark.get("agent_package_profiles", {}).values())
+    expected_fingerprints = {
+        profile: runtime_fingerprint(profile)
+        for profile in sorted(package_profiles)
+    }
+    checks = [
+        (status.get("skill_version") == version(), "live release status targets another version"),
+        (status.get("package_fingerprints_sha256") == expected_fingerprints, "live release status targets another package fingerprint set"),
+        (status.get("target_agents") == expected_agents, "live release target-agent count is incomplete"),
+        (status.get("complete_agents") == expected_agents, "not every target agent completed the benchmark"),
+        (status.get("passed_agents") == expected_agents, "not every target agent passed the benchmark"),
+        (status.get("run_records") == expected_records, "live release run record count is incomplete"),
+    ]
+    return [message for passed, message in checks if not passed]
 
 
 def copy_package_tree(destination: Path, platform: str) -> None:
@@ -540,6 +595,11 @@ def main() -> int:
     parser.add_argument("--output", default="dist", help="output directory")
     parser.add_argument("--format", choices=["dir", "zip", "both"], default="both")
     parser.add_argument("--check", action="store_true", help="build in a temp directory and validate only")
+    parser.add_argument(
+        "--candidate",
+        action="store_true",
+        help="build an evaluation candidate before the live cross-agent release gate passes",
+    )
     args = parser.parse_args()
 
     platforms = selected_platforms(args.platform)
@@ -550,6 +610,16 @@ def main() -> int:
                 build_platform(platform, output_dir, "dir")
         print("publish package check passed: " + ", ".join(platforms))
         return 0
+
+
+    if any(platform in PUBLIC_PLATFORMS for platform in platforms) and not args.candidate:
+        gate_errors = live_release_gate_errors()
+        if gate_errors:
+            print("formal public package blocked by live release gate", file=sys.stderr)
+            for error in gate_errors:
+                print(f"- {error}", file=sys.stderr)
+            print("build a blind-test package with --candidate, then record a passing live status", file=sys.stderr)
+            return 1
 
     output_dir = (ROOT / args.output).resolve()
     output_dir.mkdir(parents=True, exist_ok=True)

@@ -1,9 +1,9 @@
 {
-  "version": "1.4.31",
-  "validated_at": "2026-07-13T02:40:05.938383+00:00",
-  "source_fingerprint_sha256": "bd9c0807c1fdc1bfcddd12319e20ab7b481cb4212ad8572e2dab780dbc817342",
-  "git_commit": "14910f642ca2ac322fa39a2b8d121676dd697732",
-  "working_tree_dirty": false,
+  "version": "1.4.33",
+  "validated_at": "2026-07-30T04:37:00.763425+00:00",
+  "source_fingerprint_sha256": "515139149b658c5ac044096851dc860113c6946a74fae4acf369b79a1b311742",
+  "git_commit": "af0175f4b9573668d979cf1a4529bca9a91ebf32",
+  "working_tree_dirty": true,
   "validator": "scripts/validate_skill_pack.py",
   "checks": [
     {
@@ -63,6 +63,14 @@
       "status": "passed"
     },
     {
+      "name": "validate_live_release_status",
+      "status": "passed"
+    },
+    {
+      "name": "validate_local_installer",
+      "status": "passed"
+    },
+    {
       "name": "validate_legacy_compatibility",
       "status": "passed"
     },
@@ -76,6 +84,10 @@
     },
     {
       "name": "validate_output_modes",
+      "status": "passed"
+    },
+    {
+      "name": "validate_audience_layering",
       "status": "passed"
     },
     {
@@ -176,7 +188,7 @@
     }
   ],
   "summary": {
-    "passed": 42,
+    "passed": 45,
     "failed": 0
   }
 }

@@ -25,6 +25,7 @@ description: 把中国3C新品营销从“想创意”推进到“能执行、�
 - **懂中国3C传播语境**：覆盖参数拆解、评测KOL、价格背刺、控评质疑、AI空话和评论区梗化等高频场景。
 - **负面发现更早**：从数据打脸、产品缺陷、价格争议、信任崩塌、价值观风险和KOL反转中识别早期苗头。
 - **策略能够执行**：从核心主张一路落到平台分工、KOL任务、评论区动作、72小时安排和7天跟进。
+- **正式提案更像人写的**：老板先看到创作者价值、观众体验和商业机会，证据、法务、安全与舆情检查完整保留在备注或内部附录。
 - **复杂决策也能承接**：需要管理层评审时，可升级为上市决策包、路线评分卡、风险账本、上线闸门和战情复盘。
 - **离线也能工作**：优先使用包内知识库和模板；网页搜索、微博、新闻和浏览器能力只作为增强。
 - **照顾旧版习惯**：旧提示词、旧术语和熟悉的交付形态继续有效，单项任务不会自动膨胀成完整决策包。
@@ -99,18 +100,19 @@ description: 把中国3C新品营销从“想创意”推进到“能执行、�
 
 1. 先按 `docs/runtime-capabilities.json` 判断可用能力；工具缺失时继续使用纯文档模式。
 2. 按 `docs/templates/output-mode-policy.md` 在内部选择输出深度，不显示模式标签，不因材料很长自动展开完整方案。
-3. 只读取一个主任务路由、一个品类索引和当前任务确实需要的模板；缺失信息可能改变结论时，最多追问三个问题。
-4. 上市路线、预算取舍或管理层决策需要推荐、备选、弃用路线；统一评分只在用户要求时读取 `docs/templates/route-scorecard.md`。
-5. 关键事实先过 `docs/templates/evidence-freshness-gate.md`，区分已核验、待验证、推测、用户提供和主观评价。
-6. 批量评论含时间、平台、账号或互动字段时，按 `schemas/negative-signal-batch.schema.json` 整理并运行 `scripts/analyze_signal_batch.py`，判断独立账号、传播速度、跨平台和业务影响。
-7. 涉及正式上线、排期或正式物料时，读取 `docs/templates/execution-readiness-gate.md`，并用 `assets/launch-decision-card.md` 收口。
-8. 用户明确要求完整上市决策包、管理层汇报或机器验收时，按需读取 `docs/templates/launch-decision-package.md`、`docs/templates/executive-decision-memo.md`、`docs/templates/risk-ledger.md`、`docs/templates/route-switch-playbook.md`、`docs/templates/decision-consistency-gate.md` 和 `schemas/launch-decision.schema.json`；机器验收运行 `scripts/validate_decision_output.py --input {decision.json}`。
-9. 涉及上线后反馈时，读取 `docs/templates/decision-learning-record.md`，把24/72小时信号转成继续、缩窄、切换或暂停判断。
-10. 正式交付前按 `docs/evals/output-quality-rubric.json` 和 `docs/templates/quality-check-tools.md` 检查证据、风险和执行动作。
+3. 交付物为 PPT、Keynote、老板提案、发布会方案、导演阐述、KOL 合作方案、广告或成片脚本时，先读取 `docs/templates/audience-layering.md`；至少实际交付前台可见层和一个后台层，后台覆盖证据、工程、法务安全、舆情与暂停/切换条件。
+4. 只读取一个主任务路由、一个品类索引和当前任务确实需要的模板；缺失信息可能改变结论时，最多追问三个问题。
+5. 上市路线、预算取舍或管理层决策需要推荐、备选、弃用路线；统一评分只在用户要求时读取 `docs/templates/route-scorecard.md`。
+6. 关键事实先过 `docs/templates/evidence-freshness-gate.md`，区分已核验、待验证、推测、用户提供和主观评价。
+7. 批量评论可直接使用 JSONL、CSV、TSV 或逐行文本运行 `scripts/analyze_signal_batch.py`；字段完整时判断独立账号、传播趋势、跨平台和业务影响，字段缺失时主动降级置信度。
+8. 用户明确要求正式上线、排期、上线审核或执行门槛时，读取 `docs/templates/execution-readiness-gate.md`，并用 `assets/launch-decision-card.md` 收口；创意提案制作只在后台运行检查。
+9. 用户明确要求完整上市决策包、管理层决策纪要、路线裁决或机器验收时，按需读取 `docs/templates/launch-decision-package.md`、`docs/templates/executive-decision-memo.md`、`docs/templates/risk-ledger.md`、`docs/templates/route-switch-playbook.md`、`docs/templates/decision-consistency-gate.md` 和 `schemas/launch-decision.schema.json`；仅说明“给老板看”时按物料用途选择。机器验收运行 `scripts/validate_decision_output.py --input {decision.json}`。
+10. 涉及上线后反馈时，读取 `docs/templates/decision-learning-record.md`，把24/72小时信号转成继续、缩窄、切换或暂停判断。
+11. 正式交付前按 `docs/evals/output-quality-rubric.json` 和 `docs/templates/quality-check-tools.md` 检查证据、风险、执行动作和内部语言泄露。
 
 ### 输出约定
 
-实质性输出结尾使用：`自检: {N}个数值已核 | {N}个产品已核 | {N}个来源已标注 | 置信度:{高/中/低}`。答案依赖缺失、过期或未外部核验的信息时，使用 `置信度:低`。
+实质性聊天答案结尾使用：`自检: {N}个数值已核 | {N}个产品已核 | {N}个来源已标注 | 置信度:{高/中/低}`。答案依赖缺失、过期或未外部核验的信息时，使用 `置信度:低`。正式 PPT、Keynote、广告和创意提案将自检放在聊天交付说明、演讲者备注或内部附录，不进入前台画布。
 
 ### 智能体操作规则
 

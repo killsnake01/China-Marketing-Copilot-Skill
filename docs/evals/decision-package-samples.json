@@ -1,5 +1,5 @@
 {
-  "version": "1.4.31",
+  "version": "1.4.33",
   "package_statuses": ["可评审", "需补证据", "暂停评审"],
   "required_section_ids": [
     "launch_brief",

@@ -1,9 +1,13 @@
 {
-  "version": "1.4.31",
+  "version": "1.4.33",
   "samples": [
     {
       "id": "G001",
       "path": "assets/examples/image-flagship-launch.md",
+      "task_scope": "explicit_full",
+      "max_output_chars": 6000,
+      "direct_answer_terms": ["包状态", "上市总控台"],
+      "direct_answer_within_chars": 500,
       "required_routes": [
         "docs/routes/launch-decision.md",
         "knowledge-base/mobile/_index.md",
@@ -63,6 +67,17 @@
     {
       "id": "G002",
       "path": "assets/examples/ai-claim-review.md",
+      "task_scope": "daily",
+      "max_output_chars": 1500,
+      "direct_answer_terms": ["总体结论", "风险等级"],
+      "direct_answer_within_chars": 180,
+      "forbidden_advanced_sections": [
+        "上市决策包",
+        "管理层决策纪要",
+        "路线评分卡",
+        "路线切换剧本",
+        "决策一致性门"
+      ],
       "required_routes": [
         "docs/routes/messaging-review.md",
         "docs/routes/risk-review.md",
@@ -93,6 +108,17 @@
     {
       "id": "G003",
       "path": "assets/examples/headphone-comment-analysis.md",
+      "task_scope": "standard",
+      "max_output_chars": 1800,
+      "direct_answer_terms": ["优先结论"],
+      "direct_answer_within_chars": 180,
+      "forbidden_advanced_sections": [
+        "上市决策包",
+        "管理层决策纪要",
+        "路线评分卡",
+        "路线切换剧本",
+        "决策一致性门"
+      ],
       "required_routes": [
         "docs/routes/data-import.md",
         "docs/ecosystem/negative-early-warning.md",
@@ -118,6 +144,125 @@
         ["负面叙事", "原文样本"],
         ["原文样本", "可传播卖点"],
         ["可传播卖点", "风险词"]
+      ]
+    },
+    {
+      "id": "G004",
+      "path": "assets/examples/open-ear-creative-directions.md",
+      "task_scope": "daily",
+      "max_output_chars": 2200,
+      "direct_answer_terms": ["先给结论"],
+      "direct_answer_within_chars": 180,
+      "forbidden_advanced_sections": [
+        "上市决策包",
+        "管理层决策纪要",
+        "路线评分卡",
+        "路线切换剧本",
+        "决策一致性门",
+        "未来72小时"
+      ],
+      "required_routes": [
+        "docs/routes/creative-campaign.md",
+        "knowledge-base/headphones/_index.md",
+        "docs/ecosystem/negative-early-warning.md"
+      ],
+      "output_required_terms": [
+        "创意1",
+        "创意2",
+        "创意3",
+        "钩子",
+        "证据要求",
+        "评论区预判",
+        "风险提示",
+        "[待验证]"
+      ],
+      "forbidden_output_terms": [
+        "适合所有人且全天舒适",
+        "骑行绝对安全",
+        "漏音控制已验证"
+      ],
+      "order_constraints": [
+        ["先给结论", "### 创意1"],
+        ["### 创意1", "### 创意2"],
+        ["### 创意2", "### 创意3"]
+      ]
+    },
+    {
+      "id": "G005",
+      "path": "assets/examples/hypershell-links-boss-proposal.md",
+      "task_scope": "standard",
+      "max_output_chars": 5000,
+      "direct_answer_terms": ["一场走进山里的发布会", "为什么是 Linksphotograph"],
+      "direct_answer_within_chars": 240,
+      "forbidden_advanced_sections": [
+        "上市决策包",
+        "管理层决策纪要",
+        "路线评分卡",
+        "路线切换剧本",
+        "决策一致性门"
+      ],
+      "required_routes": [
+        "docs/routes/creative-campaign.md",
+        "docs/templates/audience-layering.md",
+        "docs/templates/creative-output.md",
+        "knowledge-base/other/_index.md",
+        "docs/templates/risk-assessment.md"
+      ],
+      "output_required_terms": [
+        "## 前台可见层",
+        "为什么是 Linksphotograph",
+        "这段路里的四个变化",
+        "年轻人定义装备，活力长者接住价值",
+        "HyperShell 与 Links 各自带来什么",
+        "老板需要决定什么",
+        "## 演讲者备注",
+        "## 内部附录",
+        "工程与证据",
+        "法务与安全",
+        "合作与舆情",
+        "[待验证]"
+      ],
+      "forbidden_output_terms": [
+        "电机功率提升30%",
+        "Linksphotograph受众数据已核验"
+      ],
+      "visible_required_terms": [
+        "观众愿意跟着他",
+        "四个变化",
+        "年轻户外用户",
+        "活力长者",
+        "双方共同完成脚本",
+        "批准合作方向"
+      ],
+      "visible_forbidden_terms": [
+        "过门",
+        "禁用",
+        "暂停阈值",
+        "对外禁用",
+        "话术边界",
+        "剪辑纪律",
+        "产品门",
+        "证据门",
+        "安全门",
+        "合作门",
+        "控制在 20",
+        "避免混用",
+        "不填虚数"
+      ],
+      "backstage_required_terms": [
+        "外部核验",
+        "测试条件",
+        "法务与安全",
+        "合同",
+        "舆情",
+        "停止对应段落"
+      ],
+      "order_constraints": [
+        ["## 前台可见层", "### 为什么是 Linksphotograph"],
+        ["### 为什么是 Linksphotograph", "### 这段路里的四个变化"],
+        ["### 这段路里的四个变化", "### 年轻人定义装备，活力长者接住价值"],
+        ["### 老板需要决定什么", "## 演讲者备注"],
+        ["## 演讲者备注", "## 内部附录"]
       ]
     }
   ]

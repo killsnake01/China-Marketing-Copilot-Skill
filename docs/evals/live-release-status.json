@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "status": "no_live_runs",
+  "skill_version": "1.4.33",
+  "package_fingerprints_sha256": {},
+  "benchmark_sha256": null,
+  "generated_at": null,
+  "release_gate": true,
+  "target_agents": 4,
+  "target_agent_names": ["codex", "gpt", "hermes", "openclaw"],
+  "total_cases": 19,
+  "run_records": 0,
+  "complete_agents": 0,
+  "passed_agents": 0,
+  "minimum_case_pass_rate": 0.85,
+  "agent_results": {},
+  "raw_outputs_bundled": false,
+  "note": "真实运行结果尚未写入；正式公开包保持阻断，候选包可用于盲测。"
+}

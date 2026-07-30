@@ -213,6 +213,7 @@ def build_temp_artifacts(output_dir: Path) -> None:
             str(output_dir),
             "--format",
             "both",
+            "--candidate",
         ],
         cwd=ROOT,
         text=True,

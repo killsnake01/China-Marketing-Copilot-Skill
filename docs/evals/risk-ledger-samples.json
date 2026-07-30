@@ -1,5 +1,5 @@
 {
-  "version": "1.4.31",
+  "version": "1.4.33",
   "priorities": ["P0", "P1", "P2", "P3"],
   "route_impacts": ["继续", "缩窄", "切换", "暂停"],
   "fact_statuses": ["known", "inferred", "needs_verification"],

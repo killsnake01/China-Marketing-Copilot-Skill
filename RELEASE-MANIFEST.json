@@ -1,5 +1,5 @@
 {
-  "version": "1.4.31",
+  "version": "1.4.33",
   "data_freshness": {
     "ledger": "docs/data-sources.json",
     "oldest_category_cutoff": "2025-11",
@@ -35,6 +35,7 @@
     "platform_fields": "docs/platform-publish-fields.json",
     "platform_fields_validator": "scripts/validate_platform_fields.py",
     "package_builder": "scripts/build_publish_package.py",
+    "live_release_gate": "docs/evals/live-release-status.json",
     "skillhub_filtered_root_files": [
       ".gitignore",
       "LICENSE",
@@ -45,7 +46,7 @@
     "personal_packages": {
       "hermes": {
         "profile": "personal_full",
-        "package_name": "hermes-personal-china-marketing-copilot-v1.4.31.zip",
+        "package_name": "hermes-personal-china-marketing-copilot-v1.4.33.zip",
         "install_target": "~/.hermes/skills/china-marketing-copilot/",
         "network_mode": "offline_first"
       }
@@ -58,9 +59,11 @@
       "scripts/build_publish_package.py",
       "scripts/validate_skill_pack.py",
       "docs/evals/cross-agent-benchmark.json",
+      "docs/evals/live-release-status.json",
       "docs/evals/legacy-compatibility-samples.json",
       "scripts/evaluate_cross_agent_runs.py",
       "scripts/evaluate_legacy_compatibility.py",
+      "scripts/install_local.py",
       "scripts/audit_evidence_ledger.py"
     ],
     "skillhub_license_path": "docs/package-license.txt",
@@ -72,8 +75,9 @@
     ]
   },
   "eval_counts": {
-    "trigger_queries": 17,
-    "output_mode_samples": 7,
+    "trigger_queries": 18,
+    "output_mode_samples": 8,
+    "audience_layering_samples": 8,
     "freshness_claim_samples": 9,
     "evidence_claim_samples": 10,
     "decision_package_samples": 6,
@@ -88,14 +92,14 @@
     "marketing_tasks": 25,
     "negative_signal_samples": 58,
     "negative_signal_adversarial_samples": 6,
-    "negative_propagation_samples": 10,
-    "golden_examples": 3,
-    "golden_example_assertion_sets": 3,
+    "negative_propagation_samples": 13,
+    "golden_examples": 5,
+    "golden_example_assertion_sets": 5,
     "route_files": 11,
     "quality_rubric_dimensions": 8,
-    "cross_agent_benchmark_cases": 18,
+    "cross_agent_benchmark_cases": 19,
     "cross_agent_live_results": 0,
-    "legacy_compatibility_cases": 12,
+    "legacy_compatibility_cases": 13,
     "legacy_compatibility_live_results": 0
   },
   "quality_gate": {
@@ -106,6 +110,7 @@
   "validation": {
     "report": "RELEASE-VALIDATION.json",
     "command": "python3 -B scripts/validate_skill_pack.py --write-report",
-    "semantics": "actual_run_results"
+    "semantics": "actual_run_results",
+    "live_release_status": "docs/evals/live-release-status.json"
   }
 }
